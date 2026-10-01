@@ -1,0 +1,180 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const projects = [
+  {
+    title: "LuxeFinance Dashboard",
+    year: "2024",
+    role: "Full Stack Lead",
+    tags: ["Next.js", "Tailwind", "Chart.js"],
+    cat: "web",
+    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80&auto=format&fit=crop",
+    desc: "A real-time financial analytics platform serving 200k active users. Built with Next.js App Router, server-side rendering, and custom charting components."
+  },
+  {
+    title: "ChronoLuxury Boutique",
+    year: "2024",
+    role: "Frontend Architect",
+    tags: ["Shopify", "React", "Framer Motion"],
+    cat: "web",
+    img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&q=80&auto=format&fit=crop",
+    desc: "A premium e-commerce experience for a luxury watch brand. Custom Shopify storefront with cinematic animations and a 98 Lighthouse performance score."
+  },
+  {
+    title: "MedConnect Pro",
+    year: "2023",
+    role: "Full Stack Developer",
+    tags: ["Python", "Django", "React Native"],
+    cat: "mobile",
+    img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&q=80&auto=format&fit=crop",
+    desc: "A HIPAA-compliant telemedicine platform connecting 50k+ patients with healthcare providers. Real-time video, secure messaging, and EHR integration."
+  },
+  {
+    title: "DataFlow Pipeline",
+    year: "2023",
+    role: "Backend Architect",
+    tags: ["Node.js", "Kafka", "PostgreSQL"],
+    cat: "web",
+    img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=80&auto=format&fit=crop",
+    desc: "A high-throughput event streaming platform processing 5M+ events per day with sub-100ms latency across distributed microservices."
+  },
+  {
+    title: "EduSphere Platform",
+    year: "2022",
+    role: "Tech Lead",
+    tags: ["React", "GraphQL", "AWS"],
+    cat: "web",
+    img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&q=80&auto=format&fit=crop",
+    desc: "An online learning platform serving 300k students globally. Adaptive content delivery, progress analytics, and live instructor sessions."
+  },
+  {
+    title: "TrackPulse Mobile",
+    year: "2022",
+    role: "Mobile Developer",
+    tags: ["React Native", "TypeScript", "Firebase"],
+    cat: "mobile",
+    img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=900&q=80&auto=format&fit=crop",
+    desc: "A fitness tracking app with AI-powered workout recommendations. 500k downloads in the first 3 months, 4.8★ App Store rating."
+  },
+];
+---
+
+<Layout title="Projects — Karan Arora" description="Selected work by Karan Arora — Full Stack Developer building high-performance digital products.">
+<Header activePage="/projects" />
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">Selected Work</span>
+    <h1 class="reveal">Projects &<br>Case Studies</h1>
+    <p class="reveal">A curated selection of products I've designed and engineered — from fintech dashboards to mobile health platforms.</p>
+  </div>
+</section>
+
+<!-- FILTER -->
+<section class="filter-bar">
+  <div class="wrap">
+    <div class="filters" id="filters">
+      <button class="active" data-f="all">All Projects</button>
+      <button data-f="web">Web Apps</button>
+      <button data-f="mobile">Mobile</button>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS GRID -->
+<section class="section projects-section">
+  <div class="wrap">
+    <div class="projects-grid" id="projGrid">
+      {projects.map((p, i) => (
+        <article class={`proj-card reveal ${i % 2 === 1 ? 'offset' : ''}`} data-cat={p.cat}>
+          <div class="proj-image">
+            <img src={p.img} alt={p.title} loading="lazy" />
+            <div class="proj-overlay">
+              <span class="proj-arrow">↗</span>
+            </div>
+          </div>
+          <div class="proj-info">
+            <div class="proj-meta">
+              <span class="proj-year">{p.year}</span>
+              <span class="proj-role">{p.role}</span>
+            </div>
+            <h2 class="proj-title">{p.title}</h2>
+            <p class="proj-desc">{p.desc}</p>
+            <div class="proj-tags">
+              {p.tags.map(tag => <span class="tag">{tag}</span>)}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="proj-cta">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow">Next Step</span>
+    <h2 class="serif-title reveal" style="font-size:clamp(28px,3.5vw,44px);margin-top:14px">Have a project in mind?</h2>
+    <p class="reveal" style="color:var(--muted);max-width:480px;margin:18px auto 36px;font-size:16px">I'm available for select freelance and contract engagements. Let's discuss what we can build together.</p>
+    <a href="/contact" class="btn btn-dark reveal">Start a Conversation →</a>
+  </div>
+</section>
+
+<Footer />
+</Layout>
+
+<style>
+.filter-bar { background: var(--cream-2); padding: 24px 0; border-bottom: 1px solid var(--line-2); }
+.filters { display: inline-flex; background: var(--white); border-radius: 40px; padding: 6px; border: 1px solid var(--line-2); box-shadow: var(--shadow-sm); }
+.filters button { border: 0; background: transparent; cursor: pointer; font-family: var(--body); font-size: 14px; font-weight: 600; color: var(--muted); padding: 10px 24px; border-radius: 30px; transition: .2s; }
+.filters button.active { background: var(--olive); color: #F2EEE1; }
+
+.projects-section { background: var(--cream); }
+.projects-grid { display: flex; flex-direction: column; gap: 80px; }
+
+.proj-card { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
+.proj-card.offset { direction: rtl; }
+.proj-card.offset > * { direction: ltr; }
+
+.proj-image { position: relative; border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 4/3; box-shadow: var(--shadow-lg); }
+.proj-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.proj-card:hover .proj-image img { transform: scale(1.04); }
+.proj-overlay { position: absolute; inset: 0; background: rgba(35,34,25,.0); display: grid; place-items: center; transition: background .3s; }
+.proj-card:hover .proj-overlay { background: rgba(35,34,25,.25); }
+.proj-arrow { width: 60px; height: 60px; border-radius: 50%; background: var(--gold); color: var(--ink); display: grid; place-items: center; font-size: 24px; opacity: 0; transform: scale(.7); transition: .3s; }
+.proj-card:hover .proj-arrow { opacity: 1; transform: scale(1); }
+
+.proj-info { }
+.proj-meta { display: flex; gap: 16px; margin-bottom: 14px; }
+.proj-year { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; color: var(--muted); }
+.proj-role { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--gold); }
+.proj-title { font-family: var(--serif); font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: var(--ink); line-height: 1.15; margin-bottom: 16px; }
+.proj-desc { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 24px; }
+.proj-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { font-size: 12px; font-family: 'Courier New', monospace; font-weight: 600; color: var(--olive); background: rgba(86,92,43,.1); padding: 5px 12px; border-radius: 4px; }
+
+.proj-cta { background: var(--cream-2); padding: 96px 0; border-top: 1px solid var(--line-2); }
+
+@media (max-width: 980px) {
+  .proj-card, .proj-card.offset { grid-template-columns: 1fr; direction: ltr; gap: 28px; }
+  .proj-card.offset > * { direction: ltr; }
+}
+</style>
+
+<script>
+  const filters = document.getElementById('filters');
+  const grid = document.getElementById('projGrid');
+  filters?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest('button');
+    if (!btn) return;
+    filters.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.f;
+    grid?.querySelectorAll<HTMLElement>('.proj-card').forEach(p => {
+      p.style.display = (f === 'all' || p.dataset.cat === f) ? '' : 'none';
+    });
+  });
+</script>

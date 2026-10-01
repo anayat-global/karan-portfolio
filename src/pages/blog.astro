@@ -1,0 +1,151 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const featured = {
+  title: "Optimizing React for Enterprise Scale",
+  date: "May 12, 2024",
+  readTime: "8 Min Read",
+  category: "Frontend",
+  excerpt: "A deep dive into patterns, practices and architectural decisions that separate hobby-grade React from production-ready systems serving millions of users.",
+  img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80&auto=format&fit=crop",
+  slug: "optimizing-react",
+};
+
+const posts = [
+  { title: "Microservices vs Monoliths in 2024", date: "Apr 28, 2024", readTime: "6 min", category: "Architecture", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=700&q=80&auto=format&fit=crop", slug: "microservices-vs-monoliths" },
+  { title: "The Future of AI in Web Development", date: "Mar 15, 2024", readTime: "10 min", category: "AI & ML", img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=700&q=80&auto=format&fit=crop", slug: "ai-in-web-development" },
+  { title: "Building a Design System from Scratch", date: "Feb 22, 2024", readTime: "12 min", category: "Design", img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=700&q=80&auto=format&fit=crop", slug: "design-system-from-scratch" },
+  { title: "PostgreSQL vs MongoDB: When to Use Each", date: "Jan 10, 2024", readTime: "7 min", category: "Backend", img: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=700&q=80&auto=format&fit=crop", slug: "postgres-vs-mongodb" },
+  { title: "TypeScript Patterns I Use Every Day", date: "Dec 5, 2023", readTime: "5 min", category: "TypeScript", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=700&q=80&auto=format&fit=crop", slug: "typescript-patterns" },
+  { title: "Kubernetes at Scale: Lessons Learned", date: "Nov 18, 2023", readTime: "9 min", category: "DevOps", img: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=700&q=80&auto=format&fit=crop", slug: "kubernetes-at-scale" },
+];
+---
+
+<Layout title="Blog — Karan Arora" description="Engineering insights, architecture decisions, and lessons from 8 years of full-stack development.">
+<Header activePage="/blog" />
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">Engineering Notes</span>
+    <h1 class="reveal">Articles &<br>Insights</h1>
+    <p class="reveal">Practical writing on full-stack architecture, frontend patterns, and building software that lasts.</p>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="section featured-section">
+  <div class="wrap">
+    <span class="eyebrow reveal">Featured Article</span>
+    <a href={`/blog/${featured.slug}`} class="featured-card reveal">
+      <div class="featured-img">
+        <img src={featured.img} alt={featured.title} />
+        <div class="feat-category">{featured.category}</div>
+      </div>
+      <div class="featured-body">
+        <div class="feat-meta">{featured.date} · {featured.readTime}</div>
+        <h2 class="feat-title">{featured.title}</h2>
+        <p class="feat-excerpt">{featured.excerpt}</p>
+        <span class="feat-read">Read Full Article →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ALL POSTS -->
+<section class="section blog-section">
+  <div class="wrap">
+    <div class="blog-head reveal">
+      <h2 class="serif-title">All Articles</h2>
+    </div>
+    <div class="blog-posts-grid">
+      {posts.map(post => (
+        <article class="blog-card reveal">
+          <a href={`/blog/${post.slug}`} class="blog-card-link">
+            <div class="blog-img">
+              <img src={post.img} alt={post.title} loading="lazy" />
+            </div>
+            <div class="blog-body">
+              <div class="blog-meta">
+                <span class="blog-cat">{post.category}</span>
+                <span class="blog-date">{post.date} · {post.readTime}</span>
+              </div>
+              <h3 class="blog-title">{post.title}</h3>
+              <span class="blog-read">Read More →</span>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <div class="wrap newsletter-inner">
+    <div class="nl-text reveal">
+      <span class="eyebrow" style="color:var(--gold)">Stay Updated</span>
+      <h2 class="serif-title" style="color:var(--cream-3);font-size:clamp(26px,3vw,38px);margin-top:12px">Get new articles in your inbox</h2>
+      <p style="color:rgba(251,248,240,.65);margin-top:12px;font-size:15px">No spam. One email when something worth reading goes live.</p>
+    </div>
+    <form class="nl-form reveal" onsubmit="return false">
+      <input type="email" placeholder="your@email.com" required />
+      <button type="submit" class="btn btn-gold">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<Footer />
+</Layout>
+
+<style>
+.featured-section { background: var(--cream); }
+.featured-card { display: grid; grid-template-columns: 1.2fr 1fr; gap: 52px; align-items: center; text-decoration: none; margin-top: 32px; }
+.featured-img { position: relative; border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 16/10; box-shadow: var(--shadow-lg); }
+.featured-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.featured-card:hover .featured-img img { transform: scale(1.04); }
+.feat-category { position: absolute; top: 18px; left: 18px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: var(--ink); background: var(--gold-2); padding: 4px 12px; border-radius: 20px; }
+.feat-meta { font-size: 12px; color: var(--muted); letter-spacing: .04em; margin-bottom: 14px; }
+.feat-title { font-family: var(--serif); font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: 18px; }
+.feat-excerpt { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 24px; }
+.feat-read { font-size: 14px; font-weight: 700; color: var(--olive); border-bottom: 1.5px solid var(--olive); padding-bottom: 2px; }
+
+.blog-section { background: var(--cream-2); }
+.blog-head { margin-bottom: 44px; }
+.blog-head .serif-title { font-size: clamp(28px, 3.5vw, 40px); }
+.blog-posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.blog-card { background: var(--white); border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--line-2); box-shadow: var(--shadow-sm); transition: .3s; }
+.blog-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+.blog-card-link { text-decoration: none; display: block; }
+.blog-img { aspect-ratio: 16/10; overflow: hidden; }
+.blog-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.blog-card:hover .blog-img img { transform: scale(1.05); }
+.blog-body { padding: 22px 24px 26px; }
+.blog-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.blog-cat { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--gold); }
+.blog-date { font-size: 12px; color: var(--muted); }
+.blog-title { font-family: var(--serif); font-weight: 700; font-size: 18px; color: var(--ink); line-height: 1.35; margin-bottom: 14px; }
+.blog-read { font-size: 13px; font-weight: 600; color: var(--olive); }
+
+/* NEWSLETTER */
+.newsletter-section { background: var(--olive-dark); padding: 80px 0; }
+.newsletter-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.nl-form { display: flex; gap: 12px; }
+.nl-form input { flex: 1; padding: 14px 18px; border: 1.5px solid rgba(255,255,255,.2); border-radius: 10px; background: rgba(255,255,255,.08); color: var(--cream-3); font-family: var(--body); font-size: 15px; outline: none; }
+.nl-form input::placeholder { color: rgba(251,248,240,.4); }
+.nl-form input:focus { border-color: var(--gold); }
+.btn-gold { background: var(--gold); color: var(--ink); border-radius: 10px; font-size: 15px; padding: 14px 26px; white-space: nowrap; font-weight: 700; }
+.btn-gold:hover { background: var(--gold-2); }
+
+@media (max-width: 980px) {
+  .featured-card { grid-template-columns: 1fr; gap: 28px; }
+  .blog-posts-grid { grid-template-columns: repeat(2, 1fr); }
+  .newsletter-inner { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 640px) {
+  .blog-posts-grid { grid-template-columns: 1fr; }
+  .nl-form { flex-direction: column; }
+}
+</style>

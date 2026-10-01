@@ -1,0 +1,198 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Page Not Found — Karan Arora" description="The page you're looking for doesn't exist.">
+<Header />
+
+<section class="nf-section">
+  <div class="wrap nf-inner">
+    <div class="nf-code">404</div>
+    <span class="eyebrow" style="color:var(--gold)">Route Not Found</span>
+    <h1 class="nf-title">This Page<br>Doesn't Exist</h1>
+    <p class="nf-body">The URL you followed may be broken, or the page may have been moved or removed. Let's get you back on track.</p>
+
+    <div class="nf-actions">
+      <a href="/" class="btn btn-dark">Back to Home</a>
+      <a href="/contact" class="btn btn-outline">Contact Me</a>
+    </div>
+
+    <div class="nf-divider"></div>
+
+    <div class="nf-links">
+      <div class="nf-links-label">Or try one of these pages</div>
+      <div class="nf-grid">
+        <a href="/about" class="nf-card">
+          <div class="nf-card-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+          </div>
+          <div class="nf-card-body">
+            <div class="nf-card-title">About</div>
+            <div class="nf-card-desc">Background, experience & philosophy</div>
+          </div>
+          <span class="nf-card-arrow">→</span>
+        </a>
+        <a href="/projects" class="nf-card">
+          <div class="nf-card-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+          </div>
+          <div class="nf-card-body">
+            <div class="nf-card-title">Projects</div>
+            <div class="nf-card-desc">Selected work and case studies</div>
+          </div>
+          <span class="nf-card-arrow">→</span>
+        </a>
+        <a href="/blog" class="nf-card">
+          <div class="nf-card-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+          </div>
+          <div class="nf-card-body">
+            <div class="nf-card-title">Blog</div>
+            <div class="nf-card-desc">Engineering articles and insights</div>
+          </div>
+          <span class="nf-card-arrow">→</span>
+        </a>
+        <a href="/contact" class="nf-card">
+          <div class="nf-card-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+          </div>
+          <div class="nf-card-body">
+            <div class="nf-card-title">Contact</div>
+            <div class="nf-card-desc">Start a project conversation</div>
+          </div>
+          <span class="nf-card-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<Footer />
+</Layout>
+
+<style>
+.nf-section {
+  background: var(--cream);
+  min-height: calc(100vh - 74px);
+  display: flex;
+  align-items: center;
+  padding: 80px 0;
+}
+.nf-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+.nf-code {
+  font-family: var(--display);
+  font-size: clamp(80px, 16vw, 140px);
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--line-2);
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: .04em;
+}
+.nf-title {
+  font-family: var(--serif);
+  font-size: clamp(30px, 5vw, 50px);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.15;
+  margin: 14px 0 20px;
+}
+.nf-body {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.nf-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+.nf-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--line-2);
+  margin: 52px auto;
+}
+
+.nf-links { text-align: left; }
+.nf-links-label {
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 24px;
+  text-align: center;
+}
+.nf-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.nf-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--white);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-md);
+  padding: 18px 20px;
+  text-decoration: none;
+  transition: .2s;
+  box-shadow: var(--shadow-sm);
+}
+.nf-card:hover {
+  border-color: var(--olive);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.nf-card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--cream-2);
+  display: grid;
+  place-items: center;
+  color: var(--olive);
+  flex: none;
+  transition: .2s;
+}
+.nf-card:hover .nf-card-icon {
+  background: var(--olive);
+  color: var(--cream-3);
+}
+.nf-card-body { flex: 1; min-width: 0; }
+.nf-card-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+.nf-card-desc {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.nf-card-arrow {
+  font-size: 18px;
+  color: var(--muted);
+  transition: .2s;
+}
+.nf-card:hover .nf-card-arrow { color: var(--olive); transform: translateX(3px); }
+
+@media (max-width: 640px) {
+  .nf-grid { grid-template-columns: 1fr; }
+  .nf-actions { flex-direction: column; align-items: center; }
+  .nf-actions .btn { width: 100%; justify-content: center; }
+}
+</style>
