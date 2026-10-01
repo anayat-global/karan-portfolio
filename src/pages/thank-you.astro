@@ -1,0 +1,158 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Message Received — Karan Arora" description="Thank you for getting in touch. I'll be in touch within 24 hours.">
+<Header />
+
+<section class="ty-section">
+  <div class="wrap ty-inner">
+    <div class="ty-icon">
+      <svg width="40" height="40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </svg>
+    </div>
+    <span class="eyebrow" style="color:var(--gold)">Message Received</span>
+    <h1 class="ty-title">Thank You for<br>Reaching Out</h1>
+    <p class="ty-body">Your message has been sent successfully. I read every inquiry personally and aim to respond within 24 hours. In the meantime, feel free to explore my work below.</p>
+
+    <div class="ty-actions">
+      <a href="/projects" class="btn btn-dark">View My Projects</a>
+      <a href="/" class="btn btn-outline">Back to Home</a>
+    </div>
+
+    <div class="ty-divider"></div>
+
+    <div class="ty-expect">
+      <div class="expect-label">What to Expect Next</div>
+      <div class="expect-steps">
+        <div class="expect-step">
+          <div class="step-num">01</div>
+          <div>
+            <div class="step-title">Personal Review</div>
+            <div class="step-desc">I'll read your message and assess how I can help with your project.</div>
+          </div>
+        </div>
+        <div class="expect-step">
+          <div class="step-num">02</div>
+          <div>
+            <div class="step-title">Initial Response</div>
+            <div class="step-desc">You'll hear back within 24 hours with any follow-up questions or next steps.</div>
+          </div>
+        </div>
+        <div class="expect-step">
+          <div class="step-num">03</div>
+          <div>
+            <div class="step-title">Discovery Call</div>
+            <div class="step-desc">If we're a good fit, we'll schedule a call to discuss your project in detail.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<Footer />
+</Layout>
+
+<style>
+.ty-section {
+  background: var(--cream);
+  min-height: calc(100vh - 74px);
+  display: flex;
+  align-items: center;
+  padding: 80px 0;
+}
+.ty-inner {
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+}
+.ty-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--olive);
+  color: var(--cream-3);
+  display: grid;
+  place-items: center;
+  margin: 0 auto 28px;
+  box-shadow: 0 0 0 12px rgba(86, 92, 43, .12);
+}
+.ty-title {
+  font-family: var(--serif);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.15;
+  margin: 14px 0 20px;
+}
+.ty-body {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.ty-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+.ty-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--line-2);
+  margin: 52px auto;
+}
+
+.ty-expect { text-align: left; }
+.expect-label {
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 28px;
+  text-align: center;
+}
+.expect-steps { display: flex; flex-direction: column; gap: 22px; }
+.expect-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background: var(--white);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-md);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-sm);
+}
+.step-num {
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  min-width: 36px;
+}
+.step-title {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.step-desc {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+@media (max-width: 640px) {
+  .ty-actions { flex-direction: column; align-items: center; }
+  .ty-actions .btn { width: 100%; justify-content: center; }
+}
+</style>

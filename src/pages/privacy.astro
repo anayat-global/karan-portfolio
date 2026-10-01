@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const sections = [
+  { id: "section-1", title: "Information We Collect", content: `When you contact me through this website, I collect the information you voluntarily provide: your name, email address, and the message you send. No other personal data is collected without your explicit knowledge and consent.\n\nThis website does not use tracking cookies, analytics scripts, or third-party advertising networks. There are no hidden data collection mechanisms.` },
+  { id: "section-2", title: "How I Use Your Information", content: `Information you submit through the contact form is used solely to respond to your inquiry and to conduct any subsequent professional engagement you request. I do not use your contact details for unsolicited marketing or sales outreach.\n\nIf we enter into a professional engagement, I may retain project-related communications for record-keeping and invoicing purposes in accordance with applicable law.` },
+  { id: "section-3", title: "Data Storage & Security", content: `Your data is processed and stored with industry-standard security measures. Contact form submissions are transmitted over encrypted HTTPS connections. I take reasonable steps to protect personal information from unauthorised access, alteration, or disclosure.\n\nI do not sell, rent, trade, or share your personal information with third parties except as described in this policy or as required by law.` },
+  { id: "section-4", title: "Third-Party Services", content: `This website may be hosted on third-party infrastructure providers. These providers have their own privacy policies governing data processed on their platforms. I select providers with strong privacy and security practices.\n\nAny external links on this website lead to third-party sites with independent privacy policies. I am not responsible for the privacy practices of external sites.` },
+  { id: "section-5", title: "Your Rights", content: `Under applicable data protection law (including the UK GDPR), you have the right to access, correct, or request deletion of any personal data I hold about you. To exercise any of these rights, please contact me directly via the contact page.\n\nYou also have the right to withdraw consent at any time and to lodge a complaint with the Information Commissioner's Office (ICO) if you believe your data has been handled improperly.` },
+  { id: "section-6", title: "Changes to This Policy", content: `I may update this Privacy Policy from time to time to reflect changes in law or my practices. The "last updated" date at the top of this page will reflect any revisions. Continued use of this website after a revision constitutes acceptance of the updated policy.\n\nIf you have any questions about this Privacy Policy or how your data is handled, please reach out through the contact page.` },
+];
+---
+
+<Layout title="Privacy Policy — Karan Arora" description="Privacy policy governing how personal data is collected and used on this website.">
+<Header />
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Legal</span>
+    <h1>Privacy<br>Policy</h1>
+    <p>How this website handles your personal data. Last updated: January 2024.</p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="section legal-section">
+  <div class="wrap legal-layout">
+    <!-- TOC -->
+    <aside class="legal-toc">
+      <div class="toc-card">
+        <div class="toc-label">Contents</div>
+        <nav class="toc">
+          {sections.map(s => (
+            <a href={`#${s.id}`} class="toc-link">{s.title}</a>
+          ))}
+        </nav>
+      </div>
+    </aside>
+
+    <!-- ARTICLE -->
+    <article class="legal-body">
+      {sections.map(s => (
+        <section id={s.id} class="legal-section-block reveal">
+          <h2>{s.title}</h2>
+          {s.content.split('\n\n').map(para => <p>{para}</p>)}
+        </section>
+      ))}
+
+      <div class="legal-footer reveal">
+        <p>For questions about this Privacy Policy or to exercise your data rights, please <a href="/contact">get in touch</a>. This policy is governed by the laws of England and Wales.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<Footer />
+</Layout>
+
+<style>
+.legal-section { background: var(--cream); }
+.legal-layout { display: grid; grid-template-columns: 220px 1fr; gap: 60px; align-items: start; }
+.legal-toc { position: sticky; top: 94px; }
+.toc-card { background: var(--white); border: 1px solid var(--line-2); border-radius: var(--r-md); padding: 24px; box-shadow: var(--shadow-sm); }
+.toc-label { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; font-weight: 700; color: var(--muted); margin-bottom: 16px; }
+.toc { display: flex; flex-direction: column; gap: 4px; }
+.toc-link { font-size: 13.5px; color: var(--muted); font-weight: 500; padding: 6px 10px; border-radius: 6px; transition: .2s; border-left: 2px solid transparent; }
+.toc-link:hover { color: var(--ink); background: var(--cream-2); border-left-color: var(--gold); }
+
+.legal-body { max-width: 740px; }
+.legal-section-block { border-bottom: 1px solid var(--line-2); padding-bottom: 40px; margin-bottom: 40px; }
+.legal-section-block:last-of-type { border-bottom: 0; }
+.legal-section-block h2 { font-family: var(--serif); font-size: 26px; font-weight: 700; color: var(--ink); margin-bottom: 18px; }
+.legal-section-block p { font-size: 15px; color: var(--muted); line-height: 1.85; margin-bottom: 16px; }
+.legal-footer { background: var(--cream-2); border-radius: var(--r-md); padding: 22px 28px; border: 1px solid var(--line-2); }
+.legal-footer p { font-size: 14px; color: var(--muted); margin: 0; }
+.legal-footer a { color: var(--olive); font-weight: 600; }
+
+@media (max-width: 980px) {
+  .legal-layout { grid-template-columns: 1fr; }
+  .legal-toc { position: static; }
+}
+</style>
