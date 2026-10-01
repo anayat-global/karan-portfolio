@@ -1,0 +1,168 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const categories = [
+  {
+    id: "collaboration",
+    label: "Collaboration",
+    faqs: [
+      { q: "Do you work with startups or large corporations?", a: "I enjoy working with both. Startups allow for high agility and innovation, while corporate projects offer opportunities for large-scale engineering and strict compliance work. I tailor my approach to suit the unique needs of each engagement." },
+      { q: "What does your onboarding process look like?", a: "Every engagement starts with a discovery call to understand your business context, technical constraints, and success metrics. I then provide a written scope document, timeline, and milestone breakdown before any code is written." },
+      { q: "Do you work remotely?", a: "Yes, 100% remote. I've collaborated successfully with teams across Europe, North America, and Asia-Pacific. I'm flexible on working hours to ensure sufficient timezone overlap with your team." },
+      { q: "Can you join our existing team rather than work as a solo contractor?", a: "Absolutely. I'm experienced with both models — embedded within an existing engineering team or operating as a fully independent contractor delivering a defined scope. I integrate well with agile and async workflows." },
+    ]
+  },
+  {
+    id: "projects",
+    label: "Projects",
+    faqs: [
+      { q: "What types of projects do you typically take on?", a: "My sweet spot is technically complex products — SaaS platforms, fintech dashboards, healthcare systems, high-performance e-commerce, and developer tooling. I'm drawn to projects where engineering and design both need to be excellent." },
+      { q: "What is your typical project timeline?", a: "Timelines vary by scope, but most focused builds run four to twelve weeks. Discovery and planning typically take one to two weeks, followed by iterative development sprints. I provide a detailed milestone plan after the discovery call so you always know what ships and when." },
+      { q: "How do you handle changing requirements mid-project?", a: "Change is inevitable and that's fine. I use a lean scope document and agile methodology so that changes are surfaced, assessed for impact, and accommodated in a structured way — without derailing the project or surprising you with a revised bill." },
+    ]
+  },
+  {
+    id: "technical",
+    label: "Technical",
+    faqs: [
+      { q: "What is your primary tech stack?", a: "Frontend: React, Next.js, TypeScript, Tailwind CSS. Backend: Node.js, Python (FastAPI/Django), PostgreSQL, Redis. Infrastructure: AWS, Docker, Kubernetes, GitHub Actions. I choose tools based on the problem, not habit." },
+      { q: "Do you handle DevOps and deployment as well?", a: "Yes. I own the full delivery lifecycle — from local development to CI/CD pipelines to cloud deployment. I'm comfortable with AWS, GCP, and Vercel, and can set up monitoring, alerting, and observability from day one." },
+      { q: "Can you help with an existing codebase, not just greenfield projects?", a: "Absolutely — in fact, most of my recent work has been on existing systems. I'm skilled at auditing unfamiliar codebases, identifying technical debt, and incrementally improving architecture without a full rewrite." },
+    ]
+  },
+  {
+    id: "commercial",
+    label: "Commercial",
+    faqs: [
+      { q: "What does your post-launch support look like?", a: "I offer flexible retainer and support packages covering monitoring, bug fixes, performance tuning, and new feature development. You can engage me on a short-term or ongoing basis after launch." },
+      { q: "Do you sign NDAs and IP agreements?", a: "Yes. I'm accustomed to standard NDA, IP assignment, and work-for-hire agreements. I can work within your legal templates or provide my own." },
+      { q: "What is your typical rate?", a: "Rates vary by engagement type, scope, and timeline. I'm happy to discuss once I understand your project requirements. My focus is on delivering measurable value — I'm not the cheapest option, but I'm the one who ships." },
+    ]
+  },
+];
+---
+
+<Layout title="FAQ — Karan Arora" description="Frequently asked questions about working with Karan Arora — process, timelines, rates, and more.">
+<Header activePage="/faq" />
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">Questions & Answers</span>
+    <h1 class="reveal">Frequently Asked<br>Questions</h1>
+    <p class="reveal">Everything you need to know about collaborating with me — from process and timelines to tech stack and commercial terms.</p>
+  </div>
+</section>
+
+<!-- CATEGORY TABS -->
+<section class="tab-bar">
+  <div class="wrap">
+    <div class="tabs" id="faqTabs">
+      {categories.map((cat, i) => (
+        <button class={i === 0 ? 'active' : ''} data-tab={cat.id}>{cat.label}</button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- FAQ CONTENT -->
+<section class="section faq-main">
+  <div class="wrap faq-layout">
+    <div class="faq-col">
+      {categories.map((cat) => (
+        <div class="faq-group" id={`tab-${cat.id}`} data-group={cat.id}>
+          {cat.faqs.map((item, i) => (
+            <div class={`faq-item reveal${i === 0 ? ' open' : ''}`}>
+              <button class="faq-q">{item.q} <span class="plus">+</span></button>
+              <div class="faq-a"><p>{item.a}</p></div>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+
+    <aside class="faq-cta-aside reveal">
+      <div class="cta-aside-card">
+        <div class="cta-aside-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+        </div>
+        <h3>Still have questions?</h3>
+        <p>Can't find what you're looking for? I'm happy to answer any question directly.</p>
+        <a href="/contact" class="btn btn-dark" style="width:100%;justify-content:center;margin-top:20px">Start a Conversation</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- INQUIRY CTA -->
+<section class="inquiry-cta">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow" style="color:var(--gold)">Ready to Start?</span>
+    <h2 class="serif-title reveal" style="font-size:clamp(28px,3.5vw,44px);color:var(--cream-3);margin-top:14px">Let's work together.</h2>
+    <p class="reveal" style="color:rgba(251,248,240,.65);max-width:480px;margin:18px auto 36px;font-size:16px">Great digital products are built through great collaboration. Let's see if we're a good fit.</p>
+    <a href="/contact" class="btn btn-cream reveal">Get in Touch →</a>
+  </div>
+</section>
+
+<Footer />
+</Layout>
+
+<style>
+.tab-bar { background: var(--cream-2); padding: 20px 0; border-bottom: 1px solid var(--line-2); position: sticky; top: 74px; z-index: 40; backdrop-filter: blur(8px); }
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.tabs button { border: 0; background: transparent; cursor: pointer; font-family: var(--body); font-size: 14px; font-weight: 600; color: var(--muted); padding: 10px 22px; border-radius: 30px; transition: .2s; }
+.tabs button.active { background: var(--olive); color: var(--cream-3); }
+
+.faq-main { background: var(--cream); }
+.faq-layout { display: grid; grid-template-columns: 1fr 280px; gap: 52px; align-items: start; }
+.faq-group { display: none; flex-direction: column; gap: 12px; }
+.faq-group.active { display: flex; }
+
+.faq-item { background: var(--white); border: 1px solid var(--line-2); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-sm); }
+.faq-q { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 24px; background: none; border: 0; cursor: pointer; text-align: left; font-family: var(--body); font-weight: 600; font-size: 15.5px; color: var(--ink); }
+.faq-q .plus { font-size: 22px; color: var(--gold); transition: .3s; flex: none; line-height: 1; }
+.faq-item.open .faq-q .plus { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .4s ease; color: var(--muted); font-size: 14.5px; }
+.faq-a p { padding: 0 24px 22px; line-height: 1.75; }
+.faq-item.open .faq-a { max-height: 300px; }
+
+.faq-cta-aside { position: sticky; top: 134px; }
+.cta-aside-card { background: var(--olive-dark); border-radius: var(--r-lg); padding: 32px 28px; color: var(--cream-3); }
+.cta-aside-icon { width: 54px; height: 54px; background: rgba(255,255,255,.1); border-radius: 14px; display: grid; place-items: center; color: var(--gold-2); margin-bottom: 18px; }
+.cta-aside-card h3 { font-family: var(--serif); font-weight: 700; font-size: 20px; margin-bottom: 10px; }
+.cta-aside-card p { font-size: 14px; color: rgba(251,248,240,.65); line-height: 1.65; }
+
+.inquiry-cta { background: var(--olive); padding: 96px 0; }
+
+@media (max-width: 980px) {
+  .faq-layout { grid-template-columns: 1fr; }
+  .faq-cta-aside { position: static; }
+}
+</style>
+
+<script>
+  // Tabs
+  const tabs = document.getElementById('faqTabs');
+  const groups = document.querySelectorAll<HTMLElement>('.faq-group');
+  function activateTab(id: string) {
+    tabs?.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.tab === id));
+    groups.forEach(g => g.classList.toggle('active', g.dataset.group === id));
+  }
+  activateTab(document.querySelector<HTMLButtonElement>('.tabs button')?.dataset.tab ?? '');
+  tabs?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest('button');
+    if (btn?.dataset.tab) activateTab(btn.dataset.tab);
+  });
+
+  // Accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item?.classList.contains('open');
+      item?.closest('.faq-group')?.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item?.classList.add('open');
+    });
+  });
+</script>
