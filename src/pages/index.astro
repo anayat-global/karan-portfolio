@@ -2,9 +2,25 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { SITE, HERO_STATS, STATS, SKILL_GROUPS, PROCESS, TESTIMONIALS, PORTFOLIO, FAQS } from '../data/site';
+import { getBlogPosts, getServices, formatDate } from '../lib/content';
+
+const [posts, services] = await Promise.all([getBlogPosts(), getServices()]);
+const latest = posts.slice(0, 3);
+const svcIcons = [7, 8, 9, 12, 10, 11, 4];
+const svcBlurb: Record<string, string> = {
+  'wordpress-development-services': 'Custom themes, plugins, WooCommerce stores, migrations, speed and security for startups and small businesses.',
+  'twilio-development-services': 'SMS, voice, video, Flex and Studio integrations that connect your product to your customers.',
+  'react-js-development-services': 'Interactive, scalable web and mobile apps built with React JS and React Native.',
+  'python-development-services': 'Web apps, APIs, Django development and integrations built with Python.',
+  'php-development-services': 'Secure, dynamic PHP applications, APIs and enterprise-grade web platforms.',
+  'magento-development-services': 'Custom Magento stores, themes, migrations and performance optimisation for e-commerce.',
+  'backend-development-services': 'Robust backends, cloud services, CRM/ERP systems and API integrations that scale.',
+};
 ---
 
-<Layout title="Karan Arora — Full Stack Developer">
+
+<Layout title="Karandeep Arora | Freelance Full Stack WordPress, React & Twilio Developer in India" description={SITE.defaultDescription}>
 <Header activePage="/" />
 
 <!-- ============ HERO ============ -->
@@ -14,9 +30,9 @@ import Footer from '../components/Footer.astro';
       <div class="hero-text reveal">
         <span class="hero-badge"><span class="dot"></span> I Build Modern</span>
         <h1>Digital Products<br>That <span class="scale">Scale.</span></h1>
-        <p class="lead">Full Stack Developer specializing in building exceptional digital experiences for the web — from pixel-perfect interfaces to resilient, scalable systems.</p>
+        <p class="lead">Hi, I'm Karandeep Arora, a freelance full stack developer in India. I create better interfaces and experiences, making web and mobile applications easier and friendlier to use.</p>
         <div class="hero-btns">
-          <a href="/projects" class="btn btn-dark">View My Work <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></a>
+          <a href="/portfolio" class="btn btn-dark">View My Work <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></a>
           <a href="/contact" class="btn btn-outline">Let's Talk <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></a>
         </div>
       </div>
@@ -24,7 +40,7 @@ import Footer from '../components/Footer.astro';
         <span class="code-chip tl">&lt;/&gt;</span>
         <span class="code-chip br">{ }</span>
         <div class="frame">
-          <img src="/demo-removebg-preview.png" alt="Karan Arora" />
+          <img src="/demo-removebg-preview.png" alt="Karandeep Arora" />
         </div>
       </div>
     </div>
@@ -32,19 +48,19 @@ import Footer from '../components/Footer.astro';
     <div class="stats-bar reveal">
       <div class="stat">
         <div class="ic"><svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg></div>
-        <div><div class="num">8+</div><div class="lab">Years Experience</div></div>
+        <div><div class="num">{HERO_STATS[0].value}</div><div class="lab">{HERO_STATS[0].label}</div></div>
       </div>
       <div class="stat">
         <div class="ic"><svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg></div>
-        <div><div class="num">60+</div><div class="lab">Projects Completed</div></div>
+        <div><div class="num">{HERO_STATS[1].value}</div><div class="lab">{HERO_STATS[1].label}</div></div>
       </div>
       <div class="stat">
         <div class="ic"><svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg></div>
-        <div><div class="num">35+</div><div class="lab">Happy Clients</div></div>
+        <div><div class="num">{HERO_STATS[2].value}</div><div class="lab">{HERO_STATS[2].label}</div></div>
       </div>
       <div class="stat">
         <div class="ic"><svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg></div>
-        <div><div class="num">100%</div><div class="lab">Client Satisfaction</div></div>
+        <div><div class="num">{HERO_STATS[3].value}</div><div class="lab">{HERO_STATS[3].label}</div></div>
       </div>
     </div>
   </div>
@@ -53,9 +69,9 @@ import Footer from '../components/Footer.astro';
 <!-- ============ TRUSTED ============ -->
 <section class="trusted">
   <div class="wrap">
-    <p class="cap">Trusted by industry leaders</p>
+    <p class="cap">Trusted by clients across the world</p>
     <div class="logos reveal">
-      <span>Google</span><span>Microsoft</span><span>Amazon</span><span>Adobe</span><span>Shopify</span><span>Upwork</span>
+      <span>Australia</span><span>United States</span><span>United Kingdom</span><span>Canada</span><span>Japan</span><span>India</span>
     </div>
   </div>
 </section>
@@ -64,31 +80,31 @@ import Footer from '../components/Footer.astro';
 <section class="section about" id="about">
   <div class="wrap">
     <span class="eyebrow reveal">About Me</span>
-    <h2 class="serif-title reveal">Crafting Digital Solutions with Engineering Excellence</h2>
-    <p class="about-lead reveal">With a passion for turning complex problems into intuitive digital solutions, I leverage deep technical expertise to build products that are not just functional, but delightful to use. My approach blends engineering rigor with design sensitivity.</p>
+    <h2 class="serif-title reveal">A Full Stack Developer with 10 Years of Experience</h2>
+    <p class="about-lead reveal">I am an expert freelance full stack and MERN stack developer, building cost-effective, customised and scalable web solutions. From consulting and development to launch, I handle your project with clean code, a focus on your budget, and a fully responsive result on every device.</p>
     <div class="about-cards">
       <div class="about-card reveal">
         <div class="ic"><img src="/icons/Icon.svg" alt="" /></div>
-        <h3>Masters in Software Engineering</h3>
-        <div class="role">University of Technology, 2014–2016</div>
-        <p>Specialized in distributed systems and performance optimization at scale.</p>
+        <h3>B.Tech</h3>
+        <div class="role">Punjab Technical University, 2010–2014</div>
+        <p>Engineering foundation, followed by Core and Advanced Java training at Stellar Edge Infotech.</p>
       </div>
       <div class="about-card reveal">
         <div class="ic"><img src="/icons/Icon_1.svg" alt="" /></div>
-        <h3>Senior Full Stack Lead</h3>
-        <div class="role">Innovation Hub Global, 2018–Present</div>
-        <p>Orchestrating complex architectures for enterprise solutions and product teams.</p>
+        <h3>Senior Consultant</h3>
+        <div class="role">Freelance, 2019–Present</div>
+        <p>Building websites and apps for startups, founders and businesses worldwide, after roles at Seasia Infotech and Smartbuzz.</p>
       </div>
       <div class="about-card reveal">
         <div class="ic"><img src="/icons/Icon_2.svg" alt="" /></div>
-        <h3>10+ Awards Won</h3>
-        <div class="role">Recognised Industry-wide</div>
-        <p>Recognised for technical innovation and excellence in UX design across global platforms and hackathons.</p>
+        <h3>55+ Happy Clients</h3>
+        <div class="role">30+ repeat clients</div>
+        <p>90+ projects and 6,000+ hours delivered across WordPress, React, Twilio, Python, PHP and Magento.</p>
       </div>
     </div>
     <div class="resume-wrap reveal">
-      <a href="#" class="btn btn-olive">Download Full Resume <img src="/icons/Icon_3.svg" alt="" /></a>
-      <div class="decade">— A Decade of Excellence —</div>
+      <a href="/about" class="btn btn-olive">More About Me <img src="/icons/Icon_3.svg" alt="" /></a>
+      <div class="decade">— A Decade of Experience —</div>
     </div>
   </div>
 </section>
@@ -97,28 +113,18 @@ import Footer from '../components/Footer.astro';
 <section class="section arsenal" id="skills">
   <div class="wrap">
     <div class="head reveal">
-      <h2 class="serif-title">Technical Arsenal</h2>
-      <p>Leveraging cutting-edge technologies to deliver robust and scalable software solutions.</p>
+      <h2 class="serif-title">Tools and Skills</h2>
+      <p>The technologies I use every day to build robust, scalable software for clients.</p>
     </div>
     <div class="skill-cols">
+      {SKILL_GROUPS.map((g) => (
       <div class="skill-card reveal">
-        <div class="top"><div class="ic"><img src="/icons/Icon_4.svg" alt="" /></div><h3>Frontend Development</h3></div>
-        <div class="skill-row"><div class="l"><span>React / Next.js</span><span class="pct">95%</span></div><div class="bar"><i data-w="95%"></i></div></div>
-        <div class="skill-row"><div class="l"><span>TypeScript</span><span class="pct">92%</span></div><div class="bar"><i data-w="92%"></i></div></div>
-        <div class="skill-row"><div class="l"><span>Tailwind CSS</span><span class="pct">98%</span></div><div class="bar"><i data-w="98%"></i></div></div>
+        <div class="top"><div class="ic"><img src={`/icons/Icon_${g.icon}.svg`} alt="" /></div><h3>{g.title}</h3></div>
+        {g.skills.map(([name, pct]) => (
+        <div class="skill-row"><div class="l"><span>{name}</span><span class="pct">{pct}%</span></div><div class="bar"><i data-w={`${pct}%`}></i></div></div>
+        ))}
       </div>
-      <div class="skill-card reveal">
-        <div class="top"><div class="ic"><img src="/icons/Icon_5.svg" alt="" /></div><h3>Backend Architecture</h3></div>
-        <div class="skill-row"><div class="l"><span>Node.js / Express</span><span class="pct">92%</span></div><div class="bar"><i data-w="92%"></i></div></div>
-        <div class="skill-row"><div class="l"><span>Python / Django</span><span class="pct">85%</span></div><div class="bar"><i data-w="85%"></i></div></div>
-        <div class="skill-row"><div class="l"><span>PostgreSQL / MongoDB</span><span class="pct">90%</span></div><div class="bar"><i data-w="90%"></i></div></div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="top"><div class="ic"><img src="/icons/Icon_6.svg" alt="" /></div><h3>DevOps &amp; Tools</h3></div>
-        <div class="skill-row"><div class="l"><span>Docker / Kubernetes</span><span class="pct">88%</span></div><div class="bar"><i data-w="88%"></i></div></div>
-        <div class="skill-row"><div class="l"><span>AWS / Cloud</span><span class="pct">90%</span></div><div class="bar"><i data-w="90%"></i></div></div>
-        <div class="skill-row"><div class="l"><span>Git / CI/CD</span><span class="pct">94%</span></div><div class="bar"><i data-w="94%"></i></div></div>
-      </div>
+      ))}
     </div>
   </div>
 </section>
@@ -127,15 +133,12 @@ import Footer from '../components/Footer.astro';
 <section class="section services">
   <div class="wrap">
     <span class="eyebrow reveal">Services</span>
-    <h2 class="serif-title reveal">Solutions I Provide</h2>
-    <p class="sub reveal">End-to-end expertise across the modern web, engineered for reliability, speed and long-term scale.</p>
+    <h2 class="serif-title reveal">My Services</h2>
+    <p class="sub reveal">Full stack web development across the platforms businesses rely on, built for reliability, speed and long-term scale.</p>
     <div class="svc-grid">
-      <div class="svc-card reveal"><div class="ic"><img src="/icons/Icon_7.svg" alt="" /></div><h3>Frontend Engineering</h3><p>Pixel-perfect, high-performance interfaces built with modern React frameworks and clean Tailwind CSS.</p></div>
-      <div class="svc-card reveal"><div class="ic"><img src="/icons/Icon_8.svg" alt="" /></div><h3>Full Stack Systems</h3><p>End-to-end development focusing on robust backends, scalable APIs and seamless database integration.</p></div>
-      <div class="svc-card reveal"><div class="ic"><img src="/icons/Icon_9.svg" alt="" /></div><h3>UI/UX Strategy</h3><p>Informed design decisions based on user behaviour analysis and accessibility standards for global reach.</p></div>
-      <div class="svc-card reveal"><div class="ic"><img src="/icons/Icon_12.svg" alt="" /></div><h3>Performance Audit</h3><p>Optimising core web vitals to ensure lightning-fast load times and superior SEO rankings for your app.</p></div>
-      <div class="svc-card reveal"><div class="ic"><img src="/icons/Icon_10.svg" alt="" /></div><h3>API Development</h3><p>Designing and implementing RESTful and GraphQL APIs that are secure, documented and easy to consume.</p></div>
-      <div class="svc-card reveal"><div class="ic"><img src="/icons/Icon_11.svg" alt="" /></div><h3>Legacy Modernization</h3><p>Migrating outdated tech stacks to modern architectures without downtime, ensuring longevity and scale.</p></div>
+      {services.map((sv, i) => (
+      <a href={`/${sv.slug}`} class="svc-card reveal"><div class="ic"><img src={`/icons/Icon_${svcIcons[i % svcIcons.length]}.svg`} alt="" /></div><h3>{sv.title}</h3><p>{svcBlurb[sv.slug] ?? sv.description}</p></a>
+      ))}
     </div>
   </div>
 </section>
@@ -148,28 +151,17 @@ import Footer from '../components/Footer.astro';
         <span class="eyebrow">Portfolio</span>
         <h2 class="serif-title">Featured Projects</h2>
       </div>
-      <div class="filters" id="filters">
-        <button class="active" data-f="all">All</button>
-        <button data-f="web">Web-Apps</button>
-        <button data-f="mobile">Mobile</button>
-      </div>
     </div>
     <div class="proj-grid" id="projGrid">
-      <article class="proj reveal" data-cat="web">
-        <div class="thumb"><span class="arrow">↗</span><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&q=80&auto=format&fit=crop" alt="LuxeFinance Dashboard" /></div>
-        <div class="body"><h3>LuxeFinance Dashboard</h3><div class="tags">Next.js · Tailwind · Chart.js</div></div>
+      {PORTFOLIO.map((pr) => (
+      <article class="proj reveal">
+        <div class="thumb"><span class="arrow">↗</span><img src={pr.img} alt={pr.title} loading="lazy" /></div>
+        <div class="body"><h3>{pr.title}</h3><div class="tags">{pr.category}</div></div>
       </article>
-      <article class="proj reveal" data-cat="web">
-        <div class="thumb"><span class="arrow">↗</span><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=700&q=80&auto=format&fit=crop" alt="ChronoLuxury Boutique" /></div>
-        <div class="body"><h3>ChronoLuxury Boutique</h3><div class="tags">Shopify · React · Framer Motion</div></div>
-      </article>
-      <article class="proj reveal" data-cat="mobile">
-        <div class="thumb"><span class="arrow">↗</span><img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=700&q=80&auto=format&fit=crop" alt="MedConnect Pro" /></div>
-        <div class="body"><h3>MedConnect Pro</h3><div class="tags">Python · Django · React Native</div></div>
-      </article>
+      ))}
     </div>
     <div class="view-all-wrap reveal">
-      <a href="/projects" class="btn btn-outline">View All Projects →</a>
+      <a href="/portfolio" class="btn btn-outline">View Full Portfolio →</a>
     </div>
   </div>
 </section>
@@ -178,13 +170,12 @@ import Footer from '../components/Footer.astro';
 <section class="section process">
   <div class="wrap">
     <span class="eyebrow reveal">How I Work</span>
-    <h2 class="serif-title reveal">Working Process</h2>
-    <p class="sub reveal">A disciplined, transparent workflow that turns ideas into shipped, performant products.</p>
+    <h2 class="serif-title reveal">My Method to Work on Projects</h2>
+    <p class="sub reveal">From the first conversation to final delivery, a clear and transparent process.</p>
     <div class="steps">
-      <div class="step reveal"><div class="circle">01</div><h3>Discover</h3><p>In-depth research and stakeholder interviews to align on business goals.</p></div>
-      <div class="step reveal"><div class="circle">02</div><h3>Design</h3><p>Low-fidelity wireframes leading to high-fidelity interactive prototypes.</p></div>
-      <div class="step reveal"><div class="circle">03</div><h3>Develop</h3><p>Clean, scalable code implementation using modern technology stacks.</p></div>
-      <div class="step reveal"><div class="circle">04</div><h3>Launch</h3><p>Deployment, thorough testing and ongoing performance optimization.</p></div>
+      {PROCESS.map((st, i) => (
+      <div class="step reveal"><div class="circle">{String(i + 1).padStart(2, '0')}</div><h3>{st.title}</h3><p>{st.text}</p></div>
+      ))}
     </div>
   </div>
 </section>
@@ -195,21 +186,13 @@ import Footer from '../components/Footer.astro';
     <span class="eyebrow reveal">Testimonials</span>
     <h2 class="serif-title reveal">Client Feedback</h2>
     <div class="tst-grid">
+      {TESTIMONIALS.slice(0, 3).map((t) => (
       <div class="tst reveal">
         <div class="stars">★★★★★</div>
-        <p class="quote">"Karan's ability to translate complex business requirements into sleek, high-performing code is unmatched. He delivered our project ahead of schedule and exceeded all expectations."</p>
-        <div class="who"><img src="https://i.pravatar.cc/46?img=44" alt="Sarah Jenkins" /><div><div class="n">Sarah Jenkins</div><div class="r">CTO, TechFlowers</div></div></div>
+        <p class="quote">"{t.quote}"</p>
+        <div class="who"><div><div class="n">{t.name}</div><div class="r">{t.meta}</div></div></div>
       </div>
-      <div class="tst reveal">
-        <div class="stars">★★★★★</div>
-        <p class="quote">"The UI/UX strategy Karan implemented for our retail platform saw a 35% increase in conversion within the first month. An absolute expert in both design and development."</p>
-        <div class="who"><img src="https://i.pravatar.cc/46?img=32" alt="Michael Chen" /><div><div class="n">Michael Chen</div><div class="r">Marketing Director, GlobalShop</div></div></div>
-      </div>
-      <div class="tst reveal">
-        <div class="stars">★★★★★</div>
-        <p class="quote">"Technically brilliant and a great communicator. Karan made the entire development process transparent and stress-free. Highly recommended for any serious product development."</p>
-        <div class="who"><img src="https://i.pravatar.cc/46?img=68" alt="Emma Rodriguez" /><div><div class="n">Emma Rodriguez</div><div class="r">Founder, WellnessApp</div></div></div>
-      </div>
+      ))}
     </div>
   </div>
 </section>
@@ -217,10 +200,9 @@ import Footer from '../components/Footer.astro';
 <!-- ============ STATS BAND ============ -->
 <section class="band">
   <div class="wrap band-grid">
-    <div class="cell reveal"><div class="big">120+</div><div class="lab">Projects Delivered</div></div>
-    <div class="cell reveal"><div class="big">10</div><div class="lab">Years Experience</div></div>
-    <div class="cell reveal"><div class="big">45</div><div class="lab">Global Clients</div></div>
-    <div class="cell reveal"><div class="big">2.5k</div><div class="lab">Cups of Coffee</div></div>
+    {STATS.map((st) => (
+    <div class="cell reveal"><div class="big">{st.value}</div><div class="lab">{st.label}</div></div>
+    ))}
   </div>
 </section>
 
@@ -228,22 +210,16 @@ import Footer from '../components/Footer.astro';
 <section class="section insights">
   <div class="wrap">
     <div class="head reveal">
-      <h2 class="serif-title">Technical Insights</h2>
+      <h2 class="serif-title">From the Blog</h2>
       <a href="/blog" class="view-all">View All Articles <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M9.13125 6.75H0V5.25H9.13125L4.93125 1.05L6 0L12 6L6 12L4.93125 10.95L9.13125 6.75Z" fill="currentColor"/></svg></a>
     </div>
     <div class="blog-grid">
+      {latest.map((p) => (
       <article class="post reveal">
-        <div class="thumb"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&q=80&auto=format&fit=crop" alt="Optimizing React" /></div>
-        <div class="body"><div class="meta">May 12, 2024 · 8 Min Read</div><h3>Optimizing React for Enterprise Scale</h3><a class="read" href="/blog/optimizing-react">Read More <img src="/icons/Icon_17.svg" alt="" /></a></div>
+        <div class="thumb"><img src={p.image} alt={p.title} loading="lazy" /></div>
+        <div class="body"><div class="meta">{formatDate(p.publishDate)} · {p.readTime}</div><h3>{p.title}</h3><a class="read" href={`/blog/${p.slug}`}>Read More <img src="/icons/Icon_17.svg" alt="" /></a></div>
       </article>
-      <article class="post reveal">
-        <div class="thumb"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=700&q=80&auto=format&fit=crop" alt="Microservices" /></div>
-        <div class="body"><div class="meta">April 28, 2024 · 6 Min Read</div><h3>Microservices vs Monoliths in 2024</h3><a class="read" href="/blog/microservices-vs-monoliths">Read More <img src="/icons/Icon_17.svg" alt="" /></a></div>
-      </article>
-      <article class="post reveal">
-        <div class="thumb"><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=700&q=80&auto=format&fit=crop" alt="AI in web dev" /></div>
-        <div class="body"><div class="meta">March 15, 2024 · 10 Min Read</div><h3>The Future of AI in Web Development</h3><a class="read" href="/blog/ai-in-web-development">Read More <img src="/icons/Icon_17.svg" alt="" /></a></div>
-      </article>
+      ))}
     </div>
   </div>
 </section>
@@ -254,18 +230,12 @@ import Footer from '../components/Footer.astro';
     <span class="eyebrow reveal">FAQ</span>
     <h2 class="serif-title reveal">Frequently Asked Questions</h2>
     <div class="faq-list">
-      <div class="faq-item open reveal">
-        <button class="faq-q">Do you work with startups or large corporations? <span class="plus">+</span></button>
-        <div class="faq-a"><p>I enjoy working with both. Startups allow for high agility and innovation, while corporate projects offer opportunities for large-scale engineering and strict compliance work. I tailor my approach to suit the unique needs of each.</p></div>
+      {FAQS.slice(0, 3).map((f, i) => (
+      <div class={`faq-item reveal${i === 0 ? ' open' : ''}`}>
+        <button class="faq-q">{f.q} <span class="plus">+</span></button>
+        <div class="faq-a"><p>{f.a}</p></div>
       </div>
-      <div class="faq-item reveal">
-        <button class="faq-q">What is your typical project timeline? <span class="plus">+</span></button>
-        <div class="faq-a"><p>Timelines vary by scope, but most focused builds run four to twelve weeks. After a discovery call I provide a detailed milestone plan so you always know what ships and when.</p></div>
-      </div>
-      <div class="faq-item reveal">
-        <button class="faq-q">Do you offer post-launch maintenance? <span class="plus">+</span></button>
-        <div class="faq-a"><p>Yes. I offer flexible retainer and support packages covering monitoring, updates, performance tuning and new feature development so your product keeps evolving after launch.</p></div>
-      </div>
+      ))}
     </div>
     <div style="text-align:center;margin-top:32px"><a href="/faq" class="btn btn-outline">View All FAQs →</a></div>
   </div>
@@ -275,7 +245,7 @@ import Footer from '../components/Footer.astro';
 <section class="cta">
   <div class="wrap">
     <h2>Ready to Build Something <em>Exceptional?</em></h2>
-    <p>Let's collaborate on your next project. I'm available for freelance, contract, and full-time opportunities.</p>
+    <p>Tell me about your project. I take on freelance and contract work and I am available across time zones.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
       <a href="/contact" class="btn btn-cream">Start a Project</a>
       <a href="/about" class="btn" style="color:var(--cream-3);border-color:rgba(255,255,255,.3)">Learn About Me →</a>

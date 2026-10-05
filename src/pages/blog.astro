@@ -2,36 +2,22 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { getBlogPosts, categoryOf, formatDate } from '../lib/content';
 
-const featured = {
-  title: "Optimizing React for Enterprise Scale",
-  date: "May 12, 2024",
-  readTime: "8 Min Read",
-  category: "Frontend",
-  excerpt: "A deep dive into patterns, practices and architectural decisions that separate hobby-grade React from production-ready systems serving millions of users.",
-  img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80&auto=format&fit=crop",
-  slug: "optimizing-react",
-};
-
-const posts = [
-  { title: "Microservices vs Monoliths in 2024", date: "Apr 28, 2024", readTime: "6 min", category: "Architecture", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=700&q=80&auto=format&fit=crop", slug: "microservices-vs-monoliths" },
-  { title: "The Future of AI in Web Development", date: "Mar 15, 2024", readTime: "10 min", category: "AI & ML", img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=700&q=80&auto=format&fit=crop", slug: "ai-in-web-development" },
-  { title: "Building a Design System from Scratch", date: "Feb 22, 2024", readTime: "12 min", category: "Design", img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=700&q=80&auto=format&fit=crop", slug: "design-system-from-scratch" },
-  { title: "PostgreSQL vs MongoDB: When to Use Each", date: "Jan 10, 2024", readTime: "7 min", category: "Backend", img: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=700&q=80&auto=format&fit=crop", slug: "postgres-vs-mongodb" },
-  { title: "TypeScript Patterns I Use Every Day", date: "Dec 5, 2023", readTime: "5 min", category: "TypeScript", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=700&q=80&auto=format&fit=crop", slug: "typescript-patterns" },
-  { title: "Kubernetes at Scale: Lessons Learned", date: "Nov 18, 2023", readTime: "9 min", category: "DevOps", img: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=700&q=80&auto=format&fit=crop", slug: "kubernetes-at-scale" },
-];
+const all = await getBlogPosts();
+const [featured, ...posts] = all;
 ---
 
-<Layout title="Blog — Karan Arora" description="Engineering insights, architecture decisions, and lessons from 8 years of full-stack development.">
+
+<Layout title="Blog | Karandeep Arora" description="Articles on WordPress, React JS, Python, PHP, Magento and Twilio development, and on hiring a freelance full stack developer.">
 <Header activePage="/blog" />
 
 <!-- HERO -->
 <section class="page-hero">
   <div class="wrap">
-    <span class="eyebrow reveal">Engineering Notes</span>
+    <span class="eyebrow reveal">Blog</span>
     <h1 class="reveal">Articles &<br>Insights</h1>
-    <p class="reveal">Practical writing on full-stack architecture, frontend patterns, and building software that lasts.</p>
+    <p class="reveal">Practical writing on WordPress, React JS, Python, PHP, Magento and Twilio development, and on working with a freelance developer.</p>
   </div>
 </section>
 
@@ -41,11 +27,11 @@ const posts = [
     <span class="eyebrow reveal">Featured Article</span>
     <a href={`/blog/${featured.slug}`} class="featured-card reveal">
       <div class="featured-img">
-        <img src={featured.img} alt={featured.title} />
-        <div class="feat-category">{featured.category}</div>
+        <img src={featured.image} alt={featured.title} />
+        <div class="feat-category">{categoryOf(featured)}</div>
       </div>
       <div class="featured-body">
-        <div class="feat-meta">{featured.date} · {featured.readTime}</div>
+        <div class="feat-meta">{formatDate(featured.publishDate)} · {featured.readTime}</div>
         <h2 class="feat-title">{featured.title}</h2>
         <p class="feat-excerpt">{featured.excerpt}</p>
         <span class="feat-read">Read Full Article →</span>
@@ -65,12 +51,12 @@ const posts = [
         <article class="blog-card reveal">
           <a href={`/blog/${post.slug}`} class="blog-card-link">
             <div class="blog-img">
-              <img src={post.img} alt={post.title} loading="lazy" />
+              <img src={post.image} alt={post.title} loading="lazy" />
             </div>
             <div class="blog-body">
               <div class="blog-meta">
-                <span class="blog-cat">{post.category}</span>
-                <span class="blog-date">{post.date} · {post.readTime}</span>
+                <span class="blog-cat">{categoryOf(post)}</span>
+                <span class="blog-date">{formatDate(post.publishDate)} · {post.readTime}</span>
               </div>
               <h3 class="blog-title">{post.title}</h3>
               <span class="blog-read">Read More →</span>
@@ -79,21 +65,6 @@ const posts = [
         </article>
       ))}
     </div>
-  </div>
-</section>
-
-<!-- NEWSLETTER -->
-<section class="newsletter-section">
-  <div class="wrap newsletter-inner">
-    <div class="nl-text reveal">
-      <span class="eyebrow" style="color:var(--gold)">Stay Updated</span>
-      <h2 class="serif-title" style="color:var(--cream-3);font-size:clamp(26px,3vw,38px);margin-top:12px">Get new articles in your inbox</h2>
-      <p style="color:rgba(251,248,240,.65);margin-top:12px;font-size:15px">No spam. One email when something worth reading goes live.</p>
-    </div>
-    <form class="nl-form reveal" onsubmit="return false">
-      <input type="email" placeholder="your@email.com" required />
-      <button type="submit" class="btn btn-gold">Subscribe</button>
-    </form>
   </div>
 </section>
 
@@ -129,23 +100,11 @@ const posts = [
 .blog-title { font-family: var(--serif); font-weight: 700; font-size: 18px; color: var(--ink); line-height: 1.35; margin-bottom: 14px; }
 .blog-read { font-size: 13px; font-weight: 600; color: var(--olive); }
 
-/* NEWSLETTER */
-.newsletter-section { background: var(--olive-dark); padding: 80px 0; }
-.newsletter-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-.nl-form { display: flex; gap: 12px; }
-.nl-form input { flex: 1; padding: 14px 18px; border: 1.5px solid rgba(255,255,255,.2); border-radius: 10px; background: rgba(255,255,255,.08); color: var(--cream-3); font-family: var(--body); font-size: 15px; outline: none; }
-.nl-form input::placeholder { color: rgba(251,248,240,.4); }
-.nl-form input:focus { border-color: var(--gold); }
-.btn-gold { background: var(--gold); color: var(--ink); border-radius: 10px; font-size: 15px; padding: 14px 26px; white-space: nowrap; font-weight: 700; }
-.btn-gold:hover { background: var(--gold-2); }
-
 @media (max-width: 980px) {
   .featured-card { grid-template-columns: 1fr; gap: 28px; }
   .blog-posts-grid { grid-template-columns: repeat(2, 1fr); }
-  .newsletter-inner { grid-template-columns: 1fr; gap: 32px; }
 }
 @media (max-width: 640px) {
   .blog-posts-grid { grid-template-columns: 1fr; }
-  .nl-form { flex-direction: column; }
 }
 </style>

@@ -2,212 +2,115 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import { SITE } from '../../data/site';
+import { getBlogPosts, categoryOf, formatDate } from '../../lib/content';
 
-export function getStaticPaths() {
-  return [
-    { params: { slug: 'optimizing-react' } },
-    { params: { slug: 'microservices-vs-monoliths' } },
-    { params: { slug: 'ai-in-web-development' } },
-    { params: { slug: 'design-system-from-scratch' } },
-    { params: { slug: 'postgres-vs-mongodb' } },
-    { params: { slug: 'typescript-patterns' } },
-    { params: { slug: 'kubernetes-at-scale' } },
-  ];
+// Slugs are the legacy URLs verbatim (/blog/<slug>), including the mixed-case
+// "...-It-requires..." one, so existing links and rankings keep working.
+export async function getStaticPaths() {
+  const posts = await getBlogPosts();
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post, more: posts.filter((p) => p.slug !== post.slug).slice(0, 3) },
+  }));
 }
 
-const { slug } = Astro.params;
+const { post, more } = Astro.props;
 
-const articles: Record<string, {title:string;date:string;readTime:string;category:string;img:string;author:string}> = {
-  'optimizing-react': {
-    title: "Optimizing React for Enterprise Scale",
-    date: "May 12, 2024",
-    readTime: "8 Min Read",
-    category: "Frontend",
-    img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1400&q=80&auto=format&fit=crop",
-    author: "Karan Arora",
-  },
-  'microservices-vs-monoliths': {
-    title: "Microservices vs Monoliths in 2024",
-    date: "April 28, 2024",
-    readTime: "6 Min Read",
-    category: "Architecture",
-    img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1400&q=80&auto=format&fit=crop",
-    author: "Karan Arora",
-  },
-  'ai-in-web-development': {
-    title: "The Future of AI in Web Development",
-    date: "March 15, 2024",
-    readTime: "10 Min Read",
-    category: "AI & ML",
-    img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1400&q=80&auto=format&fit=crop",
-    author: "Karan Arora",
-  },
-  'design-system-from-scratch': {
-    title: "Building a Design System from Scratch",
-    date: "February 22, 2024",
-    readTime: "12 Min Read",
-    category: "Design",
-    img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1400&q=80&auto=format&fit=crop",
-    author: "Karan Arora",
-  },
-  'postgres-vs-mongodb': {
-    title: "PostgreSQL vs MongoDB: When to Use Each",
-    date: "January 10, 2024",
-    readTime: "7 Min Read",
-    category: "Backend",
-    img: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=1400&q=80&auto=format&fit=crop",
-    author: "Karan Arora",
-  },
-  'typescript-patterns': {
-    title: "TypeScript Patterns I Use Every Day",
-    date: "December 5, 2023",
-    readTime: "5 Min Read",
-    category: "TypeScript",
-    img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1400&q=80&auto=format&fit=crop",
-    author: "Karan Arora",
-  },
-  'kubernetes-at-scale': {
-    title: "Kubernetes at Scale: Lessons Learned",
-    date: "November 18, 2023",
-    readTime: "9 Min Read",
-    category: "DevOps",
-    img: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=1400&q=80&auto=format&fit=crop",
-    author: "Karan Arora",
-  },
+// Give every h2-h4 an id and collect them for the table of contents.
+const toc: { id: string; text: string }[] = [];
+let n = 0;
+const body = post.content.replace(/<(h[234])>([\s\S]*?)<\/\1>/g, (_m, tag, inner) => {
+  const text = inner.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+  const id = `section-${++n}`;
+  if (tag !== 'h4' || toc.length < 12) toc.push({ id, text });
+  return `<${tag} id="${id}">${inner}</${tag}>`;
+});
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  description: post.description,
+  datePublished: post.publishDate.toISOString().slice(0, 10),
+  image: new URL(post.image, SITE.url).href,
+  author: { '@type': 'Person', name: SITE.name },
+  mainEntityOfPage: `${SITE.url}/blog/${post.slug}`,
 };
-
-const article = articles[slug!] ?? articles['optimizing-react'];
 ---
 
-<Layout title={`${article.title} — Karan Arora`} description={article.title}>
+<Layout title={`${post.title} | Karandeep Arora`} description={post.description} image={post.image} type="article">
 <Header activePage="/blog" />
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-<!-- BREADCRUMB -->
 <div class="breadcrumb-bar">
   <div class="wrap">
     <a href="/blog">← Back to Articles</a>
   </div>
 </div>
 
-<!-- ARTICLE HERO -->
 <section class="article-hero">
   <div class="wrap">
     <div class="article-meta reveal">
-      <span class="art-cat">{article.category}</span>
-      <span class="art-date">{article.date}</span>
-      <span class="art-read">{article.readTime}</span>
+      <span class="art-cat">{categoryOf(post)}</span>
+      <span class="art-date">{formatDate(post.publishDate)}</span>
+      <span class="art-read">{post.readTime}</span>
     </div>
-    <h1 class="art-title reveal">{article.title}</h1>
+    <h1 class="art-title reveal">{post.title}</h1>
     <div class="art-author reveal">
-      <img src="https://i.pravatar.cc/44?img=12" alt={article.author} />
+      <img src="/demo-removebg-preview.png" alt={SITE.name} />
       <div>
-        <div class="auth-name">{article.author}</div>
-        <div class="auth-role">Full Stack Developer</div>
+        <div class="auth-name">{SITE.name}</div>
+        <div class="auth-role">{SITE.role}</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- COVER IMAGE -->
 <div class="art-cover">
   <div class="wrap">
     <div class="cover-img reveal">
-      <img src={article.img} alt={article.title} />
+      <img src={post.image} alt={post.title} />
     </div>
   </div>
 </div>
 
-<!-- ARTICLE CONTENT + SIDEBAR -->
 <section class="article-body">
   <div class="wrap">
-    <div class="art-layout">
-
-      <!-- SIDEBAR TOC -->
+    <div class={`art-layout${toc.length > 1 ? '' : ' no-toc'}`}>
+      {toc.length > 1 && (
       <aside class="art-sidebar">
-        <div class="toc-card reveal">
+        <div class="toc-card">
           <div class="toc-label">Contents</div>
           <nav class="toc">
-            <a href="#section-1" class="toc-link active">Introduction</a>
-            <a href="#section-2" class="toc-link">The Problem at Scale</a>
-            <a href="#section-3" class="toc-link">Architecture Patterns</a>
-            <a href="#section-4" class="toc-link">Performance Strategies</a>
-            <a href="#section-5" class="toc-link">Key Takeaways</a>
+            {toc.map((t, i) => <a href={`#${t.id}`} class={`toc-link${i === 0 ? ' active' : ''}`}>{t.text}</a>)}
           </nav>
         </div>
       </aside>
-
-      <!-- MAIN CONTENT -->
-      <article class="art-content reveal">
-        <section id="section-1">
-          <h2>Introduction</h2>
-          <p>Building React applications that scale beyond a handful of engineers and millions of users requires a fundamentally different mindset than most tutorials teach. The patterns that work beautifully in a side project become bottlenecks when applied naively to an enterprise codebase.</p>
-          <p>Over the past three years, I've had the opportunity to work on React frontends serving tens of millions of daily active users. In this article, I'll walk through the architectural decisions, performance strategies, and team workflows that made the difference between a product that struggled under load and one that scaled gracefully.</p>
-        </section>
-
-        <section id="section-2">
-          <h2>The Problem at Scale</h2>
-          <p>The first challenge most teams encounter is that their initial architecture — however clean — wasn't designed for growth. State management leaks across boundaries. Bundle sizes balloon. Re-renders cascade silently.</p>
-          <p>Before reaching for a new library or rewriting everything, it's worth auditing what you actually have. The Chrome Performance tab and React DevTools Profiler are your best friends here. Measure before optimising — the bottleneck is almost never where you think it is.</p>
-          <blockquote>"Premature optimization is the root of all evil, but that doesn't mean you can ignore performance forever."</blockquote>
-        </section>
-
-        <section id="section-3">
-          <h2>Architecture Patterns</h2>
-          <p>The three patterns that have had the biggest impact across every large-scale React project I've worked on are: feature-based folder structure, server state/client state separation, and component composition over inheritance.</p>
-          <h3>Feature-Based Folder Structure</h3>
-          <p>Organising by feature rather than by type (components/, hooks/, utils/) dramatically reduces the cognitive overhead of navigating a large codebase. Each feature becomes a self-contained module with its own components, hooks, types, and tests.</p>
-          <pre><code>src/
-  features/
-    auth/
-      components/
-      hooks/
-      types.ts
-    dashboard/
-    ...</code></pre>
-          <h3>Server State vs Client State</h3>
-          <p>One of the most impactful architectural decisions is being deliberate about the boundary between server state (data that lives on the server, fetched and cached locally) and client state (UI state like modals, form drafts, or selected tabs). TanStack Query for the former, Zustand or Context for the latter.</p>
-        </section>
-
-        <section id="section-4">
-          <h2>Performance Strategies</h2>
-          <p>With the architecture right, performance tuning becomes much more surgical. The most impactful strategies I've used are code splitting at the route level, memoisation at the right granularity, and virtualising long lists.</p>
-          <p>Route-level code splitting with Next.js App Router is now the default, but many applications still have monolithic bundles. Analyse your bundle with <code>@next/bundle-analyzer</code> and ruthlessly split anything over 50kB that isn't in the critical path.</p>
-          <p>React.memo and useMemo are often overused. Profile first — memoisation has a cost, and the cases where it actually moves the needle are narrower than most developers assume. The biggest wins usually come from eliminating unnecessary re-renders caused by unstable reference identity in context values.</p>
-        </section>
-
-        <section id="section-5">
-          <h2>Key Takeaways</h2>
-          <ul>
-            <li>Profile before optimising — measure, don't guess</li>
-            <li>Separate server state from client state from the start</li>
-            <li>Organise by feature, not by type</li>
-            <li>Route-level code splitting is non-negotiable at scale</li>
-            <li>Memoisation is a micro-optimisation — fix architectural problems first</li>
-          </ul>
-          <p>Scaling React isn't about adopting the newest library — it's about building the right foundations early and being disciplined about the boundaries between concerns. The teams I've seen succeed are the ones that invest in developer experience as a first-class concern.</p>
-        </section>
-      </article>
+      )}
+      <article class="art-content" set:html={body} />
     </div>
   </div>
 </section>
 
-<!-- MORE ARTICLES -->
+<section class="cta">
+  <div class="wrap">
+    <h2>Need a Developer for <em>Your Project?</em></h2>
+    <p>Tell me what you are building and I will send a proposal with scope, timeline and cost.</p>
+    <a href="/contact" class="btn btn-cream">Start a Project</a>
+  </div>
+</section>
+
 <section class="section more-articles">
   <div class="wrap">
     <h2 class="serif-title reveal">More Articles</h2>
     <div class="more-grid">
-      <a href="/blog/microservices-vs-monoliths" class="more-card reveal">
-        <div class="more-img"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80&auto=format&fit=crop" alt="" /></div>
-        <div class="more-body"><span class="more-cat">Architecture</span><h3>Microservices vs Monoliths in 2024</h3></div>
+      {more.map((m) => (
+      <a href={`/blog/${m.slug}`} class="more-card reveal">
+        <div class="more-img"><img src={m.image} alt="" loading="lazy" /></div>
+        <div class="more-body"><span class="more-cat">{categoryOf(m)}</span><h3>{m.title}</h3></div>
       </a>
-      <a href="/blog/ai-in-web-development" class="more-card reveal">
-        <div class="more-img"><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&q=80&auto=format&fit=crop" alt="" /></div>
-        <div class="more-body"><span class="more-cat">AI & ML</span><h3>The Future of AI in Web Development</h3></div>
-      </a>
-      <a href="/blog/typescript-patterns" class="more-card reveal">
-        <div class="more-img"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80&auto=format&fit=crop" alt="" /></div>
-        <div class="more-body"><span class="more-cat">TypeScript</span><h3>TypeScript Patterns I Use Every Day</h3></div>
-      </a>
+      ))}
     </div>
   </div>
 </section>
@@ -226,7 +129,7 @@ const article = articles[slug!] ?? articles['optimizing-react'];
 .art-date, .art-read { font-size: 13px; color: var(--muted); }
 .art-title { font-family: var(--serif); font-size: clamp(28px, 4.5vw, 52px); font-weight: 700; color: var(--ink); line-height: 1.15; max-width: 840px; }
 .art-author { display: flex; align-items: center; gap: 13px; margin-top: 28px; }
-.art-author img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+.art-author img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: top; background: var(--cream-2); }
 .auth-name { font-weight: 600; font-size: 14.5px; color: var(--ink); }
 .auth-role { font-size: 12px; color: var(--muted); }
 
@@ -236,6 +139,7 @@ const article = articles[slug!] ?? articles['optimizing-react'];
 
 .article-body { background: var(--cream-2); padding: 60px 0 80px; }
 .art-layout { display: grid; grid-template-columns: 220px 1fr; gap: 60px; align-items: start; }
+.art-layout.no-toc { grid-template-columns: 1fr; justify-items: center; }
 .art-sidebar { position: sticky; top: 94px; }
 .toc-card { background: var(--white); border: 1px solid var(--line-2); border-radius: var(--r-md); padding: 24px; box-shadow: var(--shadow-sm); }
 .toc-label { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; font-weight: 700; color: var(--muted); margin-bottom: 16px; }
@@ -245,16 +149,21 @@ const article = articles[slug!] ?? articles['optimizing-react'];
 .toc-link.active { color: var(--olive); border-left-color: var(--olive); background: rgba(86,92,43,.06); }
 
 .art-content { max-width: 700px; }
-.art-content h2 { font-family: var(--serif); font-weight: 700; font-size: 28px; color: var(--ink); margin: 48px 0 18px; padding-top: 12px; border-top: 1px solid var(--line-2); }
-.art-content h2:first-child { margin-top: 0; border-top: 0; }
-.art-content h3 { font-family: var(--serif); font-weight: 700; font-size: 20px; color: var(--ink); margin: 30px 0 12px; }
-.art-content p { font-size: 16px; color: var(--ink-2); line-height: 1.85; margin-bottom: 18px; }
-.art-content ul { margin: 12px 0 20px 22px; }
-.art-content ul li { font-size: 16px; color: var(--ink-2); line-height: 1.8; margin-bottom: 8px; list-style: disc; }
-.art-content blockquote { border-left: 3px solid var(--gold); padding: 16px 24px; background: var(--cream); margin: 28px 0; font-family: var(--serif); font-size: 18px; font-style: italic; color: var(--ink-2); border-radius: 0 var(--r-sm) var(--r-sm) 0; }
-.art-content pre { background: var(--ink); color: var(--cream-3); border-radius: var(--r-md); padding: 22px 24px; margin: 24px 0; overflow-x: auto; }
-.art-content code { font-family: 'Courier New', monospace; font-size: 13.5px; line-height: 1.7; }
-.art-content p code { background: var(--line-2); color: var(--olive-dark); padding: 2px 7px; border-radius: 4px; font-size: 13.5px; }
+.art-content :global(h2) { font-family: var(--serif); font-weight: 700; font-size: 28px; color: var(--ink); margin: 48px 0 18px; padding-top: 12px; border-top: 1px solid var(--line-2); }
+.art-content :global(h2:first-child) { margin-top: 0; border-top: 0; }
+.art-content :global(h3), .art-content :global(h4) { font-family: var(--serif); font-weight: 700; font-size: 20px; color: var(--ink); margin: 30px 0 12px; }
+.art-content :global(p) { font-size: 16px; color: var(--ink-2); line-height: 1.85; margin-bottom: 18px; }
+.art-content :global(ul), .art-content :global(ol) { margin: 12px 0 20px 22px; }
+.art-content :global(li) { font-size: 16px; color: var(--ink-2); line-height: 1.8; margin-bottom: 8px; list-style: disc; }
+.art-content :global(ol li) { list-style: decimal; }
+.art-content :global(li p) { margin-bottom: 6px; }
+.art-content :global(a) { color: var(--olive); text-decoration: underline; }
+.art-content :global(img) { border-radius: var(--r-md); margin: 20px 0; }
+.art-content :global(h4) { font-size: 18px; }
+.art-content :global(blockquote) { border-left: 3px solid var(--gold); padding: 16px 24px; background: var(--cream); margin: 28px 0; font-family: var(--serif); font-size: 18px; font-style: italic; color: var(--ink-2); border-radius: 0 var(--r-sm) var(--r-sm) 0; }
+.art-content :global(pre) { background: var(--ink); color: var(--cream-3); border-radius: var(--r-md); padding: 22px 24px; margin: 24px 0; overflow-x: auto; }
+.art-content :global(code) { font-family: 'Courier New', monospace; font-size: 13.5px; line-height: 1.7; }
+.art-content :global(p code) { background: var(--line-2); color: var(--olive-dark); padding: 2px 7px; border-radius: 4px; font-size: 13.5px; }
 
 .more-articles { background: var(--cream); }
 .more-articles .serif-title { font-size: clamp(26px, 3vw, 36px); margin-bottom: 36px; }

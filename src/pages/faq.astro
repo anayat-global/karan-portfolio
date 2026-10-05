@@ -5,46 +5,35 @@ import Footer from '../components/Footer.astro';
 
 const categories = [
   {
-    id: "collaboration",
-    label: "Collaboration",
+    id: "working-together",
+    label: "Working Together",
     faqs: [
-      { q: "Do you work with startups or large corporations?", a: "I enjoy working with both. Startups allow for high agility and innovation, while corporate projects offer opportunities for large-scale engineering and strict compliance work. I tailor my approach to suit the unique needs of each engagement." },
-      { q: "What does your onboarding process look like?", a: "Every engagement starts with a discovery call to understand your business context, technical constraints, and success metrics. I then provide a written scope document, timeline, and milestone breakdown before any code is written." },
-      { q: "Do you work remotely?", a: "Yes, 100% remote. I've collaborated successfully with teams across Europe, North America, and Asia-Pacific. I'm flexible on working hours to ensure sufficient timezone overlap with your team." },
-      { q: "Can you join our existing team rather than work as a solo contractor?", a: "Absolutely. I'm experienced with both models — embedded within an existing engineering team or operating as a fully independent contractor delivering a defined scope. I integrate well with agile and async workflows." },
+      { q: "Do you work with international clients?", a: "Yes. I have worked with startups, sole founders and businesses in Australia, the United States, the United Kingdom, Canada, Japan, Italy, India, Saudi Arabia and South Africa, and I am comfortable working across time zones and joining client meetings." },
+      { q: "Can I hire you through Upwork?", a: "Yes. You can hire me directly through this website or on Upwork, where you can review my work history and ask for a proposal before starting." },
+      { q: "How does a project work?", a: "We start with a discussion of your goals, then I send a proposal covering scope, timeline and cost. After a contract and kickoff call, I build in stages with regular updates through the channel you prefer, then test, launch and support the project." },
     ]
   },
   {
-    id: "projects",
-    label: "Projects",
+    id: "services-pricing",
+    label: "Services & Pricing",
     faqs: [
-      { q: "What types of projects do you typically take on?", a: "My sweet spot is technically complex products — SaaS platforms, fintech dashboards, healthcare systems, high-performance e-commerce, and developer tooling. I'm drawn to projects where engineering and design both need to be excellent." },
-      { q: "What is your typical project timeline?", a: "Timelines vary by scope, but most focused builds run four to twelve weeks. Discovery and planning typically take one to two weeks, followed by iterative development sprints. I provide a detailed milestone plan after the discovery call so you always know what ships and when." },
-      { q: "How do you handle changing requirements mid-project?", a: "Change is inevitable and that's fine. I use a lean scope document and agile methodology so that changes are surfaced, assessed for impact, and accommodated in a structured way — without derailing the project or surprising you with a revised bill." },
+      { q: "Which services do you offer?", a: "WordPress, Twilio, React JS, Python, PHP, Magento and backend development, from custom themes, plugins and API integrations to full web applications and e-commerce stores." },
+      { q: "How much does a project cost?", a: "It depends on scope and complexity. Share your requirements through the contact form and I will send a proposal with a clear timeline and cost, so you know what to expect before we begin." },
+      { q: "Can you build mobile apps?", a: "Yes. I build mobile and web apps with React JS and React Native, and can connect them to backends and third-party APIs, payment gateways and Twilio communication services." },
     ]
   },
   {
-    id: "technical",
-    label: "Technical",
+    id: "after-launch",
+    label: "Migration & Support",
     faqs: [
-      { q: "What is your primary tech stack?", a: "Frontend: React, Next.js, TypeScript, Tailwind CSS. Backend: Node.js, Python (FastAPI/Django), PostgreSQL, Redis. Infrastructure: AWS, Docker, Kubernetes, GitHub Actions. I choose tools based on the problem, not habit." },
-      { q: "Do you handle DevOps and deployment as well?", a: "Yes. I own the full delivery lifecycle — from local development to CI/CD pipelines to cloud deployment. I'm comfortable with AWS, GCP, and Vercel, and can set up monitoring, alerting, and observability from day one." },
-      { q: "Can you help with an existing codebase, not just greenfield projects?", a: "Absolutely — in fact, most of my recent work has been on existing systems. I'm skilled at auditing unfamiliar codebases, identifying technical debt, and incrementally improving architecture without a full rewrite." },
-    ]
-  },
-  {
-    id: "commercial",
-    label: "Commercial",
-    faqs: [
-      { q: "What does your post-launch support look like?", a: "I offer flexible retainer and support packages covering monitoring, bug fixes, performance tuning, and new feature development. You can engage me on a short-term or ongoing basis after launch." },
-      { q: "Do you sign NDAs and IP agreements?", a: "Yes. I'm accustomed to standard NDA, IP assignment, and work-for-hire agreements. I can work within your legal templates or provide my own." },
-      { q: "What is your typical rate?", a: "Rates vary by engagement type, scope, and timeline. I'm happy to discuss once I understand your project requirements. My focus is on delivering measurable value — I'm not the cheapest option, but I'm the one who ships." },
+      { q: "Can you migrate my existing website to WordPress?", a: "Yes. I offer WordPress migration services that move your site and data safely, optimise content and keep downtime to a minimum." },
+      { q: "Do you provide support after launch?", a: "Yes. I offer ongoing maintenance and support, including updates, backups, security and performance tuning, so your site or application keeps running smoothly after it goes live." },
     ]
   },
 ];
 ---
 
-<Layout title="FAQ — Karan Arora" description="Frequently asked questions about working with Karan Arora — process, timelines, rates, and more.">
+<Layout title="FAQ | Karandeep Arora" description="Answers to common questions about hiring Karandeep Arora: services, process, pricing, support and working with international clients.">
 <Header activePage="/faq" />
 
 <!-- HERO -->
@@ -52,7 +41,7 @@ const categories = [
   <div class="wrap">
     <span class="eyebrow reveal">Questions & Answers</span>
     <h1 class="reveal">Frequently Asked<br>Questions</h1>
-    <p class="reveal">Everything you need to know about collaborating with me — from process and timelines to tech stack and commercial terms.</p>
+    <p class="reveal">Everything you need to know about working with me, from process and pricing to support after launch.</p>
   </div>
 </section>
 

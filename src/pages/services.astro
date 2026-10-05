@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { PROCESS, SITE } from '../data/site';
+import { getServices } from '../lib/content';
+
+const services = await getServices();
+const icons = [7, 8, 9, 12, 10, 11, 4];
+---
+
+<Layout title="Web Development Services | Karandeep Arora" description="WordPress, Twilio, React JS, Python, PHP, Magento and backend development services from a freelance full stack developer with 10 years of experience.">
+<Header activePage="/services" />
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">Services</span>
+    <h1 class="reveal">My<br>Services</h1>
+    <p class="reveal">Hire a freelance full stack developer in India for custom, scalable web solutions. Pick a service below to see what is included and how I work.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="svc-grid">
+      {services.map((sv, i) => (
+        <a href={`/${sv.slug}`} class="svc-card reveal">
+          <div class="ic"><img src={`/icons/Icon_${icons[i % icons.length]}.svg`} alt="" /></div>
+          <h2>{sv.title}</h2>
+          <p>{sv.headline}</p>
+          <span class="more">Learn more →</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section process">
+  <div class="wrap">
+    <span class="eyebrow reveal">How I Work</span>
+    <h2 class="serif-title reveal">My Method to Work on Projects</h2>
+    <div class="steps">
+      {PROCESS.map((st, i) => (
+        <div class="step reveal"><div class="circle">{String(i + 1).padStart(2, '0')}</div><h3>{st.title}</h3><p>{st.text}</p></div>
+      ))}
+    </div>
+    <div class="cta-row reveal">
+      <a href="/contact" class="btn btn-dark">Start My Project</a>
+      <a href={SITE.upwork} class="btn btn-outline" rel="noopener" target="_blank">Find Me on Upwork</a>
+    </div>
+  </div>
+</section>
+
+<Footer />
+</Layout>
+
+<style>
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.svc-card { display: block; background: var(--white); border-radius: var(--r-md); padding: 32px 28px; border: 1px solid var(--line-2); box-shadow: var(--shadow-sm); transition: .25s; position: relative; overflow: hidden; }
+.svc-card::before { content: ""; position: absolute; left: 0; top: 0; height: 3px; width: 0; background: var(--gold); transition: .3s; }
+.svc-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+.svc-card:hover::before { width: 100%; }
+.svc-card .ic { width: 54px; height: 54px; border-radius: 14px; background: var(--cream-2); display: grid; place-items: center; margin-bottom: 20px; }
+.svc-card h2 { font-family: var(--serif); font-weight: 700; font-size: 22px; margin-bottom: 10px; }
+.svc-card p { font-size: 14.5px; color: var(--muted); margin-bottom: 16px; }
+.svc-card .more { font-size: 14px; font-weight: 600; color: var(--olive); }
+.process { background: var(--cream-2); text-align: center; }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 48px; text-align: center; }
+.step .circle { width: 64px; height: 64px; border-radius: 50%; background: var(--olive); color: #F4F0E4; display: grid; place-items: center; font-family: var(--display); font-weight: 800; margin: 0 auto 18px; }
+.step h3 { font-family: var(--serif); font-size: 19px; margin-bottom: 8px; }
+.step p { font-size: 14px; color: var(--muted); }
+.cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 48px; }
+@media (max-width: 960px) { .svc-grid { grid-template-columns: repeat(2, 1fr); } .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .svc-grid, .steps { grid-template-columns: 1fr; } }
+</style>

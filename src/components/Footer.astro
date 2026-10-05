@@ -1,22 +1,49 @@
 ---
+import { SITE } from '../data/site';
 const year = new Date().getFullYear();
+const services = [
+  ['/wordpress-development-services', 'WordPress Development'],
+  ['/twilio-development-services', 'Twilio Development'],
+  ['/react-js-development-services', 'React JS Development'],
+  ['/python-development-services', 'Python Development'],
+  ['/php-development-services', 'PHP Development'],
+  ['/magento-development-services', 'Magento Development'],
+  ['/backend-development-services', 'Backend Development'],
+];
 ---
 
 <footer class="footer">
-  <div class="wrap row">
-    <a href="/" class="brand">
-      <div class="mark">KA</div>
-      Karan Arora
-    </a>
-    <p class="cpy">&copy; {year} Karan Arora. All rights reserved.</p>
-    <div class="fl">
-      <a href="/about">About</a>
-      <a href="/projects">Projects</a>
-      <a href="/blog">Blog</a>
-      <a href="/contact">Contact</a>
-      <a href="/terms">Terms</a>
-      <a href="/privacy">Privacy</a>
+  <div class="wrap grid">
+    <div class="col about">
+      <a href="/" class="brand">
+        <div class="mark">KA</div>
+        {SITE.name}
+      </a>
+      <p>{SITE.role} with 10 years of experience building cost-effective, scalable web solutions for clients worldwide.</p>
     </div>
+    <div class="col">
+      <h4>Services</h4>
+      {services.map(([href, label]) => <a href={href}>{label}</a>)}
+    </div>
+    <div class="col">
+      <h4>Quick Links</h4>
+      <a href="/about">About</a>
+      <a href="/portfolio">Portfolio</a>
+      <a href="/blog">Blog</a>
+      <a href="/faq">FAQ</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <div class="col">
+      <h4>Contact Me</h4>
+      <a href={SITE.phoneHref}>{SITE.phone}</a>
+      <a href={SITE.whatsapp} rel="noopener" target="_blank">WhatsApp</a>
+      <a href={SITE.upwork} rel="noopener" target="_blank">Upwork</a>
+      <a href={SITE.linkedin} rel="noopener" target="_blank">LinkedIn</a>
+      <a href={SITE.instagram} rel="noopener" target="_blank">Instagram</a>
+    </div>
+  </div>
+  <div class="wrap bottom">
+    <p class="cpy">&copy; {year} {SITE.name}. All rights reserved.</p>
   </div>
 </footer>
 
@@ -25,15 +52,17 @@ const year = new Date().getFullYear();
   background: var(--olive-dark);
   color: #C7C4AC;
   border-top: 1px solid rgba(255,255,255,.1);
-  padding: 34px 0;
+  padding: 56px 0 28px;
 }
-.footer .row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 18px;
+.footer .grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
 }
+.footer .col { display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+.footer .col h4 { color: #EFEBDC; font-family: var(--display); font-size: 15px; margin-bottom: 4px; }
+.footer .col a:hover { color: #EFEBDC; }
+.footer .about p { font-size: 13.5px; line-height: 1.7; max-width: 320px; }
 .footer .brand {
   display: flex;
   align-items: center;
@@ -54,11 +83,22 @@ const year = new Date().getFullYear();
   font-size: 14px;
   font-weight: 800;
 }
+.footer .bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 40px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,.1);
+}
 .footer .cpy { font-size: 13px; }
-.footer .fl { display: flex; gap: 26px; font-size: 13.5px; flex-wrap: wrap; }
-.footer .fl a:hover { color: #EFEBDC; }
-@media (max-width: 768px) {
-  .footer .row { flex-direction: column; text-align: center; }
-  .footer .fl { justify-content: center; gap: 16px; }
+@media (max-width: 900px) {
+  .footer .grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .footer .grid { grid-template-columns: 1fr; }
+  .footer .bottom { flex-direction: column; text-align: center; }
 }
 </style>
