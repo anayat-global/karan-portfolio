@@ -1,0 +1,7 @@
+# Legacy PHP-site URLs that no longer have a page of their own
+/blog/inner-blog                                                                      /blog   301
+/blog/why-is-reactjs-the-supreme-framework-in-2024-for-your-business-app-development.php  /blog/why-is-reactjs-the-supreme-framework-in-2024-for-your-business-app-development  301
+/single-service.php                                                                   /services  301
+
+# Legacy sitemap path
+/sitemap.xml /sitemap-index.xml 200

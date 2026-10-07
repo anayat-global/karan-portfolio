@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../data/site';
+import { getServices } from '../lib/content';
+
+// Service pages live at the site root (/wordpress-development-services, ...)
+// to keep the legacy URLs exactly as they were.
+export async function getStaticPaths() {
+  const services = await getServices();
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service, others: services.filter((s) => s.slug !== service.slug) },
+  }));
+}
+
+const { service, others } = Astro.props;
+const plan = service.title.replace(/\s+/g, '-');
+---
+
+<Layout title={`${service.headline} | Karandeep Arora`} description={service.description}>
+<Header activePage="/services" />
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">Services</span>
+    <h1 class="reveal">{service.title}</h1>
+    <p class="reveal">{service.headline}</p>
+    <div class="hero-cta reveal">
+      <a href={`/contact?plan=${plan}`} class="btn btn-cream">Hire a Freelancer</a>
+      <a href={SITE.upwork} class="btn" style="color:var(--cream-3);border-color:rgba(255,255,255,.3)" rel="noopener" target="_blank">Find Me on Upwork</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <article class="prose" set:html={service.content} />
+  </div>
+</section>
+
+<section class="section more">
+  <div class="wrap">
+    <h2 class="serif-title">Other Services</h2>
+    <div class="more-grid">
+      {others.map((o) => (
+        <a href={`/${o.slug}`} class="more-card"><h3>{o.title}</h3><span>Learn more →</span></a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>Ready to Start Your <em>{service.title}</em> Project?</h2>
+    <p>Share your requirements and I will send a proposal with scope, timeline and cost.</p>
+    <a href={`/contact?plan=${plan}`} class="btn btn-cream">Start My Project</a>
+  </div>
+</section>
+
+<Footer />
+</Layout>
+
+<style>
+.hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+.prose { max-width: 860px; margin: 0 auto; font-size: 16.5px; line-height: 1.8; color: var(--ink-2); }
+.prose :global(h2) { font-family: var(--serif); font-size: clamp(26px, 3.2vw, 38px); line-height: 1.2; color: var(--ink); margin: 56px 0 18px; }
+.prose :global(h2:first-child) { margin-top: 0; }
+.prose :global(h3) { font-family: var(--display); font-size: 19px; color: var(--olive-dark); margin: 30px 0 8px; }
+.prose :global(p) { margin-bottom: 16px; }
+.prose :global(ul) { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0 22px; }
+.prose :global(li) { background: var(--white); border: 1px solid var(--line); border-radius: 999px; padding: 6px 16px; font-size: 14.5px; line-height: 1.5; }
+.prose :global(a) { color: var(--olive); text-decoration: underline; }
+.more { background: var(--cream-2); }
+.more .serif-title { margin-bottom: 32px; text-align: center; }
+.more-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.more-card { background: var(--white); border: 1px solid var(--line-2); border-radius: var(--r-md); padding: 22px 24px; display: flex; flex-direction: column; gap: 6px; transition: .25s; }
+.more-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.more-card h3 { font-family: var(--serif); font-size: 18px; }
+.more-card span { font-size: 13.5px; font-weight: 600; color: var(--olive); }
+@media (max-width: 800px) { .more-grid { grid-template-columns: 1fr; } }
+</style>

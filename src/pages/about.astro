@@ -2,17 +2,25 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { SITE, EXPERIENCE, EDUCATION, SKILLS, STATS } from '../data/site';
+const timeline = [
+  { year: 'Oct 2019 – Present', tag: 'Freelance', title: 'Senior Consultant', company: 'Independent, Upwork & direct clients', text: 'Building websites and web applications for startups, sole founders and businesses across the world. Full stack and MERN stack delivery from consulting and development through launch and support.', stack: 'WordPress · React JS · Twilio · Python · PHP · Magento' },
+  { year: 'May 2017 – Oct 2019', tag: 'Full-Time', title: 'Consultant', company: 'Seasia Infotech', text: 'Consulting and delivery of web solutions for client projects.', stack: '' },
+  { year: 'Oct 2014 – Apr 2017', tag: 'Full-Time', title: 'Web Developer', company: 'Smartbuzz', text: 'Started my career building websites and web applications.', stack: '' },
+  { year: '2010 – 2014', tag: 'Education', title: 'B.Tech', company: 'Punjab Technical University', text: 'Engineering degree. Added Core Java and Advanced Java training at Stellar Edge Infotech in 2013.', stack: '' },
+];
 ---
 
-<Layout title="About — Karan Arora" description="Learn about Karan Arora — Full Stack Developer, Systems Architect, and design-minded engineer.">
+
+<Layout title="About Karandeep Arora | Freelance Full Stack Developer in India" description="Karandeep Arora is a freelance full stack and MERN stack developer in India with 10 years of experience, 90+ projects and 55+ happy clients worldwide.">
 <Header activePage="/about" />
 
 <!-- HERO -->
 <section class="page-hero">
   <div class="wrap">
     <span class="eyebrow reveal">About Me</span>
-    <h1 class="reveal">Architect of<br>Digital Experiences</h1>
-    <p class="reveal">A design-minded engineer who bridges structural precision with aesthetic intentionality — building products that are both technically rigorous and delightful to use.</p>
+    <h1 class="reveal">Freelance Full<br>Stack Developer</h1>
+    <p class="reveal">Based in India, building cost-effective, customised and scalable web solutions for clients around the world for nearly 10 years.</p>
   </div>
 </section>
 
@@ -20,12 +28,12 @@ import Footer from '../components/Footer.astro';
 <section class="section intro-split">
   <div class="wrap intro-grid">
     <div class="intro-label reveal">
-      <span class="eyebrow">The Engineer</span>
+      <span class="eyebrow">Hello, I'm Karandeep</span>
     </div>
     <div class="intro-body">
-      <h2 class="serif-title reveal">I don't just write code.<br>I craft digital architecture.</h2>
-      <p class="reveal">With over 8 years building full-stack systems, I've developed an obsession with the intersection where engineering meets design. Every project I take on is a chance to build something that performs as beautifully as it looks — from a 50ms API response to a micro-interaction that delights a user at 3am.</p>
-      <p class="reveal" style="margin-top:18px">My work spans fintech dashboards, e-commerce platforms, healthcare systems, and developer tooling. What unites them is a relentless focus on craft, clarity, and longevity.</p>
+      <h2 class="serif-title reveal">I build websites and apps that<br>fit your budget and your goals.</h2>
+      <p class="reveal">I am an expert freelance full stack developer and MERN stack developer with nearly 10 years of experience in WordPress website development and other leading web technologies. By focusing on complex customer requirements, I make sure your project is executed well, from consulting and ideation through development and launch.</p>
+      <p class="reveal" style="margin-top:18px">I have helped companies, sole founders and businesses from Australia, the United States, the United Kingdom, Canada, Japan, Italy, India, Saudi Arabia and South Africa, working with clients and remote development teams across time zones. I will make sure your site or app is well designed, tailored to your needs and fully responsive on every device.</p>
     </div>
   </div>
 </section>
@@ -38,54 +46,20 @@ import Footer from '../components/Footer.astro';
       <h2 class="serif-title">Career Timeline</h2>
     </div>
     <div class="timeline">
+      {timeline.map((t) => (
       <article class="timeline-item reveal">
         <div class="tl-meta">
-          <span class="tl-year">2021–Present</span>
-          <span class="tl-tag">Full-Time</span>
+          <span class="tl-year">{t.year}</span>
+          <span class="tl-tag">{t.tag}</span>
         </div>
         <div class="tl-body">
-          <h3>Principal Full Stack Engineer</h3>
-          <div class="tl-company">Meridian Technologies, London</div>
-          <p>Leading a team of 12 engineers building a next-generation fintech infrastructure serving 2M+ daily users. Drove a 40% performance improvement across core APIs and introduced a component design system adopted company-wide.</p>
-          <div class="tl-stack">React · Node.js · Kubernetes · PostgreSQL · TypeScript</div>
+          <h3>{t.title}</h3>
+          <div class="tl-company">{t.company}</div>
+          <p>{t.text}</p>
+          {t.stack && <div class="tl-stack">{t.stack}</div>}
         </div>
       </article>
-      <article class="timeline-item reveal">
-        <div class="tl-meta">
-          <span class="tl-year">2018–2021</span>
-          <span class="tl-tag">Full-Time</span>
-        </div>
-        <div class="tl-body">
-          <h3>Senior Full Stack Lead</h3>
-          <div class="tl-company">Innovation Hub Global, Toronto</div>
-          <p>Architected and delivered 30+ client products across healthcare, retail, and SaaS verticals. Established engineering best practices, mentored junior engineers, and owned end-to-end delivery for flagship clients.</p>
-          <div class="tl-stack">Next.js · Python · AWS · MongoDB · Docker</div>
-        </div>
-      </article>
-      <article class="timeline-item reveal">
-        <div class="tl-meta">
-          <span class="tl-year">2016–2018</span>
-          <span class="tl-tag">Full-Time</span>
-        </div>
-        <div class="tl-body">
-          <h3>Full Stack Developer</h3>
-          <div class="tl-company">Vertex Labs, San Francisco</div>
-          <p>Built scalable web applications for early-stage startups. Specialised in rapid prototyping, performance optimisation, and translating complex UX designs into pixel-perfect implementations.</p>
-          <div class="tl-stack">Vue.js · Express · GraphQL · Redis · CI/CD</div>
-        </div>
-      </article>
-      <article class="timeline-item reveal">
-        <div class="tl-meta">
-          <span class="tl-year">2014–2016</span>
-          <span class="tl-tag">Education</span>
-        </div>
-        <div class="tl-body">
-          <h3>MSc Software Engineering</h3>
-          <div class="tl-company">University of Technology, Sydney</div>
-          <p>Specialised in distributed systems, performance engineering, and human-computer interaction. Graduated with Distinction. Thesis on adaptive load-balancing in microservice architectures.</p>
-          <div class="tl-stack">Distributed Systems · HCI · Performance Engineering</div>
-        </div>
-      </article>
+      ))}
     </div>
   </div>
 </section>
@@ -95,17 +69,16 @@ import Footer from '../components/Footer.astro';
   <div class="wrap">
     <div class="phil-grid">
       <div class="phil-text reveal">
-        <span class="eyebrow">Philosophy</span>
-        <h2 class="serif-title">Engineering is a craft,<br>not just a job.</h2>
-        <p>I believe the best digital products are built at the intersection of deep technical knowledge and genuine empathy for users. Speed matters. Clarity matters. Longevity matters.</p>
-        <p style="margin-top:16px">When I'm not architecting systems, I'm writing about engineering practices, contributing to open-source, or mentoring developers earlier in their journey.</p>
+        <span class="eyebrow">Why Work With Me</span>
+        <h2 class="serif-title">Clean code, clear<br>communication.</h2>
+        <p>From consulting and ideation to development and launch, I handle your project with clean coding, innovation and commitment. I keep everything transparent, share updates on every stage of development, and talk to you through the apps and platforms you like.</p>
+        <p style="margin-top:16px">I am comfortable taking calls with international clients and can arrange an interview to discuss your project. You can also review my work history on Upwork before hiring me.</p>
         <a href="/contact" class="btn btn-olive" style="margin-top:32px;display:inline-flex">Work With Me →</a>
       </div>
       <div class="phil-stats reveal">
-        <div class="pstat"><div class="pnum">120+</div><div class="plab">Projects Shipped</div></div>
-        <div class="pstat"><div class="pnum">8+</div><div class="plab">Years of Experience</div></div>
-        <div class="pstat"><div class="pnum">45</div><div class="plab">Happy Clients</div></div>
-        <div class="pstat"><div class="pnum">3</div><div class="plab">Continents Served</div></div>
+        {STATS.map((st) => (
+        <div class="pstat"><div class="pnum">{st.value}</div><div class="plab">{st.label}</div></div>
+        ))}
       </div>
     </div>
   </div>
@@ -121,33 +94,33 @@ import Footer from '../components/Footer.astro';
     <div class="caps-grid">
       <div class="cap-card reveal">
         <div class="cap-icon"><img src="/icons/Icon_4.svg" alt="" /></div>
-        <h3>Frontend Architecture</h3>
-        <p>React, Next.js, TypeScript, Tailwind CSS. I build interfaces that load fast, feel native, and scale with the team.</p>
+        <h3>WordPress Development</h3>
+        <p>Custom themes, plugins, WooCommerce stores, migrations, speed and security.</p>
       </div>
       <div class="cap-card reveal">
         <div class="cap-icon"><img src="/icons/Icon_5.svg" alt="" /></div>
-        <h3>Backend Systems</h3>
-        <p>Node.js, Python, PostgreSQL, Redis. I design backends that handle millions of requests without breaking a sweat.</p>
+        <h3>React JS & React Native</h3>
+        <p>Interactive, scalable web and mobile apps with React, plus AngularJS, VueJS and Redux.</p>
       </div>
       <div class="cap-card reveal">
         <div class="cap-icon"><img src="/icons/Icon_6.svg" alt="" /></div>
-        <h3>DevOps & Cloud</h3>
-        <p>Docker, Kubernetes, AWS, CI/CD. I own the full deployment lifecycle, from container to production.</p>
+        <h3>Twilio Development</h3>
+        <p>SMS, voice, audio and video, Flex and Studio integrations for customer communication.</p>
       </div>
       <div class="cap-card reveal">
         <div class="cap-icon"><img src="/icons/Icon_9.svg" alt="" /></div>
-        <h3>UI/UX Strategy</h3>
-        <p>I bridge engineering and design — translating Figma mocks into pixel-perfect, accessible, responsive UIs.</p>
+        <h3>Magento Development</h3>
+        <p>Custom Magento stores, themes, migrations and performance optimisation.</p>
       </div>
       <div class="cap-card reveal">
         <div class="cap-icon"><img src="/icons/Icon_8.svg" alt="" /></div>
-        <h3>API Design</h3>
-        <p>RESTful and GraphQL APIs built with documentation-first thinking, versioning, and security baked in.</p>
+        <h3>Payment & API Integration</h3>
+        <p>Payment gateways and third-party API integrations that connect your systems.</p>
       </div>
       <div class="cap-card reveal">
         <div class="cap-icon"><img src="/icons/Icon_11.svg" alt="" /></div>
-        <h3>Tech Leadership</h3>
-        <p>Mentorship, code review culture, architecture decisions, and engineering process — I've led teams of up to 15.</p>
+        <h3>Python, PHP & Databases</h3>
+        <p>Backends and APIs in Python and PHP with MySQL, PostgreSQL and MongoDB.</p>
       </div>
     </div>
   </div>
@@ -158,10 +131,10 @@ import Footer from '../components/Footer.astro';
   <div class="wrap" style="text-align:center">
     <span class="eyebrow" style="color:var(--gold)">Let's Connect</span>
     <h2 class="serif-title reveal" style="font-size:clamp(30px,4vw,48px);color:var(--cream-3);margin-top:14px">Ready to work together?</h2>
-    <p class="reveal" style="color:rgba(251,248,240,.65);max-width:480px;margin:20px auto 36px;font-size:16px">I'm selective about the projects I take on — so if we're a fit, let's make something worth building.</p>
+    <p class="reveal" style="color:rgba(251,248,240,.65);max-width:480px;margin:20px auto 36px;font-size:16px">Tell me about your project and I will send a proposal with scope, timeline and cost.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
       <a href="/contact" class="btn btn-cream reveal">Start a Conversation</a>
-      <a href="/projects" class="btn btn-outline-light reveal">See My Work →</a>
+      <a href="/portfolio" class="btn btn-outline-light reveal">See My Portfolio →</a>
     </div>
   </div>
 </section>
