@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE, HERO_STATS, STATS, SKILL_GROUPS, PROCESS, TESTIMONIALS, PORTFOLIO, FAQS } from '../data/site';
+import { HOURLY_RATES } from '../data/site';
 import { getBlogPosts, getServices, formatDate } from '../lib/content';
 
 const [posts, services] = await Promise.all([getBlogPosts(), getServices()]);
@@ -137,7 +138,7 @@ const svcBlurb: Record<string, string> = {
     <p class="sub reveal">Full stack web development across the platforms businesses rely on, built for reliability, speed and long-term scale.</p>
     <div class="svc-grid">
       {services.map((sv, i) => (
-      <a href={`/${sv.slug}`} class="svc-card reveal"><div class="ic"><img src={`/icons/Icon_${svcIcons[i % svcIcons.length]}.svg`} alt="" /></div><h3>{sv.title}</h3><p>{svcBlurb[sv.slug] ?? sv.description}</p></a>
+      <a href={`/${sv.slug}`} class="svc-card reveal"><div class="ic"><img src={`/icons/Icon_${svcIcons[i % svcIcons.length]}.svg`} alt="" /></div><h3>{sv.title}</h3><p>{svcBlurb[sv.slug] ?? sv.description}</p>{HOURLY_RATES[sv.slug] && <p class="rate">${HOURLY_RATES[sv.slug]} / hour*</p>}</a>
       ))}
     </div>
   </div>
@@ -435,6 +436,7 @@ const svcBlurb: Record<string, string> = {
 .svc-card .ic { width: 54px; height: 54px; border-radius: 14px; background: var(--cream-2); display: grid; place-items: center; color: var(--olive); margin-bottom: 20px; }
 .svc-card h3 { font-family: var(--serif); font-weight: 700; font-size: 20px; margin-bottom: 10px; }
 .svc-card p { font-size: 14px; color: var(--muted); }
+.svc-card p.rate { font-family: var(--display); font-weight: 700; color: var(--olive); margin-top: 12px; }
 
 /* PORTFOLIO */
 .portfolio { background: var(--cream); }

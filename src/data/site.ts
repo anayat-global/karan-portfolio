@@ -94,3 +94,14 @@ export const FAQS = [
   { q: 'How much does a project cost?', a: 'It depends on scope and complexity. Share your requirements through the contact form and I will send a proposal with a clear timeline and cost, so you know what to expect before we begin.' },
   { q: 'Do you provide support after launch?', a: 'Yes. I offer ongoing maintenance and support, including updates, backups, security and performance tuning, so your site or application keeps running smoothly after it goes live.' },
 ];
+
+// Hourly rates carried over unchanged from the legacy services page (USD).
+export const HOURLY_RATES: Record<string, number> = {
+  'wordpress-development-services': 9,
+  'twilio-development-services': 15,
+  'react-js-development-services': 19,
+  'python-development-services': 19,
+  'php-development-services': 19,
+  'magento-development-services': 19,
+  'backend-development-services': 19,
+};

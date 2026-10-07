@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../data/site';
+---
+
+<Layout title="Privacy Policy | Karandeep Arora" description="How karandeeparora.com collects, uses and protects the information you share through the contact form.">
+<Header />
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Legal</span>
+    <h1>Privacy<br>Policy</h1>
+    <p>Last updated: October 2026</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap legal">
+    <h2>Information I collect</h2>
+    <p>When you use the contact form on this site, I collect the details you submit: your name, email address, phone number (optional), the service you are interested in, and your message. I do not run user accounts or take payments on this site.</p>
+
+    <h2>How I use it</h2>
+    <p>I use this information only to reply to your enquiry, discuss your project and send a proposal if you ask for one. I do not sell your information or use it for unrelated marketing.</p>
+
+    <h2>Where it is stored</h2>
+    <p>Form submissions are stored in a private content management system hosted on a server I control, and are accessible only to me and people I authorise to handle enquiries. Messages are kept for as long as needed to respond and for reasonable record-keeping, then deleted on request.</p>
+
+    <h2>Third-party services</h2>
+    <ul>
+      <li><strong>Cloudflare</strong> hosts and delivers this website and provides Turnstile, a spam-protection check on the contact form. Cloudflare may process technical data such as your IP address for security and performance.</li>
+      <li><strong>Google Fonts</strong> serves the typefaces used on this site, which means your browser requests them from Google.</li>
+    </ul>
+
+    <h2>Cookies</h2>
+    <p>This site does not set advertising or tracking cookies of its own. Cloudflare may set strictly necessary cookies for security.</p>
+
+    <h2>Your choices</h2>
+    <p>You can ask me at any time to see, correct or delete the information you have sent me. Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> and I will respond promptly.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>If I change how I handle information, I will update this page and the date above.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about this policy? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or use the <a href="/contact">contact form</a>.</p>
+  </div>
+</section>
+
+<Footer />
+</Layout>
+
+<style>
+.legal { max-width: 780px; }
+.legal h2 { font-family: var(--serif); font-size: 24px; margin: 36px 0 10px; }
+.legal p, .legal li { color: var(--muted); font-size: 16px; line-height: 1.75; }
+.legal ul { padding-left: 22px; display: grid; gap: 8px; }
+.legal a { color: var(--olive); text-decoration: underline; }
+</style>

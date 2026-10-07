@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { PROCESS, SITE } from '../data/site';
+import { HOURLY_RATES, PROCESS, SITE } from '../data/site';
 import { getServices } from '../lib/content';
 
 const services = await getServices();
@@ -28,10 +28,12 @@ const icons = [7, 8, 9, 12, 10, 11, 4];
           <div class="ic"><img src={`/icons/Icon_${icons[i % icons.length]}.svg`} alt="" /></div>
           <h2>{sv.title}</h2>
           <p>{sv.headline}</p>
+          {HOURLY_RATES[sv.slug] && <div class="rate">${HOURLY_RATES[sv.slug]} / hour*</div>}
           <span class="more">Learn more →</span>
         </a>
       ))}
     </div>
+    <p class="rate-note reveal">* Starting hourly rates. Final pricing depends on project scope; <a href="/contact">contact me</a> for a proposal.</p>
   </div>
 </section>
 
@@ -63,7 +65,10 @@ const icons = [7, 8, 9, 12, 10, 11, 4];
 .svc-card .ic { width: 54px; height: 54px; border-radius: 14px; background: var(--cream-2); display: grid; place-items: center; margin-bottom: 20px; }
 .svc-card h2 { font-family: var(--serif); font-weight: 700; font-size: 22px; margin-bottom: 10px; }
 .svc-card p { font-size: 14.5px; color: var(--muted); margin-bottom: 16px; }
+.svc-card .rate { font-family: var(--display); font-weight: 700; font-size: 15px; color: var(--olive); margin-bottom: 12px; }
 .svc-card .more { font-size: 14px; font-weight: 600; color: var(--olive); }
+.rate-note { text-align: center; font-size: 13.5px; color: var(--muted); margin-top: 28px; }
+.rate-note a { color: var(--olive); text-decoration: underline; }
 .process { background: var(--cream-2); text-align: center; }
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 48px; text-align: center; }
 .step .circle { width: 64px; height: 64px; border-radius: 50%; background: var(--olive); color: #F4F0E4; display: grid; place-items: center; font-family: var(--display); font-weight: 800; margin: 0 auto 18px; }
