@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.karandeeparora.com/sitemap-index.xml
