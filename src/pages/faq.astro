@@ -31,9 +31,20 @@ const categories = [
     ]
   },
 ];
+const allFaqs = categories.flatMap(c => c.faqs);
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: allFaqs.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
 
 <Layout title="FAQ | Karandeep Arora" description="Answers to common questions about hiring Karandeep Arora: services, process, pricing, support and working with international clients.">
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 <Header activePage="/faq" />
 
 <!-- HERO -->

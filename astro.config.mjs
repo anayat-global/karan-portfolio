@@ -8,4 +8,13 @@ export default defineConfig({
   integrations: [sitemap({ filter: (page) => !/\/(thank-you|404)$/.test(page) })],
   trailingSlash: 'never',
   build: { format: 'file' },
+  redirects: {
+    '/wordpress-development-services': '/services/wordpress-development-services',
+    '/twilio-development-services': '/services/twilio-development-services',
+    '/react-js-development-services': '/services/react-js-development-services',
+    '/python-development-services': '/services/python-development-services',
+    '/php-development-services': '/services/php-development-services',
+    '/magento-development-services': '/services/magento-development-services',
+    '/backend-development-services': '/services/backend-development-services',
+  },
 });

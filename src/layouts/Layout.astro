@@ -5,8 +5,9 @@ export interface Props {
   description?: string;
   image?: string;
   type?: 'website' | 'article';
+  publishedTime?: string;
 }
-const { title, description = SITE.defaultDescription, image = '/img/og-default.jpg', type = 'website' } = Astro.props;
+const { title, description = SITE.defaultDescription, image = '/img/og-default.jpg', type = 'website', publishedTime } = Astro.props;
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const canonical = new URL(path, SITE.url).href;
 const ogImage = new URL(image, SITE.url).href;
@@ -20,12 +21,16 @@ const ogImage = new URL(image, SITE.url).href;
   <title>{title}</title>
   <link rel="canonical" href={canonical} />
   <meta name="robots" content="index, follow" />
+  <meta name="author" content={SITE.name} />
+  <meta property="og:locale" content="en_US" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonical} />
   <meta property="og:type" content={type} />
   <meta property="og:site_name" content={SITE.name} />
   <meta property="og:image" content={ogImage} />
+  {type === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime} />}
+  {type === 'article' && <meta property="article:author" content={SITE.name} />}
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
@@ -40,7 +45,7 @@ const ogImage = new URL(image, SITE.url).href;
       "@type": "Person",
       "name": "Karandeep Arora",
       "url": "https://www.karandeeparora.com",
-      "image": "https://www.karandeeparora.com/demo-removebg-preview.png",
+      "image": "https://www.karandeeparora.com/karan-profile.webp",
       "jobTitle": "Freelance Full Stack Developer",
       "description": "Karandeep Arora is a freelance full stack developer in India with over 10 years of experience in WordPress, React JS, PHP, Python, Twilio, Magento, and backend development.",
       "sameAs": [

@@ -24,7 +24,7 @@ const icons = [7, 8, 9, 12, 10, 11, 4];
   <div class="wrap">
     <div class="svc-grid">
       {services.map((sv, i) => (
-        <a href={`/${sv.slug}`} class="svc-card reveal">
+        <a href={`/services/${sv.slug}`} class="svc-card reveal">
           <div class="ic"><img src={`/icons/Icon_${icons[i % icons.length]}.svg`} alt="" /></div>
           <h2>{sv.title}</h2>
           <p>{sv.headline}</p>

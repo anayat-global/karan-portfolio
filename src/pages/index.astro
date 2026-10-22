@@ -38,10 +38,8 @@ const svcBlurb: Record<string, string> = {
         </div>
       </div>
       <div class="hero-photo reveal">
-        <span class="code-chip tl">&lt;/&gt;</span>
-        <span class="code-chip br">{ }</span>
         <div class="frame">
-          <img src="/demo-removebg-preview.png" alt="Karandeep Arora" />
+          <img src="/karan-profile.webp" alt="Karandeep Arora" />
         </div>
       </div>
     </div>
@@ -138,7 +136,7 @@ const svcBlurb: Record<string, string> = {
     <p class="sub reveal">Full stack web development across the platforms businesses rely on, built for reliability, speed and long-term scale.</p>
     <div class="svc-grid">
       {services.map((sv, i) => (
-      <a href={`/${sv.slug}`} class="svc-card reveal"><div class="ic"><img src={`/icons/Icon_${svcIcons[i % svcIcons.length]}.svg`} alt="" /></div><h3>{sv.title}</h3><p>{svcBlurb[sv.slug] ?? sv.description}</p>{HOURLY_RATES[sv.slug] && <p class="rate">${HOURLY_RATES[sv.slug]} / hour*</p>}</a>
+      <a href={`/services/${sv.slug}`} class="svc-card reveal"><div class="ic"><img src={`/icons/Icon_${svcIcons[i % svcIcons.length]}.svg`} alt="" /></div><h3>{sv.title}</h3><p>{svcBlurb[sv.slug] ?? sv.description}</p>{HOURLY_RATES[sv.slug] && <p class="rate">${HOURLY_RATES[sv.slug]} / hour*</p>}</a>
       ))}
     </div>
   </div>
@@ -347,9 +345,6 @@ const svcBlurb: Record<string, string> = {
   background: radial-gradient(circle, rgba(185,149,64,.28), transparent 70%);
   z-index: -1;
 }
-.code-chip { position: absolute; font-family: var(--display); font-weight: 800; color: var(--gold); font-size: 22px; opacity: .7; }
-.code-chip.tl { top: 6px; left: -10px; }
-.code-chip.br { bottom: 20px; right: -6px; }
 
 /* STATS BAR */
 .stats-bar {

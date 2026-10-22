@@ -27,19 +27,31 @@ const body = post.content.replace(/<(h[234])>([\s\S]*?)<\/\1>/g, (_m, tag, inner
   return `<${tag} id="${id}">${inner}</${tag}>`;
 });
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'BlogPosting',
-  headline: post.title,
-  description: post.description,
-  datePublished: post.publishDate.toISOString().slice(0, 10),
-  image: new URL(post.image, SITE.url).href,
-  author: { '@type': 'Person', name: SITE.name },
-  mainEntityOfPage: `${SITE.url}/blog/${post.slug}`,
-};
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.description,
+    datePublished: post.publishDate.toISOString().slice(0, 10),
+    image: new URL(post.image, SITE.url).href,
+    author: { '@type': 'Person', name: SITE.name, url: SITE.url },
+    publisher: { '@type': 'Person', name: SITE.name, url: SITE.url },
+    mainEntityOfPage: `${SITE.url}/blog/${post.slug}`,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE.url}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `${SITE.url}/blog/${post.slug}` },
+    ],
+  },
+];
 ---
 
-<Layout title={`${post.title} | Karandeep Arora`} description={post.description} image={post.image} type="article">
+<Layout title={`${post.title} | Karandeep Arora`} description={post.description} image={post.image} type="article" publishedTime={post.publishDate.toISOString()}>
 <Header activePage="/blog" />
 <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
@@ -58,7 +70,7 @@ const jsonLd = {
     </div>
     <h1 class="art-title reveal">{post.title}</h1>
     <div class="art-author reveal">
-      <img src="/demo-removebg-preview.png" alt={SITE.name} />
+      <img src="/karan-profile.webp" alt={SITE.name} />
       <div>
         <div class="auth-name">{SITE.name}</div>
         <div class="auth-role">{SITE.role}</div>
