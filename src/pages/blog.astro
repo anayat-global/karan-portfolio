@@ -4,8 +4,11 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { getBlogPosts, categoryOf, formatDate } from '../lib/content';
 
+const PAGE_SIZE = 12;
 const all = await getBlogPosts();
-const [featured, ...posts] = all;
+const [featured, ...rest] = all;
+const posts = rest.slice(0, PAGE_SIZE - 1); // 11 + 1 featured = 12 on page 1
+const totalPages = Math.ceil(all.length / PAGE_SIZE);
 ---
 
 
@@ -68,6 +71,19 @@ const [featured, ...posts] = all;
   </div>
 </section>
 
+{totalPages > 1 && (
+  <nav class="pagination">
+    <span class="pg-info">Page 1 of {totalPages}</span>
+    <div class="pg-controls">
+      <span class="pg-btn disabled">← Prev</span>
+      <span class="pg-btn active">1</span>
+      {totalPages >= 2 && <a href="/blog/page/2" class="pg-btn">2</a>}
+      {totalPages >= 3 && <a href={`/blog/page/${totalPages}`} class="pg-btn">…{totalPages}</a>}
+      <a href="/blog/page/2" class="pg-btn pg-next">Next →</a>
+    </div>
+  </nav>
+)}
+
 <Footer />
 </Layout>
 
@@ -107,4 +123,15 @@ const [featured, ...posts] = all;
 @media (max-width: 640px) {
   .blog-posts-grid { grid-template-columns: 1fr; }
 }
+
+/* PAGINATION */
+.pagination { background: var(--cream-2); padding: 40px 0 60px; }
+.pagination { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.pg-info { font-size: 13px; color: var(--muted); font-weight: 500; }
+.pg-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.pg-btn { display: inline-flex; align-items: center; justify-content: center; min-width: 42px; height: 42px; padding: 0 14px; border-radius: 10px; font-size: 14px; font-weight: 600; border: 1.5px solid var(--line-2); background: var(--white); color: var(--ink); transition: .2s; text-decoration: none; }
+.pg-btn:hover:not(.disabled):not(.active) { border-color: var(--olive); color: var(--olive); }
+.pg-btn.active { background: var(--olive); color: #fff; border-color: var(--olive); }
+.pg-btn.disabled { color: var(--muted); cursor: default; opacity: .5; }
+.pg-btn.pg-next { color: var(--olive); border-color: var(--olive); }
 </style>
