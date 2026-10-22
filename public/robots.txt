@@ -1,4 +1,22 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.karandeeparora.com/sitemap-index.xml
+User-agent: Claude-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: SemrushBot
+Allow: /
+
+User-agent: AhrefsBot
+Allow: /
+
+Sitemap: https://www.karandeeparora.com/sitemap.xml
