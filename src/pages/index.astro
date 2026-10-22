@@ -261,19 +261,9 @@ const svcBlurb: Record<string, string> = {
 /* HERO */
 .hero {
   position: relative;
-  background-image: url('/plan.png');
+  background: var(--cream);
   padding: 64px 0 40px;
-  background-repeat: no-repeat;
   width: 100%;
-  background-size: cover;
-}
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: repeating-radial-gradient(circle at 78% 60%, transparent 0 38px, rgba(86,92,43,.045) 38px 39px);
-  opacity: .6;
-  pointer-events: none;
 }
 .hero-grid {
   display: grid;
