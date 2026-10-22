@@ -17,6 +17,71 @@ export async function getStaticPaths() {
 
 const { post, more } = Astro.props;
 
+// Keyword → service-specific FAQs. Fallback = general "working with me" questions.
+const FAQ_MAP: Record<string, { q: string; a: string }[]> = {
+  wordpress: [
+    { q: 'Can you build a custom WordPress theme or plugin?', a: 'Yes. I build fully custom WordPress themes and plugins from scratch, tailored to your brand and requirements — no page-builder bloat, clean and maintainable code.' },
+    { q: 'Can you migrate my existing website to WordPress?', a: 'Yes. I offer WordPress migration services that move your site and data safely, optimise content and keep downtime to a minimum.' },
+    { q: 'Do you offer WooCommerce development?', a: 'Yes. I build and customise WooCommerce stores including custom product types, payment gateways, shipping rules and third-party integrations.' },
+  ],
+  react: [
+    { q: 'Can you build a React JS web application from scratch?', a: 'Yes. I build interactive, scalable single-page and full-stack applications with React JS, connecting them to REST APIs, GraphQL endpoints and third-party services.' },
+    { q: 'Can you build mobile apps with React Native?', a: 'Yes. I build cross-platform mobile apps with React Native that share a codebase between iOS and Android, connected to your existing backend or a new one.' },
+    { q: 'What backends do you pair with React?', a: 'I typically pair React with Node.js, Python (Django/FastAPI) or PHP backends, and can integrate any REST or GraphQL API your project requires.' },
+  ],
+  mern: [
+    { q: 'What is a MERN stack application?', a: 'MERN stands for MongoDB, Express, React and Node.js — a full JavaScript stack for building modern, scalable web applications end to end.' },
+    { q: 'Can you build a full MERN stack app from scratch?', a: 'Yes. I handle the full MERN stack: database design in MongoDB, REST or GraphQL APIs with Express and Node, and a React front end, through to deployment.' },
+    { q: 'Do you work with international clients on MERN projects?', a: 'Yes. I have worked with clients in Australia, the US, the UK, Canada, Japan and India and am comfortable working across time zones.' },
+  ],
+  python: [
+    { q: 'What kind of Python projects do you take on?', a: 'Web applications, REST APIs, Django and FastAPI backends, data processing scripts, automation tools and integrations with third-party services.' },
+    { q: 'Can you build a Django web application?', a: 'Yes. Django is my primary Python framework for web apps. I also work with FastAPI for high-performance API projects.' },
+    { q: 'How much does Python development cost?', a: 'It depends on scope and complexity. Share your requirements through the contact form and I will send a proposal with a clear timeline and cost.' },
+  ],
+  php: [
+    { q: 'What PHP frameworks do you work with?', a: 'I work with Laravel, CodeIgniter and core PHP. I also build and maintain custom PHP applications and legacy codebases.' },
+    { q: 'Can you build a custom PHP web application?', a: 'Yes. I build secure, scalable PHP applications, REST APIs and enterprise-grade platforms tailored to your business requirements.' },
+    { q: 'Do you provide support after the PHP project launches?', a: 'Yes. I offer ongoing maintenance and support including updates, security patches and performance tuning after every project.' },
+  ],
+  magento: [
+    { q: 'Do you work on Magento 2?', a: 'Yes. I work exclusively on Magento 2 for new projects — custom themes, modules, performance optimisation and third-party integrations.' },
+    { q: 'Can you migrate my store to Magento?', a: 'Yes. I offer Magento migration services that move your catalogue, customers and orders safely with minimal downtime.' },
+    { q: 'What is the difference between hiring a freelance Magento developer and an agency?', a: 'A freelance developer typically costs less, communicates directly with you and can move faster on focused projects. An agency adds layers of management and cost that may not suit smaller or mid-sized stores.' },
+  ],
+  twilio: [
+    { q: 'What Twilio services do you integrate?', a: 'SMS, voice, video, Twilio Flex (contact centre), Twilio Studio (flow automation) and Verify (two-factor authentication).' },
+    { q: 'Can you add SMS or WhatsApp notifications to my application?', a: 'Yes. I integrate Twilio SMS and WhatsApp APIs into existing web and mobile applications, including triggered notifications, OTPs and two-way messaging flows.' },
+    { q: 'How long does a Twilio integration take?', a: 'A basic SMS or voice integration typically takes a few days. More complex flows like Flex or Studio automations depend on scope — share your requirements and I will estimate.' },
+  ],
+  fullstack: [
+    { q: 'What does a full stack developer do?', a: 'A full stack developer works on both the front end (user interface) and back end (server, database, APIs) of a web application, delivering the whole product rather than just one layer.' },
+    { q: 'What are the key advantages of hiring a freelance full stack developer?', a: 'You get a single point of contact who understands the whole system, faster communication, lower cost than an agency and the flexibility to scale up or down as your project evolves.' },
+    { q: 'Do you work with international clients?', a: 'Yes. I have worked with startups, sole founders and businesses in Australia, the US, the UK, Canada, Japan and India and am comfortable working across time zones.' },
+  ],
+};
+
+const FALLBACK_FAQS = [
+  { q: 'How does a project work?', a: 'We start with a discussion of your goals, then I send a proposal covering scope, timeline and cost. After a contract and kickoff call, I build in stages with regular updates, then test, launch and support the project.' },
+  { q: 'Do you work with international clients?', a: 'Yes. I have worked with startups, sole founders and businesses in Australia, the US, the UK, Canada, Japan and India and am comfortable working across time zones.' },
+  { q: 'Do you provide support after launch?', a: 'Yes. I offer ongoing maintenance and support including updates, backups, security and performance tuning so your site keeps running smoothly after it goes live.' },
+];
+
+function getPostFaqs(slug: string) {
+  const s = slug.toLowerCase();
+  if (s.includes('wordpress') || s.includes('woocommerce')) return FAQ_MAP.wordpress;
+  if (s.includes('mern')) return FAQ_MAP.mern;
+  if (s.includes('react')) return FAQ_MAP.react;
+  if (s.includes('python')) return FAQ_MAP.python;
+  if (s.includes('php')) return FAQ_MAP.php;
+  if (s.includes('magento')) return FAQ_MAP.magento;
+  if (s.includes('twilio')) return FAQ_MAP.twilio;
+  if (s.includes('full-stack') || s.includes('fullstack') || s.includes('full_stack')) return FAQ_MAP.fullstack;
+  return FALLBACK_FAQS;
+}
+
+const postFaqs = getPostFaqs(post.slug);
+
 // Give every h2-h4 an id and collect them for the table of contents.
 const toc: { id: string; text: string }[] = [];
 let n = 0;
@@ -38,6 +103,15 @@ const jsonLd = [
     author: { '@type': 'Person', name: SITE.name, url: SITE.url },
     publisher: { '@type': 'Person', name: SITE.name, url: SITE.url },
     mainEntityOfPage: `${SITE.url}/blog/${post.slug}`,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: postFaqs.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
   },
   {
     '@context': 'https://schema.org',
@@ -101,6 +175,20 @@ const jsonLd = [
       </aside>
       )}
       <article class="art-content" set:html={body} />
+    </div>
+  </div>
+</section>
+
+<section class="section post-faq">
+  <div class="wrap">
+    <h2 class="serif-title reveal">Frequently Asked Questions</h2>
+    <div class="faq-list">
+      {postFaqs.map((f, i) => (
+        <div class={`faq-item reveal${i === 0 ? ' open' : ''}`}>
+          <button class="faq-q">{f.q} <span class="plus">+</span></button>
+          <div class="faq-a"><p>{f.a}</p></div>
+        </div>
+      ))}
     </div>
   </div>
 </section>
@@ -177,6 +265,20 @@ const jsonLd = [
 .art-content :global(code) { font-family: 'Courier New', monospace; font-size: 13.5px; line-height: 1.7; }
 .art-content :global(p code) { background: var(--line-2); color: var(--olive-dark); padding: 2px 7px; border-radius: 4px; font-size: 13.5px; }
 
+/* POST FAQ */
+.post-faq { background: var(--cream); text-align: center; }
+.post-faq .serif-title { font-size: clamp(26px, 3vw, 38px); margin-bottom: 36px; }
+.faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.faq-item { background: var(--white); border: 1px solid var(--line-2); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-sm); }
+.faq-q { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 24px; background: none; border: 0; cursor: pointer; text-align: left; font-family: var(--body); font-weight: 600; font-size: 15.5px; color: var(--ink); }
+.faq-q .plus { font-size: 22px; color: var(--gold); transition: .3s; flex: none; line-height: 1; }
+.faq-item.open .faq-q .plus { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease; color: var(--muted); font-size: 14.5px; }
+.faq-a p { padding: 0 24px 22px; text-align: left; }
+.faq-item.open .faq-a { max-height: 300px; }
+
+.cta { background: var(--cream-2); }
+
 .more-articles { background: var(--cream); }
 .more-articles .serif-title { font-size: clamp(26px, 3vw, 36px); margin-bottom: 36px; }
 .more-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
@@ -198,3 +300,14 @@ const jsonLd = [
   .more-grid { grid-template-columns: 1fr; }
 }
 </style>
+
+<script>
+  document.querySelectorAll('.post-faq .faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item?.classList.contains('open');
+      document.querySelectorAll('.post-faq .faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item?.classList.add('open');
+    });
+  });
+</script>
