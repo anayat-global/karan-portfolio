@@ -12,11 +12,11 @@ const svcIcons = [7, 8, 9, 12, 10, 11, 4];
 const svcBlurb: Record<string, string> = {
   'wordpress-development-services': 'Custom themes, plugins, WooCommerce stores, migrations, speed and security.',
   'twilio-development-services': 'SMS, voice, video, Flex and Studio integrations that connect your product to customers.',
-  'react-js-development-services': 'Interactive, scalable web and mobile apps built with React JS and React Native.',
+  'react-js-development-services': 'Interactive, scalable web and mobile apps with React JS and React Native.',
   'python-development-services': 'Web apps, APIs, Django development and integrations built with Python.',
   'php-development-services': 'Secure, dynamic PHP applications, APIs and enterprise-grade web platforms.',
   'magento-development-services': 'Custom Magento stores, themes, migrations and performance optimisation.',
-  'backend-development-services': 'Robust backends, cloud services, CRM/ERP systems and API integrations that scale.',
+  'backend-development-services': 'Robust backends, cloud services, CRM/ERP systems and API integrations.',
 };
 const clients = ['Australia', 'United States', 'United Kingdom', 'Canada', 'Japan', 'India', 'Italy', 'South Africa', 'Saudi Arabia'];
 ---
@@ -26,107 +26,114 @@ const clients = ['Australia', 'United States', 'United Kingdom', 'Canada', 'Japa
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="home">
-  <div class="hero-blob" aria-hidden="true"></div>
-  <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
   <div class="wrap">
     <div class="hero-grid">
-      <div class="hero-text">
-        <div class="hero-badge reveal"><span class="avail-dot"></span> Available for Projects</div>
-        <h1 class="reveal">
-          <span class="h1-top">I Build Modern</span>
-          <span class="h1-main">Digital<br>Products</span>
-          <span class="h1-accent">That Scale.</span>
-        </h1>
-        <p class="lead reveal">Hi, I'm Karandeep Arora — a freelance full stack developer in India with 10+ years building web and mobile products for clients worldwide.</p>
-        <div class="hero-btns reveal">
-          <a href="/portfolio" class="btn btn-hero-primary">View My Work <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></a>
-          <a href="/contact" class="btn btn-hero-outline">Let's Talk</a>
-        </div>
-      </div>
-      <div class="hero-photo reveal">
-        <div class="photo-ring" aria-hidden="true"></div>
-        <div class="photo-frame">
-          <img src="/karan-profile.webp" alt="Karandeep Arora — Freelance Full Stack Developer" />
-        </div>
-        <div class="photo-badge">
-          <div class="pb-num">90+</div>
-          <div class="pb-label">Projects</div>
-        </div>
-        <div class="photo-badge-2">
-          <div class="pb-num">⭐ 5.0</div>
-          <div class="pb-label">Upwork Rating</div>
-        </div>
-      </div>
-    </div>
 
-    <div class="stats-bar reveal">
-      {HERO_STATS.map((s) => (
-        <div class="stat">
-          <div class="stat-num" data-count={s.value.replace(/\D/g,'')} data-suffix={s.value.replace(/\d/g,'')}>{s.value}</div>
-          <div class="stat-label">{s.label}</div>
+      <div class="hero-text">
+        <div class="hero-avail reveal">
+          <span class="avail-dot"></span>
+          <span>Available for new projects</span>
         </div>
-      ))}
+
+        <h1 class="reveal">
+          <span class="h1-label">Freelance Full Stack</span>
+          <span class="h1-name">Developer</span>
+          <span class="h1-sub">Building digital products<br>that <em>perform and scale.</em></span>
+        </h1>
+
+        <p class="hero-desc reveal">Hi, I'm Karandeep Arora — based in India, working with clients in Australia, the US, the UK, Canada and across the world. I specialise in WordPress, React JS, Python, PHP, Twilio and Magento.</p>
+
+        <div class="hero-actions reveal">
+          <a href="/portfolio" class="btn btn-primary">View My Work</a>
+          <a href="/contact" class="btn btn-ghost">Start a Project →</a>
+        </div>
+      </div>
+
+      <div class="hero-right reveal">
+        <div class="portrait-wrap">
+          <div class="portrait-bg"></div>
+          <div class="portrait-frame">
+            <img src="/karan-profile.webp" alt="Karandeep Arora — Freelance Full Stack Developer" />
+          </div>
+          <div class="portrait-tag portrait-tag-1">
+            <strong>90+</strong><span>Projects Delivered</span>
+          </div>
+          <div class="portrait-tag portrait-tag-2">
+            <strong>⭐ 5.0</strong><span>Upwork Rating</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="wrap">
+      <div class="stats-inner">
+        {HERO_STATS.map((s) => (
+          <div class="stat-item reveal">
+            <div class="stat-val" data-count={s.value.replace(/\D/g,'')} data-suffix={s.value.replace(/\d/g,'')}>{s.value}</div>
+            <div class="stat-lbl">{s.label}</div>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============ MARQUEE ============ -->
-<div class="marquee-wrap" aria-hidden="true">
-  <div class="marquee-track">
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-inner">
     {[...clients, ...clients, ...clients].map((c) => (
-      <span class="marquee-item"><span class="marquee-dot">✦</span> {c}</span>
+      <span class="m-item"><svg width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3"/></svg>{c}</span>
     ))}
   </div>
 </div>
 
 <!-- ============ ABOUT ============ -->
 <section class="section about" id="about">
-  <div class="wrap about-layout">
-    <div class="about-left">
+  <div class="wrap about-grid">
+    <div class="about-copy">
       <span class="eyebrow reveal">About Me</span>
-      <h2 class="serif-title reveal">A Full Stack Developer<br><em>with 10 Years of<br>Experience</em></h2>
-      <p class="about-lead reveal">Expert freelance full stack and MERN stack developer, building cost-effective, customised and scalable web solutions. From consulting to launch — clean code, on budget, fully responsive.</p>
-      <a href="/about" class="btn btn-olive reveal" style="margin-top:32px">More About Me →</a>
+      <h2 class="serif-title reveal">A decade of building<br><em>products people use.</em></h2>
+      <p class="body-lg reveal">Expert freelance full stack and MERN stack developer. I build cost-effective, scalable web solutions — from consulting and development through to launch and beyond.</p>
+      <a href="/about" class="btn btn-primary reveal" style="margin-top:32px">More About Me</a>
     </div>
     <div class="about-cards">
-      <div class="about-card reveal">
-        <div class="ac-num">01</div>
-        <h3>B.Tech — 2014</h3>
-        <div class="ac-sub">Punjab Technical University</div>
-        <p>Engineering foundation followed by Core and Advanced Java training at Stellar Edge Infotech.</p>
-      </div>
-      <div class="about-card reveal">
-        <div class="ac-num">02</div>
-        <h3>Senior Consultant</h3>
-        <div class="ac-sub">Freelance, 2019–Present</div>
-        <p>Building websites and apps for startups, founders and businesses worldwide after roles at Seasia Infotech and Smartbuzz.</p>
-      </div>
-      <div class="about-card reveal">
-        <div class="ac-num">03</div>
-        <h3>55+ Happy Clients</h3>
-        <div class="ac-sub">30+ repeat clients</div>
-        <p>90+ projects and 6,000+ hours delivered across WordPress, React, Twilio, Python, PHP and Magento.</p>
-      </div>
+      {[
+        { n:'01', h:'B.Tech — 2014', sub:'Punjab Technical University', p:'Engineering foundation, followed by Core and Advanced Java training at Stellar Edge Infotech.' },
+        { n:'02', h:'Senior Consultant', sub:'Freelance, 2019–Present', p:'Building websites and apps for startups, founders and businesses worldwide after roles at Seasia Infotech and Smartbuzz.' },
+        { n:'03', h:'55+ Happy Clients', sub:'30+ repeat clients', p:'90+ projects and 6,000+ hours delivered across WordPress, React, Twilio, Python, PHP and Magento.' },
+      ].map((card) => (
+        <div class="about-card reveal">
+          <div class="acard-n">{card.n}</div>
+          <h3>{card.h}</h3>
+          <div class="acard-sub">{card.sub}</div>
+          <p>{card.p}</p>
+        </div>
+      ))}
     </div>
   </div>
 </section>
 
-<!-- ============ SERVICES BENTO ============ -->
+<!-- ============ SERVICES ============ -->
 <section class="section services" id="services">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Services</span>
-      <h2 class="serif-title">What I Build</h2>
-      <p>Full stack development across the platforms businesses rely on — built for reliability, speed and long-term scale.</p>
+    <div class="sec-header reveal">
+      <div>
+        <span class="eyebrow">Services</span>
+        <h2 class="serif-title">What I build</h2>
+      </div>
+      <p class="sec-desc">Full stack development across the platforms businesses rely on — built for reliability, speed and long-term scale.</p>
     </div>
-    <div class="bento-grid">
+    <div class="svc-grid">
       {services.map((sv, i) => (
-        <a href={`/services/${sv.slug}`} class={`bento-card reveal bento-${i}`}>
-          <div class="bc-num">0{i + 1}</div>
+        <a href={`/services/${sv.slug}`} class={`svc-card reveal${i === 0 ? ' svc-featured' : ''}`}>
+          <div class="svc-n">0{i + 1}</div>
           <h3>{sv.title}</h3>
           <p>{svcBlurb[sv.slug] ?? sv.description}</p>
-          {HOURLY_RATES[sv.slug] && <span class="bc-rate">${HOURLY_RATES[sv.slug]}/hr</span>}
-          <span class="bc-arrow">↗</span>
+          {HOURLY_RATES[sv.slug] && <div class="svc-rate">${HOURLY_RATES[sv.slug]} / hr</div>}
+          <div class="svc-arrow">↗</div>
         </a>
       ))}
     </div>
@@ -134,38 +141,44 @@ const clients = ['Australia', 'United States', 'United Kingdom', 'Canada', 'Japa
 </section>
 
 <!-- ============ PORTFOLIO ============ -->
-<section class="section portfolio" id="projects">
-  <div class="wrap">
-    <div class="sec-head-row reveal">
-      <div>
-        <span class="eyebrow">Portfolio</span>
-        <h2 class="serif-title">Featured Projects</h2>
-      </div>
-      <a href="/portfolio" class="view-all-link">View All <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M9.13125 6.75H0V5.25H9.13125L4.93125 1.05L6 0L12 6L6 12L4.93125 10.95L9.13125 6.75Z" fill="currentColor"/></svg></a>
+<section class="sw-section" id="projects">
+  <div class="sw-head wrap">
+    <div class="sw-title-block">
+      <h2 class="sw-title reveal">Selected<br>works<span class="sw-star">*</span></h2>
     </div>
-    <div class="proj-grid">
-      {PORTFOLIO.map((pr) => (
-        <article class="proj reveal">
-          <div class="thumb"><span class="arrow">↗</span><img src={pr.img} alt={pr.title} loading="lazy" /></div>
-          <div class="proj-body"><h3>{pr.title}</h3><div class="proj-cat">{pr.category}</div></div>
-        </article>
-      ))}
+    <div class="sw-meta">
+      <span class="sw-badge">Web Dev</span>
+      <a href="/portfolio" class="sw-all-link">View all work →</a>
     </div>
+  </div>
+  <div class="sw-grid wrap">
+    {PORTFOLIO.map((pr, i) => (
+      <a href="/portfolio" class={`sw-item sw-item-${i + 1} reveal`}>
+        <div class="sw-img">
+          <img src={pr.img} alt={pr.title} loading="lazy" />
+          <span class="sw-hover-arrow">↗</span>
+        </div>
+        <div class="sw-info">
+          <span class="sw-name">{pr.title}</span>
+          <span class="sw-cat">{pr.category}</span>
+        </div>
+      </a>
+    ))}
   </div>
 </section>
 
 <!-- ============ PROCESS ============ -->
 <section class="section process">
   <div class="wrap">
-    <div class="sec-head reveal">
+    <div class="sec-center reveal">
       <span class="eyebrow">How I Work</span>
-      <h2 class="serif-title">My Process</h2>
-      <p>From the first conversation to final delivery — clear and transparent every step.</p>
+      <h2 class="serif-title">My process</h2>
+      <p>From the first conversation to final delivery — clear, transparent and collaborative.</p>
     </div>
-    <div class="steps">
+    <div class="steps-grid">
       {PROCESS.map((st, i) => (
         <div class="step reveal">
-          <div class="step-num">{String(i + 1).padStart(2, '0')}</div>
+          <div class="step-n">{String(i + 1).padStart(2,'0')}</div>
           <h3>{st.title}</h3>
           <p>{st.text}</p>
         </div>
@@ -176,32 +189,31 @@ const clients = ['Australia', 'United States', 'United Kingdom', 'Canada', 'Japa
 
 <!-- ============ STATS BAND ============ -->
 <section class="band">
-  <div class="wrap band-grid">
+  <div class="wrap band-inner">
     {STATS.map((st) => (
-      <div class="band-cell reveal">
-        <div class="band-num" data-count={st.value.replace(/\D/g,'')} data-suffix={st.value.replace(/[\d]/g,'')}>{st.value}</div>
-        <div class="band-label">{st.label}</div>
+      <div class="band-item reveal">
+        <div class="band-val" data-count={st.value.replace(/\D/g,'')} data-suffix={st.value.replace(/[\d]/g,'')}>{st.value}</div>
+        <div class="band-lbl">{st.label}</div>
       </div>
     ))}
   </div>
 </section>
 
 <!-- ============ TESTIMONIALS ============ -->
-<section class="section feedback">
+<section class="section testimonials">
   <div class="wrap">
-    <div class="sec-head reveal">
+    <div class="sec-center reveal">
       <span class="eyebrow">Testimonials</span>
       <h2 class="serif-title">Client Feedback</h2>
     </div>
     <div class="tst-grid">
       {TESTIMONIALS.slice(0, 3).map((t) => (
         <div class="tst reveal">
-          <div class="tst-quote-mark">"</div>
-          <p class="quote">{t.quote}</p>
-          <div class="tst-foot">
-            <div class="stars">★★★★★</div>
-            <div class="who-name">{t.name}</div>
-            <div class="who-role">{t.meta}</div>
+          <div class="tst-stars">★★★★★</div>
+          <p class="tst-quote">"{t.quote}"</p>
+          <div class="tst-author">
+            <strong>{t.name}</strong>
+            <span>{t.meta}</span>
           </div>
         </div>
       ))}
@@ -212,7 +224,7 @@ const clients = ['Australia', 'United States', 'United Kingdom', 'Canada', 'Japa
 <!-- ============ SKILLS ============ -->
 <section class="section skills-sec" id="skills">
   <div class="wrap">
-    <div class="sec-head reveal">
+    <div class="sec-center reveal">
       <span class="eyebrow">Skills</span>
       <h2 class="serif-title">Tools & Technologies</h2>
       <p>The technologies I use every day to build robust, scalable software.</p>
@@ -220,11 +232,14 @@ const clients = ['Australia', 'United States', 'United Kingdom', 'Canada', 'Japa
     <div class="skill-cols">
       {SKILL_GROUPS.map((g) => (
         <div class="skill-card reveal">
-          <div class="skill-top"><div class="sk-ic"><img src={`/icons/Icon_${g.icon}.svg`} alt="" /></div><h3>{g.title}</h3></div>
+          <div class="sk-head">
+            <div class="sk-ic"><img src={`/icons/Icon_${g.icon}.svg`} alt="" /></div>
+            <h3>{g.title}</h3>
+          </div>
           {g.skills.map(([name, pct]) => (
-            <div class="skill-row">
-              <div class="skill-l"><span>{name}</span><span class="pct">{pct}%</span></div>
-              <div class="bar"><i data-w={`${pct}%`}></i></div>
+            <div class="sk-row">
+              <div class="sk-meta"><span>{name}</span><span class="sk-pct">{pct}%</span></div>
+              <div class="sk-bar"><i data-w={`${pct}%`}></i></div>
             </div>
           ))}
         </div>
@@ -234,24 +249,24 @@ const clients = ['Australia', 'United States', 'United Kingdom', 'Canada', 'Japa
 </section>
 
 <!-- ============ BLOG ============ -->
-<section class="section insights">
+<section class="section blog-sec">
   <div class="wrap">
-    <div class="sec-head-row reveal">
+    <div class="sec-header reveal">
       <div>
         <span class="eyebrow">Blog</span>
         <h2 class="serif-title">From the Blog</h2>
       </div>
-      <a href="/blog" class="view-all-link">View All <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M9.13125 6.75H0V5.25H9.13125L4.93125 1.05L6 0L12 6L6 12L4.93125 10.95L9.13125 6.75Z" fill="currentColor"/></svg></a>
+      <a href="/blog" class="sec-link">View all articles →</a>
     </div>
     <div class="blog-grid">
       {latest.map((p) => (
-        <article class="post reveal">
-          <a href={`/blog/${p.slug}`} class="post-link">
-            <div class="post-thumb"><img src={p.image} alt={p.title} loading="lazy" /></div>
-            <div class="post-body">
-              <div class="post-meta">{formatDate(p.publishDate)} · {p.readTime}</div>
+        <article class="blog-card reveal">
+          <a href={`/blog/${p.slug}`} class="blog-card-link">
+            <div class="blog-thumb"><img src={p.image} alt={p.title} loading="lazy" /></div>
+            <div class="blog-body">
+              <div class="blog-meta">{formatDate(p.publishDate)} · {p.readTime}</div>
               <h3>{p.title}</h3>
-              <span class="post-read">Read More →</span>
+              <span class="blog-read">Read More →</span>
             </div>
           </a>
         </article>
@@ -261,35 +276,35 @@ const clients = ['Australia', 'United States', 'United Kingdom', 'Canada', 'Japa
 </section>
 
 <!-- ============ FAQ ============ -->
-<section class="section faq">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">FAQ</span>
-      <h2 class="serif-title">Frequently Asked Questions</h2>
+<section class="section faq-sec">
+  <div class="wrap faq-inner">
+    <div class="faq-head">
+      <span class="eyebrow reveal">FAQ</span>
+      <h2 class="serif-title reveal">Frequently Asked<br>Questions</h2>
+      <a href="/faq" class="btn btn-ghost reveal" style="margin-top:28px">View All FAQs →</a>
     </div>
     <div class="faq-list">
       {FAQS.slice(0, 4).map((f, i) => (
         <div class={`faq-item reveal${i === 0 ? ' open' : ''}`}>
-          <button class="faq-q">{f.q} <span class="plus">+</span></button>
+          <button class="faq-q">{f.q}<span class="fq-icon">+</span></button>
           <div class="faq-a"><p>{f.a}</p></div>
         </div>
       ))}
     </div>
-    <div class="faq-cta reveal"><a href="/faq" class="btn btn-outline">View All FAQs →</a></div>
   </div>
 </section>
 
-<!-- ============ CONTACT CTA ============ -->
-<section class="hire-cta">
-  <div class="wrap">
-    <div class="hire-inner reveal">
-      <span class="eyebrow" style="color:var(--gold)">Ready to Start?</span>
-      <h2>Let's Build Something<br><em>Exceptional Together.</em></h2>
+<!-- ============ CTA ============ -->
+<section class="cta-band">
+  <div class="wrap cta-inner reveal">
+    <div class="cta-copy">
+      <span class="eyebrow" style="color:var(--gold-2)">Let's Work Together</span>
+      <h2>Ready to build<br><em>something exceptional?</em></h2>
       <p>I take on freelance and contract work and am available across time zones. Share your project — I'll send a proposal within 24 hours.</p>
-      <div class="hire-btns">
-        <a href="/contact" class="btn btn-dark">Start a Project →</a>
-        <a href="/about" class="btn btn-hero-outline" style="border-color:rgba(255,255,255,.25);color:#fff">Learn About Me</a>
-      </div>
+    </div>
+    <div class="cta-actions">
+      <a href="/contact" class="btn btn-cream">Start a Project</a>
+      <a href={SITE.upwork} class="btn btn-ghost-light" target="_blank" rel="noopener">Find Me on Upwork →</a>
     </div>
   </div>
 </section>
@@ -300,589 +315,564 @@ const clients = ['Australia', 'United States', 'United Kingdom', 'Canada', 'Japa
 <style>
 /* ─── HERO ─────────────────────────────────────────────── */
 .hero {
+  background: var(--cream);
+  padding: 80px 0 0;
   position: relative;
-  padding: 110px 0 70px;
   overflow: hidden;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  background:
-    radial-gradient(ellipse 70% 60% at 85% 10%, rgba(245,158,11,.22) 0%, transparent 55%),
-    radial-gradient(ellipse 55% 55% at 15% 80%, rgba(180,83,9,.14) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 50% at 75% 85%, rgba(185,149,64,.18) 0%, transparent 50%),
-    radial-gradient(ellipse 80% 60% at 10% 20%, rgba(86,92,43,.1) 0%, transparent 55%),
-    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(245,158,11,.07) 0%, transparent 60%),
-    #f0e9d8;
 }
 .hero::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  opacity: .55;
+  top: 0; right: 0;
+  width: 55%; height: 100%;
+  background: radial-gradient(ellipse 80% 70% at 80% 30%, rgba(185,149,64,.12) 0%, transparent 65%);
   pointer-events: none;
-  z-index: 1;
 }
-.hero-blob {
-  position: absolute;
-  width: 700px; height: 700px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(245,158,11,.15) 0%, transparent 65%);
-  top: -200px; right: -150px;
-  pointer-events: none;
-  z-index: 0;
-  animation: blob-drift 12s ease-in-out infinite alternate;
-}
-.hero-blob-2 {
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(180,83,9,.1) 0%, transparent 65%);
-  top: auto; bottom: -150px; right: auto; left: -100px;
-  animation: blob-drift 15s ease-in-out infinite alternate-reverse;
-}
-@keyframes blob-drift {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(30px, -20px) scale(1.05); }
-}
-.hero .wrap { position: relative; z-index: 2; width: 100%; }
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 80px;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
   align-items: center;
+  min-height: calc(100vh - 80px);
+  padding-bottom: 60px;
 }
-.hero-badge {
+.hero-avail {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 40px;
-  padding: 8px 18px 8px 12px;
   font-size: 13px;
-  font-weight: 600;
-  color: var(--olive);
-  margin-bottom: 28px;
-  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+  font-weight: 500;
+  color: var(--muted);
+  margin-bottom: 24px;
+  letter-spacing: .01em;
 }
 .avail-dot {
   width: 8px; height: 8px;
   border-radius: 50%;
   background: #4ade80;
-  box-shadow: 0 0 0 3px rgba(74,222,128,.2);
-  animation: pulse-dot 2s ease-in-out infinite;
+  box-shadow: 0 0 0 3px rgba(74,222,128,.22);
+  flex: none;
+  animation: pulse 2.4s ease-in-out infinite;
 }
-@keyframes pulse-dot {
-  0%, 100% { box-shadow: 0 0 0 3px rgba(74,222,128,.2); }
-  50% { box-shadow: 0 0 0 6px rgba(74,222,128,.08); }
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(74,222,128,.22); }
+  50% { box-shadow: 0 0 0 6px rgba(74,222,128,.06); }
 }
-.h1-top {
+.h1-label {
   display: block;
-  font-family: var(--body);
-  font-size: clamp(14px, 1.6vw, 18px);
-  font-weight: 700;
-  letter-spacing: .22em;
+  font-size: clamp(14px, 1.3vw, 16px);
+  font-weight: 600;
+  letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 10px;
+  color: var(--gold);
+  margin-bottom: 14px;
 }
-.h1-main {
-  display: block;
-  font-family: var(--display2);
-  font-weight: 800;
-  font-size: clamp(70px, 9.5vw, 124px);
-  line-height: .9;
-  letter-spacing: -.045em;
-  color: var(--ink);
-  margin-bottom: 8px;
-  text-shadow: 0 4px 32px rgba(180,83,9,.08);
-}
-.h1-accent {
+.h1-name {
   display: block;
   font-family: var(--serif);
-  font-style: italic;
-  font-weight: 700;
-  font-size: clamp(44px, 6vw, 80px);
-  background: linear-gradient(120deg, var(--gold) 0%, #e8a328 50%, var(--gold-2) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: clamp(60px, 7.5vw, 96px);
+  font-weight: 400;
+  line-height: .95;
   letter-spacing: -.02em;
-  line-height: 1.1;
-  margin-bottom: 32px;
+  color: var(--ink);
+  margin-bottom: 18px;
 }
-.hero .lead {
-  font-size: clamp(15px, 1.5vw, 18px);
+.h1-sub {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.8vw, 34px);
+  font-weight: 400;
   color: var(--ink-2);
-  max-width: 480px;
+  line-height: 1.3;
+  margin-bottom: 28px;
+}
+.h1-sub em { font-style: italic; color: var(--gold); }
+.hero-desc {
+  font-size: clamp(15px, 1.4vw, 17px);
+  color: var(--muted);
+  max-width: 460px;
   line-height: 1.75;
-  margin-bottom: 36px;
+  margin-bottom: 40px;
 }
-.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-.btn-hero-primary {
-  display: inline-flex; align-items: center; gap: 9px;
-  background: var(--olive); color: var(--cream-3);
-  padding: 15px 28px; border-radius: 12px;
-  font-weight: 700; font-size: 15px; font-family: var(--body);
-  border: 2px solid var(--olive);
-  transition: .25s;
-}
-.btn-hero-primary:hover { background: var(--olive-dark); border-color: var(--olive-dark); transform: translateY(-2px); }
-.btn-hero-outline {
-  display: inline-flex; align-items: center; gap: 9px;
-  background: transparent; color: var(--ink);
-  padding: 15px 28px; border-radius: 12px;
-  font-weight: 700; font-size: 15px; font-family: var(--body);
-  border: 2px solid var(--line);
-  transition: .25s;
-}
-.btn-hero-outline:hover { border-color: var(--olive); color: var(--olive); transform: translateY(-2px); }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
-/* Photo */
-.hero-photo { position: relative; display: flex; align-items: center; justify-content: center; }
-.photo-ring {
+/* Portrait */
+.hero-right { display: flex; align-items: center; justify-content: center; }
+.portrait-wrap { position: relative; width: 400px; }
+.portrait-bg {
   position: absolute;
-  width: 110%; height: 110%;
-  border-radius: 38% 62% 45% 55% / 42% 40% 60% 58%;
-  border: 2px dashed rgba(185,149,64,.3);
-  animation: morph 8s ease-in-out infinite;
+  inset: -20px;
+  border-radius: 200px 200px 120px 120px;
+  background: linear-gradient(160deg, rgba(185,149,64,.12) 0%, rgba(185,149,64,.05) 100%);
   z-index: 0;
 }
-@keyframes morph {
-  0%, 100% { border-radius: 38% 62% 45% 55% / 42% 40% 60% 58%; }
-  33% { border-radius: 58% 42% 62% 38% / 54% 46% 54% 46%; }
-  66% { border-radius: 42% 58% 38% 62% / 38% 58% 42% 62%; }
-}
-.photo-frame {
-  width: 420px; height: 520px;
-  border-radius: 200px 200px 140px 140px;
-  overflow: hidden;
-  border: 3px solid rgba(245,158,11,.4);
-  box-shadow:
-    0 40px 100px rgba(180,83,9,.18),
-    0 0 0 12px rgba(245,158,11,.08),
-    0 0 0 24px rgba(245,158,11,.04),
-    inset 0 0 80px rgba(245,158,11,.06);
+.portrait-frame {
   position: relative; z-index: 1;
-  background: linear-gradient(160deg, #f5e6c8 0%, #e8d5a8 100%);
+  width: 100%; aspect-ratio: 4/5;
+  border-radius: 200px 200px 120px 120px;
+  overflow: hidden;
+  border: 2px solid rgba(185,149,64,.3);
+  box-shadow: 0 32px 72px rgba(60,54,30,.14);
+  background: var(--cream-2);
 }
-.photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-.photo-badge, .photo-badge-2 {
+.portrait-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.portrait-tag {
   position: absolute;
   background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 14px;
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
   padding: 10px 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.1);
-  z-index: 3;
-  text-align: center;
+  box-shadow: 0 6px 24px rgba(0,0,0,.09);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 120px;
 }
-.photo-badge { bottom: 40px; left: -20px; }
-.photo-badge-2 { top: 40px; right: -20px; }
-.pb-num { font-family: var(--display2); font-weight: 800; font-size: 22px; color: var(--ink); line-height: 1; }
-.pb-label { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: .04em; margin-top: 3px; }
+.portrait-tag strong {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--ink);
+  line-height: 1;
+}
+.portrait-tag span { font-size: 11px; color: var(--muted); font-weight: 500; }
+.portrait-tag-1 { bottom: 32px; left: -32px; }
+.portrait-tag-2 { top: 48px; right: -28px; }
 
-/* Stats bar */
-.stats-bar {
+/* Stats row */
+.stats-row {
+  background: var(--white);
+  border-top: 1px solid var(--line-2);
+  margin-top: 0;
+}
+.stats-inner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  background: rgba(255,255,255,.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: 20px;
-  border: 1px solid rgba(245,158,11,.2);
-  box-shadow: 0 8px 40px rgba(180,83,9,.1), 0 0 0 1px rgba(255,255,255,.6);
-  margin-top: 60px;
-  overflow: hidden;
 }
-.stat {
+.stat-item {
   padding: 28px 32px;
   border-right: 1px solid var(--line-2);
   transition: background .2s;
 }
-.stat:last-child { border-right: 0; }
-.stat:hover { background: var(--cream); }
-.stat-num {
-  font-family: var(--display2);
-  font-weight: 800;
-  font-size: clamp(30px, 3vw, 40px);
+.stat-item:last-child { border-right: 0; }
+.stat-item:hover { background: var(--cream); }
+.stat-val {
+  font-family: var(--serif);
+  font-size: clamp(32px, 3.2vw, 44px);
+  font-weight: 400;
   color: var(--ink);
   line-height: 1;
 }
-.stat-label { font-size: 13px; color: var(--muted); margin-top: 6px; font-weight: 500; }
+.stat-lbl { font-size: 13px; color: var(--muted); margin-top: 6px; font-weight: 500; }
+
+/* ─── BUTTONS ──────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--olive); color: var(--cream-3);
+  padding: 14px 28px; border-radius: 10px;
+  font-weight: 600; font-size: 15px;
+  border: 2px solid var(--olive);
+  transition: .22s;
+  font-family: var(--body);
+  text-decoration: none;
+}
+.btn-primary:hover { background: var(--olive-dark); border-color: var(--olive-dark); transform: translateY(-2px); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--ink);
+  padding: 14px 28px; border-radius: 10px;
+  font-weight: 600; font-size: 15px;
+  border: 2px solid var(--line);
+  transition: .22s;
+  font-family: var(--body);
+  text-decoration: none;
+}
+.btn-ghost:hover { border-color: var(--olive); color: var(--olive); transform: translateY(-2px); }
+.btn-cream {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--cream-3); color: var(--ink);
+  padding: 14px 28px; border-radius: 10px;
+  font-weight: 600; font-size: 15px;
+  border: 2px solid var(--cream-3);
+  transition: .22s;
+  font-family: var(--body);
+  text-decoration: none;
+}
+.btn-cream:hover { background: var(--white); transform: translateY(-2px); }
+.btn-ghost-light {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: rgba(251,248,240,.75);
+  padding: 14px 28px; border-radius: 10px;
+  font-weight: 600; font-size: 15px;
+  border: 2px solid rgba(255,255,255,.2);
+  transition: .22s;
+  font-family: var(--body);
+  text-decoration: none;
+}
+.btn-ghost-light:hover { border-color: rgba(255,255,255,.5); color: #fff; }
 
 /* ─── MARQUEE ──────────────────────────────────────────── */
-.marquee-wrap {
-  background: var(--olive);
-  padding: 14px 0;
+.marquee-strip {
+  background: var(--olive-dark);
+  padding: 13px 0;
   overflow: hidden;
+}
+.marquee-inner {
+  display: inline-flex;
   white-space: nowrap;
+  animation: marquee 28s linear infinite;
 }
-.marquee-track {
-  display: inline-flex;
-  animation: marquee 30s linear infinite;
+.m-item {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 0 32px;
+  font-size: 13px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(251,248,240,.6);
 }
-.marquee-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  padding: 0 36px;
-  font-family: var(--display2);
-  font-weight: 700;
-  font-size: 15px;
-  color: rgba(251,248,240,.75);
-  letter-spacing: .05em;
-  text-transform: uppercase;
-}
-.marquee-dot { color: var(--gold-2); font-size: 10px; }
+.m-item svg { color: var(--gold-2); flex: none; }
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-33.333%); }
 }
 
-/* ─── SECTION HEADERS ──────────────────────────────────── */
-.sec-head {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto 60px;
+/* ─── SECTION UTILITIES ────────────────────────────────── */
+.sec-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  flex-wrap: wrap; gap: 20px; margin-bottom: 52px;
 }
-.sec-head .serif-title { font-size: clamp(32px, 4.5vw, 52px); margin: 12px 0 16px; }
-.sec-head p { color: var(--muted); font-size: 16px; line-height: 1.7; }
-.sec-head-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 48px;
-  flex-wrap: wrap;
-  gap: 20px;
+.sec-header .serif-title { font-size: clamp(30px, 3.8vw, 46px); margin-top: 10px; }
+.sec-desc { font-size: 15px; color: var(--muted); max-width: 400px; line-height: 1.7; }
+.sec-link {
+  font-size: 14px; font-weight: 600; color: var(--olive);
+  text-decoration: underline; text-underline-offset: 4px;
+  white-space: nowrap;
 }
-.sec-head-row .serif-title { font-size: clamp(28px, 3.8vw, 46px); margin-top: 10px; }
-.view-all-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 14px; font-weight: 700; color: var(--olive);
-  border-bottom: 1.5px solid var(--olive); padding-bottom: 2px;
-  transition: opacity .2s;
+.sec-link:hover { color: var(--olive-dark); }
+.sec-center {
+  text-align: center; max-width: 580px; margin: 0 auto 56px;
 }
-.view-all-link:hover { opacity: .7; }
+.sec-center .serif-title { font-size: clamp(30px, 3.8vw, 46px); margin: 10px 0 14px; }
+.sec-center p { font-size: 16px; color: var(--muted); line-height: 1.7; }
 
 /* ─── ABOUT ────────────────────────────────────────────── */
 .about { background: var(--cream-2); }
-.about-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 80px;
-  align-items: start;
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1.5fr;
+  gap: 80px; align-items: start;
 }
-.about-left .serif-title {
-  font-size: clamp(30px, 4vw, 48px);
-  margin: 14px 0 20px;
-  line-height: 1.15;
-}
-.about-left .serif-title em { color: var(--gold); }
-.about-lead { color: var(--muted); font-size: 16px; line-height: 1.8; }
-.about-cards {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-}
+.about-copy .serif-title { font-size: clamp(28px, 3.5vw, 44px); margin: 12px 0 20px; line-height: 1.15; }
+.about-copy .serif-title em { font-style: italic; color: var(--gold); }
+.body-lg { font-size: 16px; color: var(--muted); line-height: 1.8; }
+.about-cards { display: flex; flex-direction: column; gap: 14px; }
 .about-card {
-  background: var(--white);
-  border-radius: var(--r-md);
-  padding: 28px;
-  border: 1px solid var(--line-2);
-  position: relative;
-  transition: .25s;
-  overflow: hidden;
+  background: var(--white); border-radius: 14px; padding: 26px 28px;
+  border: 1px solid var(--line-2); border-left: 3px solid var(--gold);
+  transition: transform .22s, box-shadow .22s;
 }
-.about-card::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-  background: var(--gold);
-  border-radius: 2px 0 0 2px;
+.about-card:hover { transform: translateX(5px); box-shadow: var(--shadow-sm); }
+.acard-n {
+  font-size: 11px; font-weight: 700; letter-spacing: .18em;
+  color: var(--gold); margin-bottom: 8px;
 }
-.about-card:hover { transform: translateX(4px); box-shadow: var(--shadow-md); }
-.ac-num {
-  font-family: var(--display2);
-  font-weight: 800;
-  font-size: 11px;
-  letter-spacing: .2em;
-  color: var(--gold);
-  margin-bottom: 10px;
-}
-.about-card h3 { font-family: var(--serif); font-weight: 700; font-size: 19px; margin-bottom: 4px; }
-.ac-sub { font-size: 12.5px; color: var(--olive); font-weight: 600; margin-bottom: 10px; }
+.about-card h3 { font-family: var(--serif); font-size: 19px; font-weight: 400; margin-bottom: 4px; }
+.acard-sub { font-size: 12.5px; color: var(--olive); font-weight: 600; margin-bottom: 8px; }
 .about-card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
 
-/* ─── SERVICES BENTO ───────────────────────────────────── */
+/* ─── SERVICES ─────────────────────────────────────────── */
 .services { background: var(--cream); }
-.bento-grid {
+.svc-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto auto;
-  gap: 18px;
+  gap: 16px;
 }
-.bento-0 { grid-column: 1 / 3; }
-.bento-3 { grid-column: 2 / 4; }
-.bento-card {
-  background: var(--white);
-  border-radius: var(--r-md);
-  padding: 34px 32px;
-  border: 1px solid var(--line-2);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  position: relative;
-  overflow: hidden;
-  transition: .3s;
-  text-decoration: none;
-  color: inherit;
+.svc-card {
+  background: var(--white); border-radius: 14px;
+  padding: 30px 28px; border: 1px solid var(--line-2);
+  position: relative; overflow: hidden;
+  text-decoration: none; color: inherit;
+  transition: transform .22s, box-shadow .22s, border-color .22s;
+  display: flex; flex-direction: column; gap: 8px;
 }
-.bento-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(185,149,64,.06) 0%, transparent 60%);
-  opacity: 0;
-  transition: opacity .3s;
+.svc-card::before {
+  content: ''; position: absolute;
+  left: 0; top: 0; bottom: 0; width: 0;
+  background: var(--gold); transition: width .25s;
 }
-.bento-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: rgba(185,149,64,.3); }
-.bento-card:hover::after { opacity: 1; }
-.bc-num {
-  font-family: var(--display2);
-  font-weight: 800;
-  font-size: 12px;
-  letter-spacing: .18em;
+.svc-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: rgba(185,149,64,.3); }
+.svc-card:hover::before { width: 3px; }
+.svc-n { font-size: 11px; font-weight: 700; letter-spacing: .2em; color: var(--gold); }
+.svc-card h3 { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--ink); }
+.svc-card p { font-size: 14px; color: var(--muted); line-height: 1.65; flex: 1; }
+.svc-rate { font-size: 13px; font-weight: 700; color: var(--olive); margin-top: 4px; }
+.svc-arrow {
+  position: absolute; top: 20px; right: 20px;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--cream); display: grid; place-items: center;
+  font-size: 15px; color: var(--olive);
+  transition: background .22s, color .22s, transform .22s;
+}
+.svc-card:hover .svc-arrow { background: var(--olive); color: var(--cream-3); transform: scale(1.1); }
+.svc-featured {
+  background: var(--olive); border-color: var(--olive-dark);
+  grid-column: 1 / 3;
+}
+.svc-featured::before { background: var(--gold-2); }
+.svc-featured .svc-n { color: var(--gold-2); }
+.svc-featured h3 { color: var(--cream-3); font-size: 24px; }
+.svc-featured p { color: rgba(251,248,240,.7); font-size: 15px; }
+.svc-featured .svc-rate { color: var(--gold-2); }
+.svc-featured .svc-arrow { background: rgba(255,255,255,.12); color: var(--cream-3); }
+.svc-featured:hover { background: var(--olive-dark); }
+.svc-featured:hover .svc-arrow { background: var(--gold); color: var(--ink); }
+
+/* ─── SELECTED WORKS ──────────────────────────────────── */
+.sw-section { background: var(--cream); padding: 80px 0 96px; }
+.sw-head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 24px; margin-bottom: 48px; flex-wrap: wrap;
+}
+.sw-title-block { flex: 1; min-width: 260px; }
+.sw-title {
+  font-family: var(--serif);
+  font-size: clamp(64px, 10vw, 128px);
+  font-weight: 400;
+  line-height: .92;
+  letter-spacing: -.03em;
+  color: var(--ink);
+  text-transform: lowercase;
+}
+.sw-star {
+  font-style: italic;
   color: var(--gold);
 }
-.bento-card h3 { font-family: var(--serif); font-weight: 700; font-size: 22px; color: var(--ink); }
-.bento-card p { font-size: 14px; color: var(--muted); line-height: 1.65; flex: 1; }
-.bc-rate { font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--olive); }
-.bc-arrow {
-  position: absolute;
-  top: 24px; right: 24px;
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  background: var(--cream);
-  display: grid; place-items: center;
-  font-size: 16px; color: var(--olive);
-  transition: .25s;
+.sw-meta {
+  display: flex; flex-direction: column; align-items: flex-end;
+  gap: 16px; padding-bottom: 8px;
 }
-.bento-card:hover .bc-arrow { background: var(--olive); color: var(--cream-3); transform: scale(1.1); }
-.bento-0 .bento-card { background: var(--olive); color: var(--cream-3); border-color: var(--olive-dark); }
-.bento-0 .bc-num { color: var(--gold-2); }
-.bento-0 h3 { color: var(--cream-3); font-size: 26px; }
-.bento-0 p { color: rgba(251,248,240,.7); font-size: 15px; }
-.bento-0 .bc-arrow { background: rgba(255,255,255,.12); color: var(--cream-3); }
-.bento-0:hover .bc-arrow { background: var(--gold); color: var(--ink); }
-.bento-0:hover { background: var(--olive-dark); }
-
-/* ─── PORTFOLIO ────────────────────────────────────────── */
-.portfolio { background: var(--cream-2); }
-.proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.proj { background: var(--white); border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--line-2); transition: .3s; }
-.proj:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-.proj .thumb { position: relative; aspect-ratio: 16/11; overflow: hidden; }
-.proj .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-.proj:hover .thumb img { transform: scale(1.07); }
-.arrow {
-  position: absolute; top: 14px; right: 14px;
-  width: 36px; height: 36px; border-radius: 50%;
-  background: rgba(255,255,255,.9);
-  display: grid; place-items: center;
-  color: var(--ink); font-size: 14px;
-  opacity: 0; transform: translateY(-6px); transition: .3s;
+.sw-badge {
+  display: inline-block;
+  background: var(--olive-dark); color: var(--cream-3);
+  font-size: 11px; font-weight: 600; letter-spacing: .15em;
+  text-transform: uppercase; padding: 6px 14px; border-radius: 4px;
 }
-.proj:hover .arrow { opacity: 1; transform: translateY(0); }
-.proj-body { padding: 20px 22px 24px; }
-.proj-body h3 { font-family: var(--serif); font-weight: 700; font-size: 19px; margin-bottom: 5px; }
-.proj-cat { font-size: 12px; color: var(--muted); font-weight: 500; }
+.sw-all-link {
+  font-size: 14px; font-weight: 600; color: var(--ink);
+  text-decoration: underline; text-underline-offset: 3px;
+  transition: color .2s;
+}
+.sw-all-link:hover { color: var(--olive); }
+.sw-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.sw-item {
+  display: block; text-decoration: none; color: inherit;
+}
+.sw-img {
+  position: relative; overflow: hidden;
+  aspect-ratio: 4/3; border-radius: 10px;
+  background: var(--line-2);
+}
+.sw-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .5s ease;
+}
+.sw-item:hover .sw-img img { transform: scale(1.05); }
+.sw-hover-arrow {
+  position: absolute; bottom: 14px; right: 14px;
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--white); display: grid; place-items: center;
+  font-size: 15px; color: var(--ink);
+  opacity: 0; transform: translateY(6px); transition: .25s;
+}
+.sw-item:hover .sw-hover-arrow { opacity: 1; transform: translateY(0); }
+.sw-info {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 4px 0;
+}
+.sw-name {
+  font-family: var(--serif); font-size: 18px;
+  font-weight: 400; color: var(--ink);
+}
+.sw-cat {
+  font-size: 12px; color: var(--muted); font-weight: 500;
+  text-transform: uppercase; letter-spacing: .08em;
+}
 
 /* ─── PROCESS ──────────────────────────────────────────── */
 .process { background: var(--cream); }
-.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 64px; border: 1px solid var(--line-2); border-radius: var(--r-lg); overflow: hidden; }
-.step { padding: 36px 28px; border-right: 1px solid var(--line-2); background: var(--white); transition: .25s; }
+.steps-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--line-2); border-radius: 16px; overflow: hidden;
+}
+.step {
+  padding: 36px 28px; border-right: 1px solid var(--line-2);
+  background: var(--white); transition: background .2s;
+}
 .step:last-child { border-right: 0; }
 .step:hover { background: var(--cream); }
-.step-num {
-  font-family: var(--display2);
-  font-weight: 800;
-  font-size: 42px;
-  color: rgba(185,149,64,.2);
-  line-height: 1;
-  margin-bottom: 20px;
+.step-n {
+  font-family: var(--serif); font-size: 48px; font-weight: 400;
+  color: rgba(185,149,64,.22); line-height: 1; margin-bottom: 20px;
 }
-.step h3 { font-family: var(--serif); font-weight: 700; font-size: 18px; margin-bottom: 10px; }
+.step h3 { font-family: var(--serif); font-size: 18px; font-weight: 400; margin-bottom: 10px; }
 .step p { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
 
-/* ─── STATS BAND ───────────────────────────────────────── */
+/* ─── BAND ─────────────────────────────────────────────── */
 .band { background: var(--olive-dark); padding: 80px 0; }
-.band-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
-.band-cell {
-  text-align: center;
-  padding: 20px;
+.band-inner {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.band-item {
+  text-align: center; padding: 20px;
   border-right: 1px solid rgba(255,255,255,.1);
-  transition: .2s;
 }
-.band-cell:last-child { border-right: 0; }
-.band-cell:hover { background: rgba(255,255,255,.04); }
-.band-num {
-  font-family: var(--display2);
-  font-weight: 800;
-  font-size: clamp(44px, 5.5vw, 66px);
-  color: var(--cream-3);
-  line-height: 1;
+.band-item:last-child { border-right: 0; }
+.band-val {
+  font-family: var(--serif); font-size: clamp(44px, 5vw, 62px);
+  font-weight: 400; color: var(--cream-3); line-height: 1;
 }
-.band-label {
-  margin-top: 10px;
-  font-size: 11px;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: rgba(251,248,240,.5);
-  font-weight: 600;
+.band-lbl {
+  margin-top: 10px; font-size: 11px;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(251,248,240,.45); font-weight: 600;
 }
 
 /* ─── TESTIMONIALS ─────────────────────────────────────── */
-.feedback { background: var(--cream-2); }
-.tst-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.testimonials { background: var(--cream-2); }
+.tst-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .tst {
-  background: var(--white);
-  border-radius: var(--r-md);
-  padding: 32px 28px;
-  border: 1px solid var(--line-2);
-  transition: .25s;
-  position: relative;
-  overflow: hidden;
+  background: var(--white); border-radius: 14px; padding: 30px;
+  border: 1px solid var(--line-2); transition: .22s;
 }
-.tst:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
-.tst-quote-mark {
-  font-family: var(--serif);
-  font-size: 80px;
-  line-height: .7;
-  color: rgba(185,149,64,.15);
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-.tst .quote { font-size: 15px; color: var(--ink-2); line-height: 1.75; margin-bottom: 24px; }
-.tst-foot { border-top: 1px solid var(--line-2); padding-top: 18px; }
-.stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; margin-bottom: 6px; }
-.who-name { font-weight: 700; font-size: 14.5px; color: var(--ink); }
-.who-role { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.tst:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.tst-stars { color: var(--gold); letter-spacing: 2px; font-size: 14px; margin-bottom: 16px; }
+.tst-quote { font-size: 15px; color: var(--ink-2); line-height: 1.75; margin-bottom: 22px; font-style: italic; }
+.tst-author { border-top: 1px solid var(--line-2); padding-top: 16px; }
+.tst-author strong { display: block; font-size: 14px; font-weight: 600; color: var(--ink); }
+.tst-author span { font-size: 12px; color: var(--muted); }
 
 /* ─── SKILLS ───────────────────────────────────────────── */
 .skills-sec { background: var(--cream); }
-.skill-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.skill-card { background: var(--white); border-radius: var(--r-md); padding: 30px 28px; border: 1px solid var(--line-2); box-shadow: var(--shadow-sm); }
-.skill-top { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
-.sk-ic { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; }
+.skill-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.skill-card { background: var(--white); border-radius: 14px; padding: 28px 26px; border: 1px solid var(--line-2); }
+.sk-head { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+.sk-ic { width: 44px; height: 44px; border-radius: 11px; display: grid; place-items: center; }
 .skill-card:nth-child(1) .sk-ic { background: var(--olive); }
 .skill-card:nth-child(2) .sk-ic { background: var(--gold); }
 .skill-card:nth-child(3) .sk-ic { background: var(--ink); }
-.skill-card h3 { font-family: var(--serif); font-weight: 700; font-size: 18px; }
-.skill-row { margin-bottom: 16px; }
-.skill-row:last-child { margin-bottom: 0; }
-.skill-l { display: flex; justify-content: space-between; font-size: 13px; font-weight: 500; margin-bottom: 6px; }
-.skill-l .pct { color: var(--muted); }
-.bar { height: 6px; border-radius: 6px; background: var(--line-2); overflow: hidden; }
-.bar i { display: block; height: 100%; border-radius: 6px; width: 0; transition: width 1.2s cubic-bezier(.2,.7,.2,1); }
-.skill-card:nth-child(1) .bar i { background: var(--olive); }
-.skill-card:nth-child(2) .bar i { background: var(--gold); }
-.skill-card:nth-child(3) .bar i { background: var(--ink); }
+.skill-card h3 { font-family: var(--serif); font-size: 17px; font-weight: 400; }
+.sk-row { margin-bottom: 15px; }
+.sk-row:last-child { margin-bottom: 0; }
+.sk-meta { display: flex; justify-content: space-between; font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+.sk-pct { color: var(--muted); }
+.sk-bar { height: 5px; border-radius: 5px; background: var(--line-2); overflow: hidden; }
+.sk-bar i { display: block; height: 100%; border-radius: 5px; width: 0; transition: width 1.2s cubic-bezier(.2,.7,.2,1); }
+.skill-card:nth-child(1) .sk-bar i { background: var(--olive); }
+.skill-card:nth-child(2) .sk-bar i { background: var(--gold); }
+.skill-card:nth-child(3) .sk-bar i { background: var(--ink); }
 
 /* ─── BLOG ─────────────────────────────────────────────── */
-.insights { background: var(--cream-2); }
-.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.post { background: var(--white); border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--line-2); transition: .3s; }
-.post:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
-.post-link { display: block; text-decoration: none; color: inherit; }
-.post-thumb { aspect-ratio: 16/10; overflow: hidden; }
-.post-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-.post:hover .post-thumb img { transform: scale(1.05); }
-.post-body { padding: 22px 24px 26px; }
-.post-meta { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
-.post-body h3 { font-family: var(--serif); font-weight: 700; font-size: 18px; line-height: 1.35; margin-bottom: 14px; color: var(--ink); }
-.post-read { font-size: 13px; font-weight: 700; color: var(--olive); }
+.blog-sec { background: var(--cream-2); }
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.blog-card { background: var(--white); border-radius: 14px; overflow: hidden; border: 1px solid var(--line-2); transition: .25s; }
+.blog-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+.blog-card-link { display: block; text-decoration: none; color: inherit; }
+.blog-thumb { aspect-ratio: 16/10; overflow: hidden; }
+.blog-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.blog-card:hover .blog-thumb img { transform: scale(1.05); }
+.blog-body { padding: 20px 22px 24px; }
+.blog-meta { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+.blog-body h3 { font-family: var(--serif); font-size: 17px; font-weight: 400; line-height: 1.4; margin-bottom: 14px; color: var(--ink); }
+.blog-read { font-size: 13px; font-weight: 600; color: var(--olive); }
 
 /* ─── FAQ ──────────────────────────────────────────────── */
-.faq { background: var(--cream); }
-.faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
-.faq-item { background: var(--white); border: 1px solid var(--line-2); border-radius: 14px; overflow: hidden; }
+.faq-sec { background: var(--cream); }
+.faq-inner {
+  display: grid; grid-template-columns: 280px 1fr; gap: 80px; align-items: start;
+}
+.faq-head .serif-title { font-size: clamp(28px, 3.5vw, 40px); margin: 12px 0; }
+.faq-list { display: flex; flex-direction: column; gap: 10px; }
+.faq-item { background: var(--white); border: 1px solid var(--line-2); border-radius: 12px; overflow: hidden; }
 .faq-q {
   width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px;
-  padding: 20px 24px; background: none; border: 0; cursor: pointer; text-align: left;
-  font-family: var(--body); font-weight: 600; font-size: 15.5px; color: var(--ink);
+  padding: 18px 22px; background: none; border: 0; cursor: pointer; text-align: left;
+  font-family: var(--body); font-weight: 600; font-size: 15px; color: var(--ink);
   transition: background .2s;
 }
 .faq-q:hover { background: var(--cream); }
-.faq-q .plus { font-size: 22px; color: var(--gold); transition: .3s; flex: none; }
-.faq-item.open .faq-q .plus { transform: rotate(45deg); }
-.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease; color: var(--muted); font-size: 14.5px; }
-.faq-a p { padding: 0 24px 22px; line-height: 1.75; }
-.faq-item.open .faq-a { max-height: 300px; }
-.faq-cta { text-align: center; margin-top: 36px; }
+.fq-icon { font-size: 20px; color: var(--gold); transition: transform .3s; flex: none; }
+.faq-item.open .fq-icon { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+.faq-a p { padding: 0 22px 18px; font-size: 14.5px; color: var(--muted); line-height: 1.75; }
+.faq-item.open .faq-a { max-height: 280px; }
 
-/* ─── HIRE CTA ─────────────────────────────────────────── */
-.hire-cta { background: var(--olive-dark); padding: 100px 0; overflow: hidden; position: relative; }
-.hire-cta::before {
-  content: '';
-  position: absolute; inset: 0;
-  background-image: radial-gradient(circle at 20% 50%, rgba(185,149,64,.15) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, rgba(185,149,64,.1) 0%, transparent 40%);
+/* ─── CTA BAND ─────────────────────────────────────────── */
+.cta-band {
+  background: var(--olive-dark); padding: 96px 0;
+  position: relative; overflow: hidden;
+}
+.cta-band::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 0% 50%, rgba(185,149,64,.1) 0%, transparent 55%);
   pointer-events: none;
 }
-.hire-inner { text-align: center; position: relative; z-index: 1; }
-.hire-inner h2 {
-  font-family: var(--serif);
-  font-weight: 700;
-  font-size: clamp(36px, 5vw, 62px);
-  color: var(--cream-3);
-  line-height: 1.15;
-  margin: 14px auto 22px;
-  max-width: 800px;
+.cta-inner {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 60px; align-items: center; position: relative; z-index: 1;
 }
-.hire-inner h2 em { color: var(--gold-2); font-style: italic; }
-.hire-inner p { color: rgba(251,248,240,.65); max-width: 520px; margin: 0 auto 40px; font-size: 17px; line-height: 1.75; }
-.hire-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.cta-copy .serif-title { display: none; }
+.cta-copy h2 {
+  font-family: var(--serif); font-size: clamp(32px, 4vw, 52px);
+  font-weight: 400; color: var(--cream-3); line-height: 1.2; margin: 12px 0 18px;
+}
+.cta-copy h2 em { font-style: italic; color: var(--gold-2); }
+.cta-copy p { font-size: 16px; color: rgba(251,248,240,.6); line-height: 1.75; max-width: 480px; }
+.cta-actions { display: flex; flex-direction: column; gap: 12px; white-space: nowrap; }
 
 /* ─── RESPONSIVE ───────────────────────────────────────── */
 @media (max-width: 1100px) {
-  .hero-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-  .h1-main { font-size: clamp(52px, 7vw, 88px); }
-  .photo-frame { width: 360px; height: 430px; }
-  .bento-grid { grid-template-columns: repeat(2, 1fr); }
-  .bento-0 { grid-column: 1 / 3; }
-  .bento-3 { grid-column: 1 / 3; }
+  .hero-grid { grid-template-columns: 1.1fr 0.9fr; gap: 48px; }
+  .svc-grid { grid-template-columns: repeat(2, 1fr); }
+  .svc-featured { grid-column: 1 / 3; }
 }
 @media (max-width: 980px) {
-  .hero { min-height: auto; padding: 80px 0 60px; }
-  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-  .hero-photo { max-width: 400px; margin: 0 auto; }
-  .photo-badge { left: -10px; }
-  .photo-badge-2 { right: -10px; }
-  .stats-bar { grid-template-columns: repeat(2, 1fr); }
-  .stat:nth-child(2) { border-right: 0; }
-  .about-layout { grid-template-columns: 1fr; gap: 40px; }
-  .steps { grid-template-columns: repeat(2, 1fr); }
+  .hero { padding: 64px 0 0; }
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; min-height: auto; padding-bottom: 60px; }
+  .hero-right { order: -1; }
+  .portrait-wrap { width: 320px; margin: 0 auto; }
+  .portrait-tag-1 { left: -16px; }
+  .portrait-tag-2 { right: -16px; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .stat-item:nth-child(2) { border-right: 0; }
+  .stat-item:nth-child(3) { border-top: 1px solid var(--line-2); }
+  .stat-item:nth-child(4) { border-right: 0; border-top: 1px solid var(--line-2); }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
   .step:nth-child(2) { border-right: 0; }
   .step:nth-child(3) { border-top: 1px solid var(--line-2); border-right: 1px solid var(--line-2); }
   .step:last-child { border-top: 1px solid var(--line-2); }
-  .band-grid, .tst-grid, .blog-grid, .proj-grid, .skill-cols { grid-template-columns: repeat(2, 1fr); }
-  .band-cell:nth-child(2), .band-cell:nth-child(4) { border-right: 0; }
-  .band-cell:nth-child(3), .band-cell:nth-child(4) { border-top: 1px solid rgba(255,255,255,.1); }
+  .band-inner { grid-template-columns: repeat(2, 1fr); }
+  .band-item:nth-child(2) { border-right: 0; }
+  .band-item:nth-child(3), .band-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,.1); }
+  .band-item:nth-child(4) { border-right: 0; }
+  .tst-grid, .proj-grid, .blog-grid, .skill-cols { grid-template-columns: repeat(2, 1fr); }
+  .faq-inner { grid-template-columns: 1fr; gap: 36px; }
+  .cta-inner { grid-template-columns: 1fr; gap: 36px; }
+  .cta-actions { flex-direction: row; }
 }
 @media (max-width: 640px) {
-  .h1-main { font-size: clamp(52px, 14vw, 72px); }
-  .stats-bar { grid-template-columns: 1fr; }
-  .stat { border-right: 0; border-bottom: 1px solid var(--line-2); }
-  .stat:last-child { border-bottom: 0; }
-  .bento-grid, .tst-grid, .blog-grid, .proj-grid, .skill-cols { grid-template-columns: 1fr; }
-  .bento-0, .bento-3 { grid-column: auto; }
-  .steps { grid-template-columns: 1fr; }
+  .h1-name { font-size: clamp(52px, 12vw, 72px); }
+  .stats-inner { grid-template-columns: 1fr 1fr; }
+  .svc-grid, .tst-grid, .proj-grid, .blog-grid, .skill-cols { grid-template-columns: 1fr; }
+  .svc-featured { grid-column: auto; }
+  .steps-grid { grid-template-columns: 1fr; }
   .step { border-right: 0 !important; border-top: 1px solid var(--line-2) !important; }
   .step:first-child { border-top: 0 !important; }
-  .band-grid { grid-template-columns: repeat(2, 1fr); }
-  .photo-badge, .photo-badge-2 { display: none; }
-  .photo-ring { display: none; }
+  .portrait-tag { display: none; }
+  .cta-actions { flex-direction: column; }
 }
 </style>
 
@@ -897,44 +887,38 @@ const clients = ['Australia', 'United States', 'United Kingdom', 'Canada', 'Japa
     });
   });
 
-  // Skill bars animate on scroll
-  const barObserver = new IntersectionObserver((entries) => {
+  // Skill bars
+  const barObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        e.target.querySelectorAll<HTMLElement>('.bar i').forEach(bar => {
-          bar.style.width = bar.dataset.w || '0%';
-        });
-        barObserver.unobserve(e.target);
+        e.target.querySelectorAll<HTMLElement>('.sk-bar i').forEach(b => { b.style.width = b.dataset.w || '0%'; });
+        barObs.unobserve(e.target);
       }
     });
   }, { threshold: 0.2 });
-  document.querySelectorAll('.skill-card').forEach(card => barObserver.observe(card));
+  document.querySelectorAll('.skill-card').forEach(c => barObs.observe(c));
 
-  // Animated number counters
+  // Number counters
   function countUp(el: HTMLElement) {
     const end = parseInt(el.dataset.count || '0', 10);
     const suffix = el.dataset.suffix || '';
-    const duration = 1800;
+    const duration = 1600;
     const start = performance.now();
-    const update = (now: number) => {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
+    const tick = (now: number) => {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
       el.textContent = Math.round(eased * end) + suffix;
-      if (progress < 1) requestAnimationFrame(update);
+      if (t < 1) requestAnimationFrame(tick);
     };
-    requestAnimationFrame(update);
+    requestAnimationFrame(tick);
   }
-  const counterObserver = new IntersectionObserver((entries) => {
+  const cntObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        const el = e.target as HTMLElement;
-        countUp(el);
-        counterObserver.unobserve(el);
+        countUp(e.target as HTMLElement);
+        cntObs.unobserve(e.target);
       }
     });
   }, { threshold: 0.5 });
-  document.querySelectorAll<HTMLElement>('.stat-num[data-count], .band-num[data-count]').forEach(el => {
-    counterObserver.observe(el);
-  });
+  document.querySelectorAll<HTMLElement>('[data-count]').forEach(el => cntObs.observe(el));
 </script>
