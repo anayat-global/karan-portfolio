@@ -10,133 +10,124 @@ const [posts, services] = await Promise.all([getBlogPosts(), getServices()]);
 const latest = posts.slice(0, 3);
 const svcIcons = [7, 8, 9, 12, 10, 11, 4];
 const svcBlurb: Record<string, string> = {
-  'wordpress-development-services': 'Custom themes, plugins, WooCommerce stores, migrations, speed and security for startups and small businesses.',
-  'twilio-development-services': 'SMS, voice, video, Flex and Studio integrations that connect your product to your customers.',
+  'wordpress-development-services': 'Custom themes, plugins, WooCommerce stores, migrations, speed and security.',
+  'twilio-development-services': 'SMS, voice, video, Flex and Studio integrations that connect your product to customers.',
   'react-js-development-services': 'Interactive, scalable web and mobile apps built with React JS and React Native.',
   'python-development-services': 'Web apps, APIs, Django development and integrations built with Python.',
   'php-development-services': 'Secure, dynamic PHP applications, APIs and enterprise-grade web platforms.',
-  'magento-development-services': 'Custom Magento stores, themes, migrations and performance optimisation for e-commerce.',
+  'magento-development-services': 'Custom Magento stores, themes, migrations and performance optimisation.',
   'backend-development-services': 'Robust backends, cloud services, CRM/ERP systems and API integrations that scale.',
 };
+const clients = ['Australia', 'United States', 'United Kingdom', 'Canada', 'Japan', 'India', 'Italy', 'South Africa', 'Saudi Arabia'];
 ---
-
 
 <Layout title="Karandeep Arora | Freelance Full Stack WordPress, React & Twilio Developer in India" description={SITE.defaultDescription}>
 <Header activePage="/" />
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="home">
+  <div class="hero-blob" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
   <div class="wrap">
     <div class="hero-grid">
-      <div class="hero-text reveal">
-        <span class="hero-badge"><span class="dot"></span> I Build Modern</span>
-        <h1>Digital Products<br>That <span class="scale">Scale.</span></h1>
-        <p class="lead">Hi, I'm Karandeep Arora, a freelance full stack developer in India. I create better interfaces and experiences, making web and mobile applications easier and friendlier to use.</p>
-        <div class="hero-btns">
-          <a href="/portfolio" class="btn btn-dark">View My Work <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></a>
-          <a href="/contact" class="btn btn-outline">Let's Talk <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></a>
+      <div class="hero-text">
+        <div class="hero-badge reveal"><span class="avail-dot"></span> Available for Projects</div>
+        <h1 class="reveal">
+          <span class="h1-top">I Build Modern</span>
+          <span class="h1-main">Digital<br>Products</span>
+          <span class="h1-accent">That Scale.</span>
+        </h1>
+        <p class="lead reveal">Hi, I'm Karandeep Arora — a freelance full stack developer in India with 10+ years building web and mobile products for clients worldwide.</p>
+        <div class="hero-btns reveal">
+          <a href="/portfolio" class="btn btn-hero-primary">View My Work <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg></a>
+          <a href="/contact" class="btn btn-hero-outline">Let's Talk</a>
         </div>
       </div>
       <div class="hero-photo reveal">
-        <div class="frame">
-          <img src="/karan-profile.webp" alt="Karandeep Arora" />
+        <div class="photo-ring" aria-hidden="true"></div>
+        <div class="photo-frame">
+          <img src="/karan-profile.webp" alt="Karandeep Arora — Freelance Full Stack Developer" />
+        </div>
+        <div class="photo-badge">
+          <div class="pb-num">90+</div>
+          <div class="pb-label">Projects</div>
+        </div>
+        <div class="photo-badge-2">
+          <div class="pb-num">⭐ 5.0</div>
+          <div class="pb-label">Upwork Rating</div>
         </div>
       </div>
     </div>
 
     <div class="stats-bar reveal">
-      <div class="stat">
-        <div class="ic"><svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg></div>
-        <div><div class="num">{HERO_STATS[0].value}</div><div class="lab">{HERO_STATS[0].label}</div></div>
-      </div>
-      <div class="stat">
-        <div class="ic"><svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg></div>
-        <div><div class="num">{HERO_STATS[1].value}</div><div class="lab">{HERO_STATS[1].label}</div></div>
-      </div>
-      <div class="stat">
-        <div class="ic"><svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg></div>
-        <div><div class="num">{HERO_STATS[2].value}</div><div class="lab">{HERO_STATS[2].label}</div></div>
-      </div>
-      <div class="stat">
-        <div class="ic"><svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg></div>
-        <div><div class="num">{HERO_STATS[3].value}</div><div class="lab">{HERO_STATS[3].label}</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ TRUSTED ============ -->
-<section class="trusted">
-  <div class="wrap">
-    <p class="cap">Trusted by clients across the world</p>
-    <div class="logos reveal">
-      <span>Australia</span><span>United States</span><span>United Kingdom</span><span>Canada</span><span>Japan</span><span>India</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ABOUT ============ -->
-<section class="section about" id="about">
-  <div class="wrap">
-    <span class="eyebrow reveal">About Me</span>
-    <h2 class="serif-title reveal">A Full Stack Developer with 10 Years of Experience</h2>
-    <p class="about-lead reveal">I am an expert freelance full stack and MERN stack developer, building cost-effective, customised and scalable web solutions. From consulting and development to launch, I handle your project with clean code, a focus on your budget, and a fully responsive result on every device.</p>
-    <div class="about-cards">
-      <div class="about-card reveal">
-        <div class="ic"><img src="/icons/Icon.svg" alt="" /></div>
-        <h3>B.Tech</h3>
-        <div class="role">Punjab Technical University, 2010–2014</div>
-        <p>Engineering foundation, followed by Core and Advanced Java training at Stellar Edge Infotech.</p>
-      </div>
-      <div class="about-card reveal">
-        <div class="ic"><img src="/icons/Icon_1.svg" alt="" /></div>
-        <h3>Senior Consultant</h3>
-        <div class="role">Freelance, 2019–Present</div>
-        <p>Building websites and apps for startups, founders and businesses worldwide, after roles at Seasia Infotech and Smartbuzz.</p>
-      </div>
-      <div class="about-card reveal">
-        <div class="ic"><img src="/icons/Icon_2.svg" alt="" /></div>
-        <h3>55+ Happy Clients</h3>
-        <div class="role">30+ repeat clients</div>
-        <p>90+ projects and 6,000+ hours delivered across WordPress, React, Twilio, Python, PHP and Magento.</p>
-      </div>
-    </div>
-    <div class="resume-wrap reveal">
-      <a href="/about" class="btn btn-olive">More About Me <img src="/icons/Icon_3.svg" alt="" /></a>
-      <div class="decade">— A Decade of Experience —</div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ TECHNICAL ARSENAL ============ -->
-<section class="section arsenal" id="skills">
-  <div class="wrap">
-    <div class="head reveal">
-      <h2 class="serif-title">Tools and Skills</h2>
-      <p>The technologies I use every day to build robust, scalable software for clients.</p>
-    </div>
-    <div class="skill-cols">
-      {SKILL_GROUPS.map((g) => (
-      <div class="skill-card reveal">
-        <div class="top"><div class="ic"><img src={`/icons/Icon_${g.icon}.svg`} alt="" /></div><h3>{g.title}</h3></div>
-        {g.skills.map(([name, pct]) => (
-        <div class="skill-row"><div class="l"><span>{name}</span><span class="pct">{pct}%</span></div><div class="bar"><i data-w={`${pct}%`}></i></div></div>
-        ))}
-      </div>
+      {HERO_STATS.map((s) => (
+        <div class="stat">
+          <div class="stat-num" data-count={s.value.replace(/\D/g,'')} data-suffix={s.value.replace(/\d/g,'')}>{s.value}</div>
+          <div class="stat-label">{s.label}</div>
+        </div>
       ))}
     </div>
   </div>
 </section>
 
-<!-- ============ SERVICES ============ -->
-<section class="section services">
+<!-- ============ MARQUEE ============ -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    {[...clients, ...clients, ...clients].map((c) => (
+      <span class="marquee-item"><span class="marquee-dot">✦</span> {c}</span>
+    ))}
+  </div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section class="section about" id="about">
+  <div class="wrap about-layout">
+    <div class="about-left">
+      <span class="eyebrow reveal">About Me</span>
+      <h2 class="serif-title reveal">A Full Stack Developer<br><em>with 10 Years of<br>Experience</em></h2>
+      <p class="about-lead reveal">Expert freelance full stack and MERN stack developer, building cost-effective, customised and scalable web solutions. From consulting to launch — clean code, on budget, fully responsive.</p>
+      <a href="/about" class="btn btn-olive reveal" style="margin-top:32px">More About Me →</a>
+    </div>
+    <div class="about-cards">
+      <div class="about-card reveal">
+        <div class="ac-num">01</div>
+        <h3>B.Tech — 2014</h3>
+        <div class="ac-sub">Punjab Technical University</div>
+        <p>Engineering foundation followed by Core and Advanced Java training at Stellar Edge Infotech.</p>
+      </div>
+      <div class="about-card reveal">
+        <div class="ac-num">02</div>
+        <h3>Senior Consultant</h3>
+        <div class="ac-sub">Freelance, 2019–Present</div>
+        <p>Building websites and apps for startups, founders and businesses worldwide after roles at Seasia Infotech and Smartbuzz.</p>
+      </div>
+      <div class="about-card reveal">
+        <div class="ac-num">03</div>
+        <h3>55+ Happy Clients</h3>
+        <div class="ac-sub">30+ repeat clients</div>
+        <p>90+ projects and 6,000+ hours delivered across WordPress, React, Twilio, Python, PHP and Magento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES BENTO ============ -->
+<section class="section services" id="services">
   <div class="wrap">
-    <span class="eyebrow reveal">Services</span>
-    <h2 class="serif-title reveal">My Services</h2>
-    <p class="sub reveal">Full stack web development across the platforms businesses rely on, built for reliability, speed and long-term scale.</p>
-    <div class="svc-grid">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Services</span>
+      <h2 class="serif-title">What I Build</h2>
+      <p>Full stack development across the platforms businesses rely on — built for reliability, speed and long-term scale.</p>
+    </div>
+    <div class="bento-grid">
       {services.map((sv, i) => (
-      <a href={`/services/${sv.slug}`} class="svc-card reveal"><div class="ic"><img src={`/icons/Icon_${svcIcons[i % svcIcons.length]}.svg`} alt="" /></div><h3>{sv.title}</h3><p>{svcBlurb[sv.slug] ?? sv.description}</p>{HOURLY_RATES[sv.slug] && <p class="rate">${HOURLY_RATES[sv.slug]} / hour*</p>}</a>
+        <a href={`/services/${sv.slug}`} class={`bento-card reveal bento-${i}`}>
+          <div class="bc-num">0{i + 1}</div>
+          <h3>{sv.title}</h3>
+          <p>{svcBlurb[sv.slug] ?? sv.description}</p>
+          {HOURLY_RATES[sv.slug] && <span class="bc-rate">${HOURLY_RATES[sv.slug]}/hr</span>}
+          <span class="bc-arrow">↗</span>
+        </a>
       ))}
     </div>
   </div>
@@ -145,22 +136,20 @@ const svcBlurb: Record<string, string> = {
 <!-- ============ PORTFOLIO ============ -->
 <section class="section portfolio" id="projects">
   <div class="wrap">
-    <div class="head reveal">
+    <div class="sec-head-row reveal">
       <div>
         <span class="eyebrow">Portfolio</span>
         <h2 class="serif-title">Featured Projects</h2>
       </div>
+      <a href="/portfolio" class="view-all-link">View All <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M9.13125 6.75H0V5.25H9.13125L4.93125 1.05L6 0L12 6L6 12L4.93125 10.95L9.13125 6.75Z" fill="currentColor"/></svg></a>
     </div>
-    <div class="proj-grid" id="projGrid">
+    <div class="proj-grid">
       {PORTFOLIO.map((pr) => (
-      <article class="proj reveal">
-        <div class="thumb"><span class="arrow">↗</span><img src={pr.img} alt={pr.title} loading="lazy" /></div>
-        <div class="body"><h3>{pr.title}</h3><div class="tags">{pr.category}</div></div>
-      </article>
+        <article class="proj reveal">
+          <div class="thumb"><span class="arrow">↗</span><img src={pr.img} alt={pr.title} loading="lazy" /></div>
+          <div class="proj-body"><h3>{pr.title}</h3><div class="proj-cat">{pr.category}</div></div>
+        </article>
       ))}
-    </div>
-    <div class="view-all-wrap reveal">
-      <a href="/portfolio" class="btn btn-outline">View Full Portfolio →</a>
     </div>
   </div>
 </section>
@@ -168,29 +157,18 @@ const svcBlurb: Record<string, string> = {
 <!-- ============ PROCESS ============ -->
 <section class="section process">
   <div class="wrap">
-    <span class="eyebrow reveal">How I Work</span>
-    <h2 class="serif-title reveal">My Method to Work on Projects</h2>
-    <p class="sub reveal">From the first conversation to final delivery, a clear and transparent process.</p>
+    <div class="sec-head reveal">
+      <span class="eyebrow">How I Work</span>
+      <h2 class="serif-title">My Process</h2>
+      <p>From the first conversation to final delivery — clear and transparent every step.</p>
+    </div>
     <div class="steps">
       {PROCESS.map((st, i) => (
-      <div class="step reveal"><div class="circle">{String(i + 1).padStart(2, '0')}</div><h3>{st.title}</h3><p>{st.text}</p></div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- ============ TESTIMONIALS ============ -->
-<section class="section feedback" id="experience">
-  <div class="wrap">
-    <span class="eyebrow reveal">Testimonials</span>
-    <h2 class="serif-title reveal">Client Feedback</h2>
-    <div class="tst-grid">
-      {TESTIMONIALS.slice(0, 3).map((t) => (
-      <div class="tst reveal">
-        <div class="stars">★★★★★</div>
-        <p class="quote">"{t.quote}"</p>
-        <div class="who"><div><div class="n">{t.name}</div><div class="r">{t.meta}</div></div></div>
-      </div>
+        <div class="step reveal">
+          <div class="step-num">{String(i + 1).padStart(2, '0')}</div>
+          <h3>{st.title}</h3>
+          <p>{st.text}</p>
+        </div>
       ))}
     </div>
   </div>
@@ -200,24 +178,83 @@ const svcBlurb: Record<string, string> = {
 <section class="band">
   <div class="wrap band-grid">
     {STATS.map((st) => (
-    <div class="cell reveal"><div class="big">{st.value}</div><div class="lab">{st.label}</div></div>
+      <div class="band-cell reveal">
+        <div class="band-num" data-count={st.value.replace(/\D/g,'')} data-suffix={st.value.replace(/[\d]/g,'')}>{st.value}</div>
+        <div class="band-label">{st.label}</div>
+      </div>
     ))}
   </div>
 </section>
 
-<!-- ============ INSIGHTS ============ -->
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section feedback">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Testimonials</span>
+      <h2 class="serif-title">Client Feedback</h2>
+    </div>
+    <div class="tst-grid">
+      {TESTIMONIALS.slice(0, 3).map((t) => (
+        <div class="tst reveal">
+          <div class="tst-quote-mark">"</div>
+          <p class="quote">{t.quote}</p>
+          <div class="tst-foot">
+            <div class="stars">★★★★★</div>
+            <div class="who-name">{t.name}</div>
+            <div class="who-role">{t.meta}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="section skills-sec" id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Skills</span>
+      <h2 class="serif-title">Tools & Technologies</h2>
+      <p>The technologies I use every day to build robust, scalable software.</p>
+    </div>
+    <div class="skill-cols">
+      {SKILL_GROUPS.map((g) => (
+        <div class="skill-card reveal">
+          <div class="skill-top"><div class="sk-ic"><img src={`/icons/Icon_${g.icon}.svg`} alt="" /></div><h3>{g.title}</h3></div>
+          {g.skills.map(([name, pct]) => (
+            <div class="skill-row">
+              <div class="skill-l"><span>{name}</span><span class="pct">{pct}%</span></div>
+              <div class="bar"><i data-w={`${pct}%`}></i></div>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOG ============ -->
 <section class="section insights">
   <div class="wrap">
-    <div class="head reveal">
-      <h2 class="serif-title">From the Blog</h2>
-      <a href="/blog" class="view-all">View All Articles <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M9.13125 6.75H0V5.25H9.13125L4.93125 1.05L6 0L12 6L6 12L4.93125 10.95L9.13125 6.75Z" fill="currentColor"/></svg></a>
+    <div class="sec-head-row reveal">
+      <div>
+        <span class="eyebrow">Blog</span>
+        <h2 class="serif-title">From the Blog</h2>
+      </div>
+      <a href="/blog" class="view-all-link">View All <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M9.13125 6.75H0V5.25H9.13125L4.93125 1.05L6 0L12 6L6 12L4.93125 10.95L9.13125 6.75Z" fill="currentColor"/></svg></a>
     </div>
     <div class="blog-grid">
       {latest.map((p) => (
-      <article class="post reveal">
-        <div class="thumb"><img src={p.image} alt={p.title} loading="lazy" /></div>
-        <div class="body"><div class="meta">{formatDate(p.publishDate)} · {p.readTime}</div><h3>{p.title}</h3><a class="read" href={`/blog/${p.slug}`}>Read More <img src="/icons/Icon_17.svg" alt="" /></a></div>
-      </article>
+        <article class="post reveal">
+          <a href={`/blog/${p.slug}`} class="post-link">
+            <div class="post-thumb"><img src={p.image} alt={p.title} loading="lazy" /></div>
+            <div class="post-body">
+              <div class="post-meta">{formatDate(p.publishDate)} · {p.readTime}</div>
+              <h3>{p.title}</h3>
+              <span class="post-read">Read More →</span>
+            </div>
+          </a>
+        </article>
       ))}
     </div>
   </div>
@@ -226,28 +263,33 @@ const svcBlurb: Record<string, string> = {
 <!-- ============ FAQ ============ -->
 <section class="section faq">
   <div class="wrap">
-    <span class="eyebrow reveal">FAQ</span>
-    <h2 class="serif-title reveal">Frequently Asked Questions</h2>
+    <div class="sec-head reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="serif-title">Frequently Asked Questions</h2>
+    </div>
     <div class="faq-list">
-      {FAQS.slice(0, 3).map((f, i) => (
-      <div class={`faq-item reveal${i === 0 ? ' open' : ''}`}>
-        <button class="faq-q">{f.q} <span class="plus">+</span></button>
-        <div class="faq-a"><p>{f.a}</p></div>
-      </div>
+      {FAQS.slice(0, 4).map((f, i) => (
+        <div class={`faq-item reveal${i === 0 ? ' open' : ''}`}>
+          <button class="faq-q">{f.q} <span class="plus">+</span></button>
+          <div class="faq-a"><p>{f.a}</p></div>
+        </div>
       ))}
     </div>
-    <div style="text-align:center;margin-top:32px"><a href="/faq" class="btn btn-outline">View All FAQs →</a></div>
+    <div class="faq-cta reveal"><a href="/faq" class="btn btn-outline">View All FAQs →</a></div>
   </div>
 </section>
 
 <!-- ============ CONTACT CTA ============ -->
-<section class="cta">
+<section class="hire-cta">
   <div class="wrap">
-    <h2>Ready to Build Something <em>Exceptional?</em></h2>
-    <p>Tell me about your project. I take on freelance and contract work and I am available across time zones.</p>
-    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
-      <a href="/contact" class="btn btn-dark">Start a Project</a>
-      <a href="/about" class="btn btn-outline">Learn About Me →</a>
+    <div class="hire-inner reveal">
+      <span class="eyebrow" style="color:var(--gold)">Ready to Start?</span>
+      <h2>Let's Build Something<br><em>Exceptional Together.</em></h2>
+      <p>I take on freelance and contract work and am available across time zones. Share your project — I'll send a proposal within 24 hours.</p>
+      <div class="hire-btns">
+        <a href="/contact" class="btn btn-dark">Start a Project →</a>
+        <a href="/about" class="btn btn-hero-outline" style="border-color:rgba(255,255,255,.25);color:#fff">Learn About Me</a>
+      </div>
     </div>
   </div>
 </section>
@@ -256,303 +298,564 @@ const svcBlurb: Record<string, string> = {
 </Layout>
 
 <style>
-/* HERO */
+/* ─── HERO ─────────────────────────────────────────────── */
 .hero {
   position: relative;
   background: var(--cream);
-  padding: 64px 0 40px;
-  width: 100%;
+  padding: 100px 0 60px;
+  overflow: hidden;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
 }
+.hero-blob {
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(185,149,64,.18) 0%, transparent 70%);
+  top: -120px; right: -80px;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-blob-2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(86,92,43,.12) 0%, transparent 70%);
+  top: auto; bottom: -80px; right: auto; left: -60px;
+}
+.hero .wrap { position: relative; z-index: 2; width: 100%; }
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.05fr .95fr;
-  gap: 40px;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 60px;
   align-items: center;
-  position: relative;
-  z-index: 2;
 }
 .hero-badge {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  font-size: 16px;
+  gap: 8px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 40px;
+  padding: 8px 18px 8px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--olive);
+  margin-bottom: 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.avail-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 3px rgba(74,222,128,.2);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(74,222,128,.2); }
+  50% { box-shadow: 0 0 0 6px rgba(74,222,128,.08); }
+}
+.h1-top {
+  display: block;
+  font-family: var(--body);
+  font-size: clamp(14px, 1.6vw, 18px);
   font-weight: 700;
   letter-spacing: .22em;
   text-transform: uppercase;
-  color: var(--olive);
-  margin-bottom: 22px;
-  position: relative;
+  color: var(--muted);
+  margin-bottom: 10px;
 }
-.hero-badge::before {
-  content: "";
-  width: 56px;
-  height: 2px;
-  background: rgb(193 155 82);
-  border-radius: 2px;
-  bottom: -3px;
-  position: absolute;
-}
-.hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
-.hero h1 {
-  font-family: "Bebas Neue", sans-serif;
-  font-weight: 700;
-  font-size: clamp(42px, 6vw, 60px);
-  line-height: 1.02;
-  letter-spacing: -.02em;
-  text-transform: uppercase;
+.h1-main {
+  display: block;
+  font-family: var(--display2);
+  font-weight: 800;
+  font-size: clamp(64px, 8.5vw, 110px);
+  line-height: .95;
+  letter-spacing: -.04em;
   color: var(--ink);
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 }
-.hero h1 .scale {
+.h1-accent {
+  display: block;
   font-family: var(--serif);
   font-style: italic;
-  font-weight: 600;
-  text-transform: none;
+  font-weight: 700;
+  font-size: clamp(40px, 5.5vw, 72px);
   color: var(--gold);
-  letter-spacing: -.01em;
-  font-size: 70px;
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  margin-bottom: 28px;
 }
-.hero p.lead { font-size: 20px; color: #373633; max-width: 440px; margin-bottom: 30px; }
+.hero .lead {
+  font-size: clamp(15px, 1.5vw, 18px);
+  color: var(--ink-2);
+  max-width: 480px;
+  line-height: 1.75;
+  margin-bottom: 36px;
+}
 .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-.hero-photo { position: relative; }
-.hero-photo .frame::before {
-  content: '';
-  position: absolute;
-  border-radius: 100%;
-  box-shadow: var(--shadow-lg);
-  border: 3px solid rgb(193 155 82 / 37%);
-  aspect-ratio: 3/3;
-  background: rgb(195 176 137 / 53%);
-  width: 100%;
-  z-index: -2;
+.btn-hero-primary {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--olive); color: var(--cream-3);
+  padding: 15px 28px; border-radius: 12px;
+  font-weight: 700; font-size: 15px; font-family: var(--body);
+  border: 2px solid var(--olive);
+  transition: .25s;
 }
-.hero-photo .frame { position: relative; }
-.hero-photo .frame img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-.hero-photo .frame::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 150px;
-  background: linear-gradient(to bottom, transparent 0%, rgba(247,241,229,.35) 35%, rgba(247,241,229,.8) 75%, #f7f1e5 100%);
-  z-index: 2;
+.btn-hero-primary:hover { background: var(--olive-dark); border-color: var(--olive-dark); transform: translateY(-2px); }
+.btn-hero-outline {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: transparent; color: var(--ink);
+  padding: 15px 28px; border-radius: 12px;
+  font-weight: 700; font-size: 15px; font-family: var(--body);
+  border: 2px solid var(--line);
+  transition: .25s;
 }
-.hero-photo::after {
-  content: "";
-  position: absolute;
-  inset: -30px -22px auto auto;
-  width: 230px; height: 230px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(185,149,64,.28), transparent 70%);
-  z-index: -1;
-}
+.btn-hero-outline:hover { border-color: var(--olive); color: var(--olive); transform: translateY(-2px); }
 
-/* STATS BAR */
-.stats-bar {
-  margin-top: 0;
+/* Photo */
+.hero-photo { position: relative; display: flex; align-items: center; justify-content: center; }
+.photo-ring {
+  position: absolute;
+  width: 110%; height: 110%;
+  border-radius: 38% 62% 45% 55% / 42% 40% 60% 58%;
+  border: 2px dashed rgba(185,149,64,.3);
+  animation: morph 8s ease-in-out infinite;
+  z-index: 0;
+}
+@keyframes morph {
+  0%, 100% { border-radius: 38% 62% 45% 55% / 42% 40% 60% 58%; }
+  33% { border-radius: 58% 42% 62% 38% / 54% 46% 54% 46%; }
+  66% { border-radius: 42% 58% 38% 62% / 38% 58% 42% 62%; }
+}
+.photo-frame {
+  width: 420px; height: 500px;
+  border-radius: 180px 180px 120px 120px;
+  overflow: hidden;
+  border: 3px solid rgba(185,149,64,.35);
+  box-shadow: 0 30px 80px rgba(60,54,30,.15), 0 0 0 8px rgba(185,149,64,.08);
+  position: relative; z-index: 1;
+  background: var(--cream-2);
+}
+.photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.photo-badge, .photo-badge-2 {
+  position: absolute;
   background: var(--white);
-  border-radius: 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.1);
+  z-index: 3;
+  text-align: center;
+}
+.photo-badge { bottom: 40px; left: -20px; }
+.photo-badge-2 { top: 40px; right: -20px; }
+.pb-num { font-family: var(--display2); font-weight: 800; font-size: 22px; color: var(--ink); line-height: 1; }
+.pb-label { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: .04em; margin-top: 3px; }
+
+/* Stats bar */
+.stats-bar {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,.05);
-  position: relative;
-  z-index: 3;
+  background: var(--white);
+  border-radius: 20px;
+  border: 1px solid var(--line-2);
+  box-shadow: 0 8px 32px rgba(60,54,30,.07);
+  margin-top: 60px;
+  overflow: hidden;
 }
-.stat { display: flex; align-items: center; gap: 14px; padding: 6px 22px; border-right: 1.5px solid var(--line-2); }
+.stat {
+  padding: 28px 32px;
+  border-right: 1px solid var(--line-2);
+  transition: background .2s;
+}
 .stat:last-child { border-right: 0; }
-.stat .ic { width: 70px; height: 70px; border-radius: 50px; flex: none; background: #f8ebca; display: grid; place-items: center; color: var(--olive); }
-.stat .ic svg { max-width: 32px; width: 100%; color: rgb(199 158 78); }
-.stat .num { font-family: var(--display); font-weight: 800; font-size: 28px; color: var(--ink); line-height: 1; }
-.stat .lab { font-size: 14px; color: var(--muted); margin-top: 3px; }
+.stat:hover { background: var(--cream); }
+.stat-num {
+  font-family: var(--display2);
+  font-weight: 800;
+  font-size: clamp(30px, 3vw, 40px);
+  color: var(--ink);
+  line-height: 1;
+}
+.stat-label { font-size: 13px; color: var(--muted); margin-top: 6px; font-weight: 500; }
 
-/* TRUSTED */
-.trusted { background: var(--cream); padding: 44px 0 8px; }
-.trusted .cap { text-align: center; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 26px; }
-.logos { display: flex; align-items: center; justify-content: center; gap: 56px; flex-wrap: wrap; }
-.logos span { font-family: var(--serif); font-weight: 600; font-size: 26px; color: #B4AC98; transition: color .25s; }
-.logos span:hover { color: var(--olive); }
+/* ─── MARQUEE ──────────────────────────────────────────── */
+.marquee-wrap {
+  background: var(--olive);
+  padding: 14px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-track {
+  display: inline-flex;
+  animation: marquee 30s linear infinite;
+}
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 36px;
+  font-family: var(--display2);
+  font-weight: 700;
+  font-size: 15px;
+  color: rgba(251,248,240,.75);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.marquee-dot { color: var(--gold-2); font-size: 10px; }
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
 
-/* ABOUT */
-.about { background: var(--cream-2); text-align: center; }
-.about .serif-title { font-size: clamp(32px, 4.4vw, 52px); margin: 16px auto 0; max-width: 720px; }
-.about-lead { max-width: 640px; margin: 26px auto 0; color: var(--muted); font-size: 16px; }
-.about-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 52px; text-align: left; }
-.about-card { background: var(--white); border-radius: var(--r-md); padding: 30px 28px; border: 1px solid var(--line-2); box-shadow: var(--shadow-sm); transition: .25s; }
-.about-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
-.about-card .ic { width: 52px; height: 52px; border-radius: 14px; background: var(--cream-2); display: grid; place-items: center; color: var(--gold); margin-bottom: 18px; background-color: rgba(200,164,77,.1); }
-.about-card h3 { font-family: var(--serif); font-weight: 700; font-size: 20px; margin-bottom: 8px; }
-.about-card .role { font-size: 13px; color: var(--olive); font-weight: 600; margin-bottom: 10px; }
-.about-card p { font-size: 14px; color: var(--muted); }
-.resume-wrap { margin-top: 44px; }
-.decade { margin-top: 26px; font-size: 11.5px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+/* ─── SECTION HEADERS ──────────────────────────────────── */
+.sec-head {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 60px;
+}
+.sec-head .serif-title { font-size: clamp(32px, 4.5vw, 52px); margin: 12px 0 16px; }
+.sec-head p { color: var(--muted); font-size: 16px; line-height: 1.7; }
+.sec-head-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.sec-head-row .serif-title { font-size: clamp(28px, 3.8vw, 46px); margin-top: 10px; }
+.view-all-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 14px; font-weight: 700; color: var(--olive);
+  border-bottom: 1.5px solid var(--olive); padding-bottom: 2px;
+  transition: opacity .2s;
+}
+.view-all-link:hover { opacity: .7; }
 
-/* ARSENAL */
-.arsenal { background: var(--cream); }
-.arsenal .head { text-align: center; max-width: 620px; margin: 0 auto 54px; }
-.arsenal .serif-title { font-size: clamp(30px, 4vw, 46px); }
-.arsenal .head p { color: var(--muted); margin-top: 16px; font-size: 16px; }
+/* ─── ABOUT ────────────────────────────────────────────── */
+.about { background: var(--cream-2); }
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  align-items: start;
+}
+.about-left .serif-title {
+  font-size: clamp(30px, 4vw, 48px);
+  margin: 14px 0 20px;
+  line-height: 1.15;
+}
+.about-left .serif-title em { color: var(--gold); }
+.about-lead { color: var(--muted); font-size: 16px; line-height: 1.8; }
+.about-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+.about-card {
+  background: var(--white);
+  border-radius: var(--r-md);
+  padding: 28px;
+  border: 1px solid var(--line-2);
+  position: relative;
+  transition: .25s;
+  overflow: hidden;
+}
+.about-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--gold);
+  border-radius: 2px 0 0 2px;
+}
+.about-card:hover { transform: translateX(4px); box-shadow: var(--shadow-md); }
+.ac-num {
+  font-family: var(--display2);
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: .2em;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.about-card h3 { font-family: var(--serif); font-weight: 700; font-size: 19px; margin-bottom: 4px; }
+.ac-sub { font-size: 12.5px; color: var(--olive); font-weight: 600; margin-bottom: 10px; }
+.about-card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+/* ─── SERVICES BENTO ───────────────────────────────────── */
+.services { background: var(--cream); }
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 18px;
+}
+.bento-0 { grid-column: 1 / 3; }
+.bento-3 { grid-column: 2 / 4; }
+.bento-card {
+  background: var(--white);
+  border-radius: var(--r-md);
+  padding: 34px 32px;
+  border: 1px solid var(--line-2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: .3s;
+  text-decoration: none;
+  color: inherit;
+}
+.bento-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(185,149,64,.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity .3s;
+}
+.bento-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: rgba(185,149,64,.3); }
+.bento-card:hover::after { opacity: 1; }
+.bc-num {
+  font-family: var(--display2);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: .18em;
+  color: var(--gold);
+}
+.bento-card h3 { font-family: var(--serif); font-weight: 700; font-size: 22px; color: var(--ink); }
+.bento-card p { font-size: 14px; color: var(--muted); line-height: 1.65; flex: 1; }
+.bc-rate { font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--olive); }
+.bc-arrow {
+  position: absolute;
+  top: 24px; right: 24px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--cream);
+  display: grid; place-items: center;
+  font-size: 16px; color: var(--olive);
+  transition: .25s;
+}
+.bento-card:hover .bc-arrow { background: var(--olive); color: var(--cream-3); transform: scale(1.1); }
+.bento-0 .bento-card { background: var(--olive); color: var(--cream-3); border-color: var(--olive-dark); }
+.bento-0 .bc-num { color: var(--gold-2); }
+.bento-0 h3 { color: var(--cream-3); font-size: 26px; }
+.bento-0 p { color: rgba(251,248,240,.7); font-size: 15px; }
+.bento-0 .bc-arrow { background: rgba(255,255,255,.12); color: var(--cream-3); }
+.bento-0:hover .bc-arrow { background: var(--gold); color: var(--ink); }
+.bento-0:hover { background: var(--olive-dark); }
+
+/* ─── PORTFOLIO ────────────────────────────────────────── */
+.portfolio { background: var(--cream-2); }
+.proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.proj { background: var(--white); border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--line-2); transition: .3s; }
+.proj:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.proj .thumb { position: relative; aspect-ratio: 16/11; overflow: hidden; }
+.proj .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.proj:hover .thumb img { transform: scale(1.07); }
+.arrow {
+  position: absolute; top: 14px; right: 14px;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,.9);
+  display: grid; place-items: center;
+  color: var(--ink); font-size: 14px;
+  opacity: 0; transform: translateY(-6px); transition: .3s;
+}
+.proj:hover .arrow { opacity: 1; transform: translateY(0); }
+.proj-body { padding: 20px 22px 24px; }
+.proj-body h3 { font-family: var(--serif); font-weight: 700; font-size: 19px; margin-bottom: 5px; }
+.proj-cat { font-size: 12px; color: var(--muted); font-weight: 500; }
+
+/* ─── PROCESS ──────────────────────────────────────────── */
+.process { background: var(--cream); }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 64px; border: 1px solid var(--line-2); border-radius: var(--r-lg); overflow: hidden; }
+.step { padding: 36px 28px; border-right: 1px solid var(--line-2); background: var(--white); transition: .25s; }
+.step:last-child { border-right: 0; }
+.step:hover { background: var(--cream); }
+.step-num {
+  font-family: var(--display2);
+  font-weight: 800;
+  font-size: 42px;
+  color: rgba(185,149,64,.2);
+  line-height: 1;
+  margin-bottom: 20px;
+}
+.step h3 { font-family: var(--serif); font-weight: 700; font-size: 18px; margin-bottom: 10px; }
+.step p { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
+
+/* ─── STATS BAND ───────────────────────────────────────── */
+.band { background: var(--olive-dark); padding: 80px 0; }
+.band-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+.band-cell {
+  text-align: center;
+  padding: 20px;
+  border-right: 1px solid rgba(255,255,255,.1);
+  transition: .2s;
+}
+.band-cell:last-child { border-right: 0; }
+.band-cell:hover { background: rgba(255,255,255,.04); }
+.band-num {
+  font-family: var(--display2);
+  font-weight: 800;
+  font-size: clamp(44px, 5.5vw, 66px);
+  color: var(--cream-3);
+  line-height: 1;
+}
+.band-label {
+  margin-top: 10px;
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(251,248,240,.5);
+  font-weight: 600;
+}
+
+/* ─── TESTIMONIALS ─────────────────────────────────────── */
+.feedback { background: var(--cream-2); }
+.tst-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.tst {
+  background: var(--white);
+  border-radius: var(--r-md);
+  padding: 32px 28px;
+  border: 1px solid var(--line-2);
+  transition: .25s;
+  position: relative;
+  overflow: hidden;
+}
+.tst:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+.tst-quote-mark {
+  font-family: var(--serif);
+  font-size: 80px;
+  line-height: .7;
+  color: rgba(185,149,64,.15);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.tst .quote { font-size: 15px; color: var(--ink-2); line-height: 1.75; margin-bottom: 24px; }
+.tst-foot { border-top: 1px solid var(--line-2); padding-top: 18px; }
+.stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; margin-bottom: 6px; }
+.who-name { font-weight: 700; font-size: 14.5px; color: var(--ink); }
+.who-role { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+/* ─── SKILLS ───────────────────────────────────────────── */
+.skills-sec { background: var(--cream); }
 .skill-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .skill-card { background: var(--white); border-radius: var(--r-md); padding: 30px 28px; border: 1px solid var(--line-2); box-shadow: var(--shadow-sm); }
-.skill-card .top { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
-.skill-card .top .ic { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; color: #fff; }
-.skill-card:nth-child(1) .ic { background: var(--olive); }
-.skill-card:nth-child(2) .ic { background: var(--gold); }
-.skill-card:nth-child(3) .ic { background: var(--ink); }
-.skill-card h3 { font-family: var(--serif); font-weight: 700; font-size: 19px; }
-.skill-row { margin-bottom: 18px; }
+.skill-top { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
+.sk-ic { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; }
+.skill-card:nth-child(1) .sk-ic { background: var(--olive); }
+.skill-card:nth-child(2) .sk-ic { background: var(--gold); }
+.skill-card:nth-child(3) .sk-ic { background: var(--ink); }
+.skill-card h3 { font-family: var(--serif); font-weight: 700; font-size: 18px; }
+.skill-row { margin-bottom: 16px; }
 .skill-row:last-child { margin-bottom: 0; }
-.skill-row .l { display: flex; justify-content: space-between; font-size: 13.5px; font-weight: 500; margin-bottom: 7px; }
-.skill-row .l .pct { color: var(--muted); }
-.bar { height: 7px; border-radius: 6px; background: var(--line-2); overflow: hidden; }
-.bar i { display: block; height: 100%; border-radius: 6px; width: 0; transition: width 1.1s cubic-bezier(.2,.7,.2,1); }
+.skill-l { display: flex; justify-content: space-between; font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+.skill-l .pct { color: var(--muted); }
+.bar { height: 6px; border-radius: 6px; background: var(--line-2); overflow: hidden; }
+.bar i { display: block; height: 100%; border-radius: 6px; width: 0; transition: width 1.2s cubic-bezier(.2,.7,.2,1); }
 .skill-card:nth-child(1) .bar i { background: var(--olive); }
 .skill-card:nth-child(2) .bar i { background: var(--gold); }
 .skill-card:nth-child(3) .bar i { background: var(--ink); }
 
-/* SERVICES */
-.services { background: var(--cream-2); text-align: center; }
-.services .serif-title { font-size: clamp(30px, 4vw, 46px); margin-top: 14px; }
-.services .sub { color: var(--muted); margin: 18px auto 0; max-width: 560px; font-size: 16px; }
-.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 54px; text-align: left; }
-.svc-card { background: var(--white); border-radius: var(--r-md); padding: 32px 28px; border: 1px solid var(--line-2); box-shadow: var(--shadow-sm); transition: .25s; position: relative; overflow: hidden; }
-.svc-card::before { content: ""; position: absolute; left: 0; top: 0; height: 3px; width: 0; background: var(--gold); transition: .3s; }
-.svc-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
-.svc-card:hover::before { width: 100%; }
-.svc-card .ic { width: 54px; height: 54px; border-radius: 14px; background: var(--cream-2); display: grid; place-items: center; color: var(--olive); margin-bottom: 20px; }
-.svc-card h3 { font-family: var(--serif); font-weight: 700; font-size: 20px; margin-bottom: 10px; }
-.svc-card p { font-size: 14px; color: var(--muted); }
-.svc-card p.rate { font-family: var(--display); font-weight: 700; color: var(--olive); margin-top: 12px; }
-
-/* PORTFOLIO */
-.portfolio { background: var(--cream); }
-.portfolio .head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; margin-bottom: 44px; }
-.portfolio .serif-title { font-size: clamp(30px, 4vw, 48px); margin-top: 12px; }
-.filters { display: inline-flex; background: var(--white); border-radius: 40px; padding: 6px; border: 1px solid var(--line-2); box-shadow: var(--shadow-sm); }
-.filters button { border: 0; background: transparent; cursor: pointer; font-family: var(--body); font-size: 14px; font-weight: 600; color: var(--muted); padding: 9px 22px; border-radius: 30px; transition: .2s; }
-.filters button.active { background: var(--olive); color: #F2EEE1; }
-.proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
-.proj { background: var(--white); border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--line-2); box-shadow: var(--shadow-sm); transition: .3s; }
-.proj:hover { transform: translateY(-7px); box-shadow: var(--shadow-lg); }
-.proj .thumb { position: relative; aspect-ratio: 16/11; overflow: hidden; }
-.proj .thumb img { width: 100%; height: 100%; object-fit: cover; transition: .5s; }
-.proj:hover .thumb img { transform: scale(1.06); }
-.proj .arrow { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,.9); display: grid; place-items: center; color: var(--ink); opacity: 0; transform: translateY(-6px); transition: .3s; }
-.proj:hover .arrow { opacity: 1; transform: translateY(0); }
-.proj .body { padding: 22px 24px 26px; }
-.proj .body h3 { font-family: var(--serif); font-weight: 700; font-size: 20px; margin-bottom: 6px; }
-.proj .body .tags { font-size: 12.5px; color: var(--muted); }
-.view-all-wrap { text-align: center; margin-top: 44px; }
-
-/* PROCESS */
-.process { background: var(--cream-2); text-align: center; }
-.process .serif-title { font-size: clamp(30px, 4vw, 46px); margin-top: 14px; }
-.process .sub { color: var(--muted); margin: 18px auto 0; max-width: 520px; font-size: 16px; }
-.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 60px; position: relative; }
-.steps::before { content: ""; position: absolute; top: 32px; left: 12%; right: 12%; height: 2px; background: repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 16px); z-index: 0; }
-.step { position: relative; z-index: 1; }
-.step .circle { width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 22px; background: var(--olive); color: #EFEBDD; display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 20px; border: 5px solid var(--cream-2); box-shadow: 0 0 0 1px var(--line); }
-.step h3 { font-family: var(--serif); font-weight: 700; font-size: 19px; margin-bottom: 9px; }
-.step p { font-size: 13.5px; color: var(--muted); max-width: 220px; margin: 0 auto; }
-
-/* TESTIMONIALS */
-.feedback { background: var(--cream); text-align: center; }
-.feedback .serif-title { font-size: clamp(30px, 4vw, 46px); margin-top: 14px; }
-.tst-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 52px; text-align: left; }
-.tst { background: var(--white); border-radius: var(--r-md); padding: 30px 28px; border: 1px solid var(--line-2); box-shadow: var(--shadow-sm); transition: .25s; }
-.tst:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
-.stars { color: var(--gold); font-size: 16px; letter-spacing: 2px; margin-bottom: 16px; }
-.tst .quote { font-size: 14.5px; color: var(--ink-2); margin-bottom: 22px; line-height: 1.7; }
-.tst .who { display: flex; align-items: center; gap: 13px; }
-.tst .who img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; }
-.tst .who .n { font-weight: 600; font-size: 14.5px; }
-.tst .who .r { font-size: 12.5px; color: var(--muted); }
-
-/* BAND */
-.band { background: var(--olive); color: #EDE9DA; padding: 70px 0; position: relative; overflow: hidden; }
-.band::after { content: ""; position: absolute; inset: 0; background-image: repeating-radial-gradient(circle at 90% 20%, transparent 0 40px, rgba(255,255,255,.03) 40px 41px); }
-.band-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; position: relative; z-index: 2; text-align: center; }
-.band .big { font-family: var(--display); font-weight: 800; font-size: clamp(38px, 5vw, 58px); line-height: 1; color: #F4F0E2; }
-.band .lab { margin-top: 12px; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: #C9C6AE; font-weight: 600; }
-.band .cell { border-right: 1px solid rgba(255,255,255,.12); }
-.band .cell:last-child { border-right: 0; }
-
-/* INSIGHTS */
+/* ─── BLOG ─────────────────────────────────────────────── */
 .insights { background: var(--cream-2); }
-.insights .head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px; margin-bottom: 44px; }
-.insights .serif-title { font-size: clamp(30px, 4vw, 46px); }
-.view-all { font-size: 13.5px; font-weight: 600; color: var(--olive); display: flex; align-items: center; gap: 6px; border-bottom: 1.5px solid var(--olive); padding-bottom: 2px; }
-.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
-.post { background: var(--white); border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--line-2); box-shadow: var(--shadow-sm); transition: .3s; }
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.post { background: var(--white); border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--line-2); transition: .3s; }
 .post:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
-.post .thumb { aspect-ratio: 16/10; overflow: hidden; }
-.post .thumb img { width: 100%; height: 100%; object-fit: cover; transition: .5s; }
-.post:hover .thumb img { transform: scale(1.05); }
-.post .body { padding: 24px; }
-.post .meta { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
-.post .body h3 { font-family: var(--serif); font-weight: 700; font-size: 19px; line-height: 1.3; margin-bottom: 14px; }
-.post .read { font-size: 13px; font-weight: 600; display: flex; gap: 8px; color: #000; }
+.post-link { display: block; text-decoration: none; color: inherit; }
+.post-thumb { aspect-ratio: 16/10; overflow: hidden; }
+.post-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.post:hover .post-thumb img { transform: scale(1.05); }
+.post-body { padding: 22px 24px 26px; }
+.post-meta { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+.post-body h3 { font-family: var(--serif); font-weight: 700; font-size: 18px; line-height: 1.35; margin-bottom: 14px; color: var(--ink); }
+.post-read { font-size: 13px; font-weight: 700; color: var(--olive); }
 
-/* FAQ */
-.faq { background: var(--cream); text-align: center; }
-.faq .serif-title { font-size: clamp(30px, 4vw, 46px); }
-.faq-list { max-width: 760px; margin: 46px auto 0; text-align: left; display: flex; flex-direction: column; gap: 14px; }
-.faq-item { background: var(--white); border: 1px solid var(--line-2); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-sm); }
-.faq-q { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 24px; background: none; border: 0; cursor: pointer; text-align: left; font-family: var(--body); font-weight: 600; font-size: 15.5px; color: var(--ink); }
-.faq-q .plus { font-size: 22px; color: var(--gold); transition: .3s; flex: none; line-height: 1; }
+/* ─── FAQ ──────────────────────────────────────────────── */
+.faq { background: var(--cream); }
+.faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+.faq-item { background: var(--white); border: 1px solid var(--line-2); border-radius: 14px; overflow: hidden; }
+.faq-q {
+  width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 20px 24px; background: none; border: 0; cursor: pointer; text-align: left;
+  font-family: var(--body); font-weight: 600; font-size: 15.5px; color: var(--ink);
+  transition: background .2s;
+}
+.faq-q:hover { background: var(--cream); }
+.faq-q .plus { font-size: 22px; color: var(--gold); transition: .3s; flex: none; }
 .faq-item.open .faq-q .plus { transform: rotate(45deg); }
 .faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease; color: var(--muted); font-size: 14.5px; }
-.faq-a p { padding: 0 24px 22px; }
+.faq-a p { padding: 0 24px 22px; line-height: 1.75; }
 .faq-item.open .faq-a { max-height: 300px; }
+.faq-cta { text-align: center; margin-top: 36px; }
 
-/* CTA */
-.cta { background: var(--cream); color: var(--ink-2); text-align: center; padding: 80px 0; border-top: 1px solid var(--line); }
-.cta h2 { font-family: var(--serif); font-weight: 700; font-size: clamp(34px, 5vw, 56px); margin-bottom: 18px; color: var(--ink); }
-.cta h2 em { font-style: italic; color: var(--olive); }
-.cta p { color: var(--muted); max-width: 520px; margin: 0 auto 34px; font-size: 16.5px; }
-
-/* RESPONSIVE */
-@media (max-width: 1280px) {
-  .hero p.lead { font-size: 16px; }
-  .hero h1 { font-size: clamp(42px, 6vw, 47px); }
+/* ─── HIRE CTA ─────────────────────────────────────────── */
+.hire-cta { background: var(--olive-dark); padding: 100px 0; overflow: hidden; position: relative; }
+.hire-cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 20% 50%, rgba(185,149,64,.15) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(185,149,64,.1) 0%, transparent 40%);
+  pointer-events: none;
 }
-@media (max-width: 1024px) {
-  .stats-bar { padding: 16px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.hire-inner { text-align: center; position: relative; z-index: 1; }
+.hire-inner h2 {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(36px, 5vw, 62px);
+  color: var(--cream-3);
+  line-height: 1.15;
+  margin: 14px auto 22px;
+  max-width: 800px;
+}
+.hire-inner h2 em { color: var(--gold-2); font-style: italic; }
+.hire-inner p { color: rgba(251,248,240,.65); max-width: 520px; margin: 0 auto 40px; font-size: 17px; line-height: 1.75; }
+.hire-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* ─── RESPONSIVE ───────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .hero-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .h1-main { font-size: clamp(52px, 7vw, 88px); }
+  .photo-frame { width: 360px; height: 430px; }
+  .bento-grid { grid-template-columns: repeat(2, 1fr); }
+  .bento-0 { grid-column: 1 / 3; }
+  .bento-3 { grid-column: 1 / 3; }
 }
 @media (max-width: 980px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 36px; }
-  .hero-photo { max-width: 420px; margin: 0 auto; }
-  .about-cards, .skill-cols, .svc-grid, .proj-grid, .tst-grid, .blog-grid { grid-template-columns: repeat(2, 1fr); }
-  .steps { grid-template-columns: repeat(2, 1fr); gap: 34px 20px; }
-  .steps::before { display: none; }
-  .band-grid { grid-template-columns: repeat(2, 1fr); gap: 34px 20px; }
-  .band .cell { border-right: 0; }
+  .hero { min-height: auto; padding: 80px 0 60px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero-photo { max-width: 400px; margin: 0 auto; }
+  .photo-badge { left: -10px; }
+  .photo-badge-2 { right: -10px; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .stat:nth-child(2) { border-right: 0; }
+  .about-layout { grid-template-columns: 1fr; gap: 40px; }
+  .steps { grid-template-columns: repeat(2, 1fr); }
+  .step:nth-child(2) { border-right: 0; }
+  .step:nth-child(3) { border-top: 1px solid var(--line-2); border-right: 1px solid var(--line-2); }
+  .step:last-child { border-top: 1px solid var(--line-2); }
+  .band-grid, .tst-grid, .blog-grid, .proj-grid, .skill-cols { grid-template-columns: repeat(2, 1fr); }
+  .band-cell:nth-child(2), .band-cell:nth-child(4) { border-right: 0; }
+  .band-cell:nth-child(3), .band-cell:nth-child(4) { border-top: 1px solid rgba(255,255,255,.1); }
 }
-@media (max-width: 768px) {
-  .hero { background: unset; }
-  .stats-bar { grid-template-columns: 1fr; gap: 10px; }
-  .stat { border-right: 0; border-bottom: 1px solid var(--line-2); padding-bottom: 14px; }
+@media (max-width: 640px) {
+  .h1-main { font-size: clamp(52px, 14vw, 72px); }
+  .stats-bar { grid-template-columns: 1fr; }
+  .stat { border-right: 0; border-bottom: 1px solid var(--line-2); }
   .stat:last-child { border-bottom: 0; }
-  .about-cards, .skill-cols, .svc-grid, .proj-grid, .tst-grid, .blog-grid { grid-template-columns: 1fr; }
-  .logos { gap: 30px; }
-  .logos span { font-size: 21px; }
+  .bento-grid, .tst-grid, .blog-grid, .proj-grid, .skill-cols { grid-template-columns: 1fr; }
+  .bento-0, .bento-3 { grid-column: auto; }
+  .steps { grid-template-columns: 1fr; }
+  .step { border-right: 0 !important; border-top: 1px solid var(--line-2) !important; }
+  .step:first-child { border-top: 0 !important; }
+  .band-grid { grid-template-columns: repeat(2, 1fr); }
+  .photo-badge, .photo-badge-2 { display: none; }
+  .photo-ring { display: none; }
 }
 </style>
 
 <script>
-  // Filter buttons
-  const filters = document.getElementById('filters');
-  const grid = document.getElementById('projGrid');
-  filters?.addEventListener('click', (e) => {
-    const btn = (e.target as HTMLElement).closest('button');
-    if (!btn) return;
-    filters.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const f = btn.dataset.f;
-    grid?.querySelectorAll<HTMLElement>('.proj').forEach(p => {
-      p.style.display = (f === 'all' || p.dataset.cat === f) ? '' : 'none';
-    });
-  });
-
   // FAQ accordion
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -575,4 +878,32 @@ const svcBlurb: Record<string, string> = {
     });
   }, { threshold: 0.2 });
   document.querySelectorAll('.skill-card').forEach(card => barObserver.observe(card));
+
+  // Animated number counters
+  function countUp(el: HTMLElement) {
+    const end = parseInt(el.dataset.count || '0', 10);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1800;
+    const start = performance.now();
+    const update = (now: number) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * end) + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  }
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target as HTMLElement;
+        countUp(el);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll<HTMLElement>('.stat-num[data-count], .band-num[data-count]').forEach(el => {
+    counterObserver.observe(el);
+  });
 </script>
