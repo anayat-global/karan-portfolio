@@ -11,7 +11,11 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
-    "astro": "^7.3.5"
+    "astro": "^7.3.5",
+    "gsap": "^3.15.0"
   },
-  "packageManager": "pnpm@10.34.5"
+  "packageManager": "pnpm@10.34.5",
+  "devDependencies": {
+    "shadcn": "^4.22.1"
+  }
 }
