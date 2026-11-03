@@ -8,7 +8,9 @@ export interface Props {
   publishedTime?: string;
 }
 const { title, description = SITE.defaultDescription, image = '/img/og-default.jpg', type = 'website', publishedTime } = Astro.props;
-const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+// build.format 'file' makes pathname /about.html but the live URL is /about (matches the sitemap),
+// so strip the extension / index to keep canonical + og:url equal to the real URL.
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '').replace(/\/$/, '') || '/';
 const canonical = new URL(path, SITE.url).href;
 const ogImage = new URL(image, SITE.url).href;
 ---
