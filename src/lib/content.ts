@@ -2,6 +2,16 @@ import { fetchAllPages, resolveMediaUrl } from './strapi';
 import blogSeed from '../../content-seed/blog.json';
 import servicesSeed from '../../content-seed/services.json';
 
+// CMS bodies still contain links from the old static site (`../contact.html`,
+// `/about.html`, ...). Rewrite them to the real routes so they don't cost a 308 hop
+// or 404 (never trust URL-ish content stored in Strapi).
+function fixLegacyLinks(html: string): string {
+  return (html || '').replace(
+    /(href=")(?:\.\.\/|\.\/|\/)?(?:(index)|([a-z0-9-]+))\.html((?:[?#][^"]*)?")/gi,
+    (_m, pre, idx, page, post) => `${pre}${idx ? '/' : `/${page}`}${post}`
+  );
+}
+
 const SITE_SLUG = 'karandeeparora';
 
 export interface BlogPost {
@@ -65,7 +75,7 @@ export function getBlogPosts(): Promise<BlogPost[]> {
         title: p.title,
         description: p.metaDescription || excerpt(p.content, 155),
         excerpt: p.excerpt || excerpt(p.content),
-        content: p.content,
+        content: fixLegacyLinks(p.content),
         image: resolveMediaUrl(p.featuredImage?.url) || FALLBACK_IMAGE,
         publishDate: new Date(p.publishDate),
         readTime: p.readTime || readTime(p.content),
@@ -78,7 +88,7 @@ export function getBlogPosts(): Promise<BlogPost[]> {
         title: p.title,
         description: p.metaDescription,
         excerpt: p.excerpt,
-        content: p.content,
+        content: fixLegacyLinks(p.content),
         image: p.image || FALLBACK_IMAGE,
         publishDate: new Date(p.publishDate),
         readTime: p.readTime,
@@ -101,7 +111,7 @@ export function getServices(): Promise<Service[]> {
         title: s.title,
         headline: s.shortDescription || s.title,
         description: s.metaDescription || excerpt(s.content, 155),
-        content: s.content,
+        content: fixLegacyLinks(s.content),
         order: s.order ?? 0,
       }));
     }
@@ -111,7 +121,7 @@ export function getServices(): Promise<Service[]> {
       title: s.title,
       headline: s.shortDescription,
       description: s.metaDescription,
-      content: s.content,
+      content: fixLegacyLinks(s.content),
       order: s.order,
     }));
   })());
