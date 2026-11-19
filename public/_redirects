@@ -5,3 +5,5 @@
 
 # Legacy sitemap path
 /sitemap.xml /sitemap-index.xml 200
+/service/react-js-development /services/react-js-development-services 301
+/blog/From-Concept-to-Deployment-Developing-Mern-Powered /blog/from-concept-to-deployment-developing-mern-powered 301

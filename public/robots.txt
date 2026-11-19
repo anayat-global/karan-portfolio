@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+# Cloudflare email-obfuscation links (404 in Search Console). Do NOT block all of /cdn-cgi/: Google needs /cdn-cgi/scripts/ to render pages.
+Disallow: /cdn-cgi/l/
 
 User-agent: Claude-User
 Allow: /
