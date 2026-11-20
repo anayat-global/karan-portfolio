@@ -6,8 +6,9 @@ export interface Props {
   image?: string;
   type?: 'website' | 'article';
   publishedTime?: string;
+  noindex?: boolean;
 }
-const { title, description = SITE.defaultDescription, image = '/img/og-default.jpg', type = 'website', publishedTime } = Astro.props;
+const { title, description = SITE.defaultDescription, image = '/img/og-default.jpg', type = 'website', publishedTime, noindex = false } = Astro.props;
 // build.format 'file' makes pathname /about.html but the live URL is /about (matches the sitemap),
 // so strip the extension / index to keep canonical + og:url equal to the real URL.
 const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '').replace(/\/$/, '') || '/';
@@ -22,7 +23,7 @@ const ogImage = new URL(image, SITE.url).href;
   <meta name="description" content={description} />
   <title>{title}</title>
   <link rel="canonical" href={canonical} />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
   <meta name="author" content={SITE.name} />
   <meta property="og:locale" content="en_US" />
   <meta property="og:title" content={title} />
