@@ -24,6 +24,18 @@ const ogImage = new URL(image, SITE.url).href;
   <title>{title}</title>
   <link rel="canonical" href={canonical} />
   <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+  <!-- Google Analytics 4 (consent mode: visitors in the EEA, UK and Switzerland are not measured until a consent banner grants it) -->
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-LMZ173YGYX"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+      region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-LMZ173YGYX');
+  </script>
   <meta name="author" content={SITE.name} />
   <meta property="og:locale" content="en_US" />
   <meta property="og:title" content={title} />
