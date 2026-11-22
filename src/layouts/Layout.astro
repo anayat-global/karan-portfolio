@@ -33,9 +33,11 @@ const ogImage = new URL(image, SITE.url).href;
       analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
       region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']
     });
+    try{var cc=localStorage.getItem('cookie-consent');if(cc==='granted'){gtag('consent','update',{analytics_storage:'granted'});}else if(cc==='denied'){gtag('consent','update',{analytics_storage:'denied'});}}catch(e){}
     gtag('js', new Date());
     gtag('config', 'G-LMZ173YGYX');
   </script>
+  <script is:inline src="/consent.js" defer></script>
   <meta name="author" content={SITE.name} />
   <meta property="og:locale" content="en_US" />
   <meta property="og:title" content={title} />
